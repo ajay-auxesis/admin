@@ -1,0 +1,95 @@
+
+<div class="tab-content">
+         <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+             <div class="card">          
+   <div class="header bg-light-green">
+       
+      <span> Your balance: 0 USD </span>  <span class="position">Lowest Ask Price : 0.00  USD</span>
+   </div>
+   <div class="body">
+                          <form  (ngSubmit)="onBuy(buymodel)" [formGroup]="buymodel" >
+                                  <div class="form-group">
+                                    <div class="form-line">
+                                       <input type="text"  formControlName="Amount"  class="form-control " placeholder="Amount">
+                                    </div>
+                                    <div><app-validation-message controlname="Amount"  [control]="buymodel.controls.Amount"></app-validation-message></div>
+                                </div>  
+
+                                    <div class="form-group">
+                                    <div class="form-line">
+                                    <input type="text"  formControlName="Rate" class="form-control " placeholder="Price per unit in USD">
+                                    </div>
+                                    <div><app-validation-message controlname="Rate"  [control]="buymodel.controls.Rate"></app-validation-message></div>
+                                </div>  
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                    <label> Total  </label>
+                                    <label id="total" >00.00</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                    <label > Fee </label>
+                                    <label id="fee" >00.00</label>
+                                    </div>
+                                </div>
+                                <button  type="button" class="btn btn-primary m-t-15 waves-effect" >Calculate</button>
+                                <button [disabled]="buymodel.invalid" type="submit" class="btn btn-primary m-t-15 waves-effect position">Buy</button>
+                            <div class="clearfix"></div>
+                            </form>  
+   </div>
+             </div>
+            </div>
+  </div>
+
+<!--<div class="tab-content">
+         <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+                          <form  (ngSubmit)="onSell(sellmodel)" [formGroup]="sellmodel" >
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                       <input type="text"  formControlName="Amount"  class="form-control " placeholder="Amount">
+                                    </div>
+                                    <div><app-validation-message controlname="Amount"  [control]="sellmodel.controls.Amount"></app-validation-message></div>
+                                </div>  
+
+                                    <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text"  formControlName="Rate" class="form-control " placeholder="Price per unit in USD">
+                                    </div>
+                                    <div><app-validation-message controlname="Rate"  [control]="sellmodel.controls.Rate"></app-validation-message></div>
+                                </div>  
+                                        <div class="col-sm-6">
+                                        <div class="form-group">
+                                        <label> Total  </label>
+                                        <label id="total" >00.00</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                        <label > Fee </label>
+                                        <label id="fee" >00.00</label>
+                                        </div>
+                                    </div>
+                                    <button  type="button" class="btn btn-primary m-t-15 waves-effect" >Calculate</button>
+                                   <button [disabled]="sellmodel.invalid" type="submit" class="btn btn-primary m-t-15 waves-effect position">SEll</button>
+                           <div class="clearfix"></div>
+                            </form> 
+            
+               
+            </div>
+  </div>-->
+
+
+
+   <!--<h3 class=" col-lg-6 col-md-4 col-sm-6 col-xs-12 ">Sell Order</h3>
+   <h3 class="col-lg-6 col-md-4 col-sm-6 col-xs-12">Buy Order</h3>
+   <div class="tab-content">
+   <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+      <app-sell-order></app-sell-order>
+   </div>
+</div>-->
+
+
+
+
+<!--<app-preloader></app-preloader>-->

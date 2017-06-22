@@ -1,0 +1,42 @@
+<h3  class=" col-lg-6 col-md-4 col-sm-6 col-xs-12">Buy LTC</h3>
+   <h3  class="col-lg-6 col-md-4 col-sm-6 col-xs-12">Sell LTC</h3>
+<div class="tab-content">
+         <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+                          <form  (ngSubmit)="onBuy(buymodel)" [formGroup]="buymodel" >
+                                   <div formArrayName="buysubformarray">
+                                        <div *ngFor="let address of buymodel.controls.buysubformarray.controls; let i=index" class="panel panel-default">
+                                            <div class="panel-body" [formGroupName]="i"> 
+                                                <app-buy-form [group]="buymodel.controls.buysubformarray.controls[i]"></app-buy-form> 
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                            </form> 
+            </div>
+  </div>
+<div class="tab-content">
+         <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+                          <form  (ngSubmit)="onSell(sellmodel)" [formGroup]="sellmodel" >
+                                     <div formArrayName="sellsubformarray">
+                                        <div *ngFor="let address of sellmodel.controls.sellsubformarray.controls; let i=index" class="panel panel-default">
+                                            <div class="panel-body" [formGroupName]="i"> 
+                                                <app-sell-form [group]="sellmodel.controls.sellsubformarray.controls[i]"></app-sell-form> 
+                                            </div>
+                                        </div>
+                                    </div>
+                               
+                            </form> 
+            </div>
+  </div>
+   <h3 class=" col-lg-6 col-md-4 col-sm-6 col-xs-12">Sell Order</h3>
+   <h3 class="col-lg-6 col-md-4 col-sm-6 col-xs-12">Buy Order</h3>
+   <div class="tab-content">
+   <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+       <app-sell-order></app-sell-order>
+   </div>
+</div>
+<div class="tab-content">
+   <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+       <app-buy-order></app-buy-order>
+   </div>
+</div>

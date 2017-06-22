@@ -1,0 +1,51 @@
+ <div class="valign">
+   <div class="row">
+               <div class="col s12 m6 l4 offset-l4 offset-m3">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                               REGISTRATION
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <form  [formGroup]="registermodel" (ngSubmit)="onSubmit(registermodel)" >
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" id="email" formControlName="Email"  class="form-control">
+                                        
+                                        <label class="form-label">Email</label>
+                                    </div>
+                                    <div><app-validation-message controlname="Email"  [control]="registermodel.controls.Email"></app-validation-message></div>
+                                </div>
+
+                                 <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="password" id="password"  formControlName="Password" #password class="form-control">
+                                        
+                                        <label class="form-label">Password</label>
+                                     </div>
+                                     <div><app-validation-message controlname="Password" [control]="registermodel.controls.Password"></app-validation-message></div>
+                                </div>
+
+                                 <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input id="ConfirmPassword"  type="password"   formControlName="ConfirmPassword" class="form-control">
+                                        
+                                        <label class="form-label">ConfirmPassword</label>
+                                     </div>
+                                     <div><app-validation-message controlname="Confirm Password" [confirmcontrol]="registermodel.controls.Password"  [control]="registermodel.controls.ConfirmPassword"></app-validation-message></div>
+                                </div>
+
+                                <br>
+                                <button [disabled]="registermodel.invalid" type="submit" class="btn btn-primary m-t-15 waves-effect">Register</button>
+                            </form>
+                            <label>{{data | json}}</label>
+                        </div>
+                    </div>
+                </div>
+       </div>
+ </div>
+
+            
+
+           

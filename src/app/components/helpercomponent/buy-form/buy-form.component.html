@@ -1,0 +1,42 @@
+<div class="card">
+   <div class="header bg-light-green">
+      <span> Your balance: 0 USD </span>  <span class="position">Lowest Ask Price : 0.00  USD</span>
+   </div>
+   <div class="body">
+      <div [formGroup]="buyform" >
+         <div class="form-group ">
+            <div class="form-line">
+               <input type="text" id="amount" formControlName="Amount"  class="form-control " placeholder="Amount">
+               <!--<label class="form-label">Amount Eth</label>-->
+            </div>
+            <div>
+               <app-validation-message controlname="Amount"  [control]="buyform.controls.Amount"></app-validation-message>
+            </div>
+         </div>
+         <div class="form-group ">
+            <div class="form-line">
+               <input type="text" id="rate" formControlName="Rate" class="form-control " placeholder="Price per unit in USD">
+               <!--<label class="form-label">Price per unit in USD</label>         -->
+            </div>
+            <div>
+               <app-validation-message controlname="Rate" class="form-control "  [control]="buyform.controls.Rate"></app-validation-message>
+            </div>
+         </div>
+         <div class="col-sm-6">
+            <div class="form-group">
+               <label> Total  </label>
+               <label id="total" >00.00</label>
+            </div>
+         </div>
+         <div class="col-sm-6">
+            <div class="form-group">
+               <label > Fee </label>
+               <label id="fee" >00.00</label>
+            </div>
+         </div>
+         <br>
+         <button  type="button" class="btn btn-primary m-t-15 waves-effect" >Calculate</button>
+         <button [disabled]="buyform.invalid"  type="submit"  class="btn btn-primary m-t-15 waves-effect position" >Buy</button>
+      </div>
+   </div>
+</div>

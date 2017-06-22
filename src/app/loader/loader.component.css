@@ -1,0 +1,9 @@
+.page-loader-wrapper
+{
+opacity: .5;
+background: black;
+}
+.loader
+{
+  opacity: 1;  
+}

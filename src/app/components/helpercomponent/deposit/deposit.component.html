@@ -1,0 +1,22 @@
+<div class="tab-content" AmountBalance [eventListener]="ledgerbalance" >
+   <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="header bg-white">
+      <span> Your balance:{{value}} {{currencytype}}  </span> 
+   </div>
+         <div class="body">
+            <form  (ngSubmit)="onSubmit(depositmodel)" [formGroup]="depositmodel" >
+            <div class="form-group">
+               <div class="form-line">
+                  <input type="text"  formControlName="Amount"  class="form-control " placeholder="Amount">
+               </div>
+               <div>
+                  <app-validation-message controlname="Amount"  [control]="depositmodel.controls.Amount"></app-validation-message>
+               </div>
+            </div>
+            <button [disabled]="depositmodel.invalid" type="submit" class="btn btn-primary m-t-15 waves-effect position" >Deposit</button> 
+            </form>  
+         </div>
+      </div>
+   </div>
+</div>
