@@ -1,5 +1,5 @@
 import { LoaderService } from './../loader-service.service';
-import { environment } from './../../environments/environment.prod';
+
 import {Injectable} from "@angular/core";
 import { ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers} from "@angular/http";
 import {Observable} from "rxjs/Rx";

@@ -38,7 +38,7 @@ this.loginresponse=result;
 if(this.loginresponse.status=Responsecode.OK)
 {
  this.loaderService.displayLoader(false);
-this._router.navigate(['myprofile']);
+this._router.navigate(['LtcUsd']);
 ​let responobject:any=this.loginresponse.json();
 localStorage.setItem(AppSettings.localtokenkey, responobject.AccessToken);
 }
