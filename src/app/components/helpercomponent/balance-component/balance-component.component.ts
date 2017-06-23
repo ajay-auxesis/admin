@@ -31,53 +31,28 @@ import { NgFor } from "@angular/common";
 import { DepositServiceService } from './../../../service/deposit-service.service';
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { CurrencyType } from "../../../enums/currency-type.enum";
-import { resolve } from "q";
-import {PaymentOperationMode } from "../../../enums/payment-operation-mode.enum"
+import { PaymentOperationMode } from "../../../enums/payment-operation-mode.enum";
 @Component({
-  selector: 'app-deposit',
-  templateUrl: './deposit.component.html',
-  styleUrls: ['./deposit.component.css']
+  selector: 'app-balance-component',
+  templateUrl: './balance-component.component.html',
+  styleUrls: ['./balance-component.component.css']
 })
-export class DepositComponent implements OnInit {
-@Input() currencytype: CurrencyType;
-@Output() btcvalue : EventEmitter<any> = new EventEmitter<any>();
+export class BalanceComponentComponent implements OnInit {
 
-  constructor( private _sharedservice: SharedService, private _http: Http,private _fb: FormBuilder,private _router: Router,private loaderService: LoaderService, private _depositService: DepositServiceService) { }
- Amount:number;
+  constructor(private _sharedservice: SharedService, private _http: Http,private _router: Router,private loaderService: LoaderService, private _depositService: DepositServiceService) { }
+Amount:number;
  CurrencyType: CurrencyType;
- value : any;
- depositmodel: FormGroup;
- USDbalance:any=0;
- BTCbalance:any=0;
- USDcredit:any=0;
- USDdebit:any=0;
- BTCcredit:any=0;
- BTCdebit:any=0;
- balance:any;
- 
-  ngOnInit() 
- 
-  {
-  this.depositmodel =this._fb.group({
-Amount: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),
-});
-this.getAmount();
-}
+ _value : number;
+ _usdbalance:number=0;
+ _btcbalance:number=0;
+ _usdcredit:number=0;
+ _usddebit:number=0;
+ _btccredit:number=0;
+ _btcdebit:number=0;
+ _balance:number;
+  ngOnInit() {
 
-onSubmit({value, valid }: { value: DepositModel, valid: boolean }) {
-  if(this.currencytype==CurrencyType.USD)   
-{value.CurrencyType=CurrencyType.USD;}
- if(this.currencytype==CurrencyType.BTC)   
-{value.CurrencyType=CurrencyType.BTC;}
-this._depositService.PostDeposit(value).debounceTime(1200).subscribe(result =>{
-this.loaderService.displayLoader(false);
-
-}); 
-this.depositmodel.reset();
-}
-
-getAmount(){ 
-this._depositService.getDeposit().debounceTime(1200)
+    this._depositService.getDeposit().debounceTime(1200)
 .subscribe((value: RawleadgerDto) => {
   var leadger :RawleadgerDto;
   leadger=value;
@@ -85,61 +60,41 @@ this._depositService.getDeposit().debounceTime(1200)
  
     leadgerlist.forEach(element => {
      
-    
        if(element.Currency==CurrencyType.USD && element.Mode==PaymentOperationMode.Credit){
-      this.USDcredit += element.Amount;
+      this._usdcredit += element.Amount;
        }
 
        if(element.Currency==CurrencyType.USD && element.Mode==PaymentOperationMode.Debit){
-      this.USDdebit += element.Amount;
+      this._usddebit += element.Amount;
        }
 
-       this.USDbalance=this.USDcredit-this.USDdebit;
+       this._usdbalance=this._usdcredit-this._usddebit;
     
     
-      if(element.Currency==CurrencyType.BTC && element.Mode==PaymentOperationMode.Credit){
-      this.BTCcredit += element.Amount;
-       }
-       if(element.Currency==CurrencyType.BTC &&  element.Mode==PaymentOperationMode.Debit){
-      this.BTCdebit += element.Amount;
-       }
-       this.BTCbalance=this.BTCcredit-this.BTCdebit; 
+      // if(element.Currency==CurrencyType.BTC && element.Mode==PaymentOperationMode.Credit){
+      // this.BTCcredit += element.Amount;
+      //  }
+      //  if(element.Currency==CurrencyType.BTC &&  element.Mode==PaymentOperationMode.Debit){
+      // this.BTCdebit += element.Amount;
+      //  }
+      //  this.BTCbalance=this.BTCcredit-this.BTCdebit; 
      
     
     });
     
-     if(this.currencytype==CurrencyType.USD)   
-{this.balance=this.USDbalance;}
- if(this.currencytype==CurrencyType.BTC)   
-{this.balance=this.BTCbalance;}
+//      if(this.currencytype=='USD')   
+// {this.balance=this.USDbalance;}
+//  if(this.currencytype=='BTC')   
+// {this.balance=this.BTCbalance;}
 
 //this.btcvalue.emit(this.BTCbalance);
 
  });
 
-this.USDbalance=0;
-this.BTCbalance=0;
+this._usdbalance=0;
+this._btcbalance=0;
 this.loaderService.displayLoader(false);
 
-}
-
-// getUSDBalance(){
-
-// }
-// getUSDCredit(){
-  
-// }
-// getUSDdebit(){
-  
-// }
-// getBTCBalance(){
-
-// }
-// getBTCCredit(){
-  
-// }
-// getBTCdebit(){
-  
-// }
+  }
 
 }

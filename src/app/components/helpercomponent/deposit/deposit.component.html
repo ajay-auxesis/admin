@@ -1,8 +1,8 @@
-<div class="tab-content" AmountBalance [eventListener]="ledgerbalance" >
+<div class="tab-content" AmountBalance [eventListener]="btcvalue"  >
    <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
       <div class="card">
         <div class="header bg-white">
-      <span> Your balance:{{value}} {{currencytype}}  </span> 
+      <span> Your balance : {{balance}} {{currencytype}}  </span> 
    </div>
          <div class="body">
             <form  (ngSubmit)="onSubmit(depositmodel)" [formGroup]="depositmodel" >

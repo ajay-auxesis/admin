@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 
 @Component({
   selector: 'app-deposit-component',
@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./deposit-component.component.css']
 })
 export class DepositComponentComponent implements OnInit {
-
+//@Input() value:any;
   constructor() { }
-
+//newvalue: number;
   ngOnInit() {
+   // this.newvalue=this.value;
   }
 
 }

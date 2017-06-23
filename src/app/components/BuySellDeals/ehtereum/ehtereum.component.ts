@@ -1,8 +1,6 @@
 import { LTCUSDOrderModel } from './../../../models/LTCUSDOrderModel';
 import { TradingHistoryComponent } from './../../helpercomponent/trading-history/trading-history.component';
 import { CurrentActiveOrdersComponent } from './../../helpercomponent/current-active-orders/current-active-orders.component';
-import { SellOrderComponent } from './../../helpercomponent/sell-order/sell-order.component';
-import { BuyOrderComponent } from './../../helpercomponent/buy-order/buy-order.component';
 import { BuyselldealserviceService } from './../../../service/sellbuyservice/buyselldealservice.service';
 import { AppSettings } from './../../../app-settings';
 import { LoaderService } from './../../../service/loader-service.service';
@@ -62,7 +60,6 @@ if(this.formtype=='sell')
 
 this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
 this.loaderService.displayLoader(false);
-
 this.notify.emit(result); 
 }); 
 this.buymodel.reset();

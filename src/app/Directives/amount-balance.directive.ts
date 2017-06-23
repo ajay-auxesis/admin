@@ -11,19 +11,14 @@ export class AmountBalanceDirective {
  });
 }
 
+ 
 constructor(el: ElementRef, renderer: Renderer) { }
-balance: any;
-total:any;
+USDbalance:number=0;
+BTCbalance:number=0;
 calculateBalance(val){
-this.balance=val;
-   console.log(val); 
-  //  for(var i = 0; i < this.balance.length; i++){
-  //     console.log(this.balance.length);
-  //       var product = this.balance[i];
-  //       this.total += (product);
-  //   } 
 
-  //   console.log(this.balance.length);
+   
 
      }
+   
 }
