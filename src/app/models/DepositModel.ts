@@ -5,7 +5,7 @@ import { PaymentOperationMode } from "app/enums/payment-operation-mode.enum";
 export class DepositModel {
 
 Amount:number;
-Currency:CurrencyType;
+CurrencyType:CurrencyType;
 Type:PaymentOperationMode;
 
 }
@@ -20,7 +20,7 @@ RawLeadgerList:Array<RawLeadgerListdto>;
 export class RawLeadgerListdto {
 
 Amount:number;
-Currency:CurrencyType;
+currency:CurrencyType;
 Type:PaymentOperationMode;
 length:number;
 

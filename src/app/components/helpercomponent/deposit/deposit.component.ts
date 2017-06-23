@@ -1,3 +1,5 @@
+import { PaymentOperationMode } from 'app/enums/payment-operation-mode.enum';
+import { CurrencyType } from 'app/enums/currency-type.enum';
 import { LoaderComponent } from './../../../loader/loader.component';
 import { AmountBalanceDirective } from './../../../Directives/amount-balance.directive';
 import { DepositModel, RawleadgerDto, RawLeadgerListdto } from './../../../models/DepositModel';
@@ -31,7 +33,7 @@ import { UserType } from "../../../enums/user-type.enum";
 import { NgFor } from "@angular/common";
 import { DepositServiceService } from './../../../service/deposit-service.service';
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
-import { CurrencyType } from "../../../enums/currency-type.enum";
+
 import { resolve } from "q";
 
 
@@ -60,11 +62,12 @@ Amount: new FormControl('', [Validators.required, ValidationmessageserviceServic
 this.getAmount();
 }
 onSubmit({value, valid }: { value: DepositModel, valid: boolean }) {
-//   if(this.currencytype=='USD')   
-// {value.CurrencyType=CurrencyType.USD;}
-//  if(this.currencytype=='BTC')   
-// {value.CurrencyType=CurrencyType.BTC;}
 
+// console.log("check");
+value.CurrencyType=CurrencyType.USD;
+
+
+// console.log(value);
 this._depositService.PostDeposit(value).debounceTime(1200).subscribe(result =>{
 this.loaderService.displayLoader(false);
 console.log(result);
@@ -84,12 +87,12 @@ this._depositService.getDeposit().debounceTime(1200)
     console.log(leadgerlist);
     leadgerlist.forEach(element => {
       console.log(element);
-     if(element.Currency==1){
+     if(element.Type==PaymentOperationMode.Credit){
       this.USDbalance += element.Amount; 
-     }
-     if(element.Currency==2){
+      }
+      if(element.Type==PaymentOperationMode.Debit){
       this.BTCbalance += element.Amount; 
-     }
+      }
      console.log(this.BTCbalance);
      console.log()
      console.log(this.USDbalance);

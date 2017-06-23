@@ -44,6 +44,7 @@ import { OrderComponentComponent } from './components/helpercomponent/order-comp
 import { DepositComponent } from './components/helpercomponent/deposit/deposit.component';
 import { DepositComponentComponent } from './components/BuySellDeals/deposit-component/deposit-component.component';
 import { AmountBalanceDirective } from './Directives/amount-balance.directive';
+import { MyCurrencyBalanceComponent } from './components/helpercomponent/my-currency-balance/my-currency-balance.component';
 
 
 const routes: Routes = [
@@ -86,6 +87,7 @@ const routes: Routes = [
     DepositComponent,
     DepositComponentComponent,
     AmountBalanceDirective,
+    MyCurrencyBalanceComponent,
     
     
 ],

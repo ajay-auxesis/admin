@@ -1,4 +1,4 @@
-import { LTCUSDOrderModel } from './../../../models/LTCUSDOrderModel';
+
 import { SellOrderComponent } from './../../helpercomponent/sell-order/sell-order.component';
 import { BuyOrderComponent } from './../../helpercomponent/buy-order/buy-order.component';
 import { BuyselldealserviceService } from './../../../service/sellbuyservice/buyselldealservice.service';
@@ -52,20 +52,20 @@ this.buymodel =this._fb.group({
       
         }
    
-onBuy({ value, valid }: { value: LTCUSDOrderModel, valid: boolean }) {
-value.OrderMode=OrderMode.Buy;
+// onBuy({ value, valid }: { value: LTCUSDOrderModel, valid: boolean }) {
+// value.OrderMode=OrderMode.Buy;
 
-this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
-this.loaderService.displayLoader(false);
+// this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
+// this.loaderService.displayLoader(false);
 
-});     
- }
-onSell({ value, valid }: { value: LTCUSDOrderModel, valid: boolean }) {
-value.OrderMode=OrderMode.Sell;
+// });     
+//  }
+// onSell({ value, valid }: { value: LTCUSDOrderModel, valid: boolean }) {
+// value.OrderMode=OrderMode.Sell;
 
-this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
-this.loaderService.displayLoader(false);
+// this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
+// this.loaderService.displayLoader(false);
 
-});     
- }
+// });     
+//  }
   }

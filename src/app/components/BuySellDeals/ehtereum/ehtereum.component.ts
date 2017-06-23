@@ -1,4 +1,7 @@
-import { LTCUSDOrderModel } from './../../../models/LTCUSDOrderModel';
+import { orderModel } from './../../../models/LTCUSDOrderModel';
+
+import { CurrencyType } from 'app/enums/currency-type.enum';
+
 import { TradingHistoryComponent } from './../../helpercomponent/trading-history/trading-history.component';
 import { CurrentActiveOrdersComponent } from './../../helpercomponent/current-active-orders/current-active-orders.component';
 import { SellOrderComponent } from './../../helpercomponent/sell-order/sell-order.component';
@@ -35,43 +38,34 @@ templateUrl: './ehtereum.component.html',
 styleUrls: ['./ehtereum.component.css']
 })
 export class EhtereumComponent implements OnInit {
-@Input() currencypair : string;
-@Input() formtype : string;
+@Input()  _currencyType:CurrencyType;
+@Input()  _orderMode: OrderMode;
 @Output() notify: EventEmitter<string> = new EventEmitter<string>();
-buymodel: FormGroup;
+
+OrderFormModel: FormGroup;
 sellmodel: FormGroup;
-formused: string;
 constructor(myElement: ElementRef, private _sharedservice: SharedService, private _http: Http,private _fb: FormBuilder,private _registerservice: RegisterService,private _router: Router, private _buyselldealservice : BuyselldealserviceService,private loaderService: LoaderService) {
+
 
 }
 ngOnInit() {
-this.buymodel =this._fb.group({
+this.OrderFormModel =this._fb.group({
 Amount: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),
 Rate: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),
 });
-// this.sellmodel =this._fb.group({
-// Amount: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),
-// Rate: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),
-// });
+
 }
-onBuy({ value, valid }: { value: LTCUSDOrderModel, valid: boolean }) {
- if(this.formtype=='buy')   
-{value.OrderMode=OrderMode.Buy;}
-if(this.formtype=='sell')
-{value.OrderMode=OrderMode.Sell;}
+submitOrder({ value, valid }: { value: orderModel, valid: boolean }) {
+
+
+this._orderMode==OrderMode.Sell? value.OrderMode==OrderMode.Sell : value.OrderMode==OrderMode.Buy;
 
 this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
 this.loaderService.displayLoader(false);
 
 this.notify.emit(result); 
 }); 
-this.buymodel.reset();
+this.OrderFormModel.reset();
 }
-// onSell({ value, valid }: { value: LTCUSDOrderModel, valid: boolean }) {
-// value.OrderMode=OrderMode.Buy;
-// this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
-// this.loaderService.displayLoader(false);
-// });   
-// this.sellmodel.reset();  
-// }
+
 }

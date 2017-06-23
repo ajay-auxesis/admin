@@ -1,4 +1,4 @@
-import { LTCUSDOrderModel } from './../../models/LTCUSDOrderModel';
+import { orderModel } from './../../models/LTCUSDOrderModel';
 import { AppSettings } from './../../app-settings';
 
 import { Router } from '@angular/router';
@@ -15,9 +15,9 @@ export class BuyselldealserviceService {
       public _IsAuthenticated:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     constructor(private http: Http,private _router: Router) {
     }
-  PostsellbuyDeal(ltcusdOrderModel: LTCUSDOrderModel): Observable<any> {
+  PostsellbuyDeal(orderModel: orderModel): Observable<any> {
     {
-      let bodyString = JSON.stringify(ltcusdOrderModel); 
+      let bodyString = JSON.stringify(orderModel); 
 return this.http.post(`${AppSettings.API_ENDPOINT}LtcUsdoder`, bodyString);
     }
   }
