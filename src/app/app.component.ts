@@ -1,3 +1,4 @@
+import { ChannelService,ConnectionState } from './service/HubServices/channel.service';
 import { Observable } from 'rxjs/Rx';
 import { SharedService } from './service/shared.service';
 import { Component } from '@angular/core';
@@ -11,9 +12,17 @@ import { LoaderService } from "./service/loader-service.service";
 })
 export class AppComponent {
 
+
+
+
  objLoaderStatus: boolean;
+  connectionState$: Observable<string>;
   constructor(private _sharedservice: SharedService, private loaderService: LoaderService) { 
   this.objLoaderStatus=false; 
+
+  // Let's wire up to the signalr observables
+        //
+        
     
   }
   title = 'app works!';

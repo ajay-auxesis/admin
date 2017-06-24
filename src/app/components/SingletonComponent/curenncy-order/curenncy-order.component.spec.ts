@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { LtcUsdComponentComponent } from './ltc-usd-component.component';
+import { CurenncyOrderComponent } from './curenncy-order.component';
 
-describe('LtcUsdComponentComponent', () => {
-  let component: LtcUsdComponentComponent;
-  let fixture: ComponentFixture<LtcUsdComponentComponent>;
+describe('CurenncyOrderComponent', () => {
+  let component: CurenncyOrderComponent;
+  let fixture: ComponentFixture<CurenncyOrderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LtcUsdComponentComponent ]
+      declarations: [ CurenncyOrderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LtcUsdComponentComponent);
+    fixture = TestBed.createComponent(CurenncyOrderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

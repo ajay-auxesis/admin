@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { DepositComponent } from './deposit.component';
+import { LtcUsdRouteComponent } from './ltc-usd-route.component';
 
-describe('DepositComponent', () => {
-  let component: DepositComponent;
-  let fixture: ComponentFixture<DepositComponent>;
+describe('LtcUsdRouteComponent', () => {
+  let component: LtcUsdRouteComponent;
+  let fixture: ComponentFixture<LtcUsdRouteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DepositComponent ]
+      declarations: [ LtcUsdRouteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DepositComponent);
+    fixture = TestBed.createComponent(LtcUsdRouteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
