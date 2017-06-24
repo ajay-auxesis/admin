@@ -4,7 +4,7 @@
              <div class="card">          
    <div class="header bg-light-green">
        
-     <app-my-currency-balance CurrencyType="{{_currencyType}}" ></app-my-currency-balance> <span class="position">Lowest Ask Price : 0.00  USD</span>
+     <app-my-currency-balance CurrencyType="{{_currencyType}}" #f ></app-my-currency-balance> <span class="position">Lowest Ask Price : 0.00  USD</span>
    </div>
    <div class="body">
                           <form  (ngSubmit)="submitOrder(OrderFormModel)" [formGroup]="OrderFormModel" >
@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
                                 <button  type="button" class="btn btn-primary m-t-15 waves-effect" >Calculate</button>
-                                <button [disabled]="OrderFormModel.invalid" type="submit" class="btn btn-primary m-t-15 waves-effect position">{{_orderMode}}</button>
+                                <button [disabled]="OrderFormModel.invalid" type="submit" class="btn btn-primary m-t-15 waves-effect position" (click)="f.ngOnInit()">{{_orderMode}}</button>
                             <div class="clearfix"></div>
                             </form>  
    </div>

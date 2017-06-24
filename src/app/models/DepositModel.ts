@@ -26,3 +26,9 @@ length:number;
 
 }
 
+export class ShowBalanceModel {
+
+Currency:CurrencyType;
+Type:PaymentOperationMode;
+
+}
