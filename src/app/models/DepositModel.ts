@@ -26,3 +26,11 @@ length:number;
 
 }
 
+
+export class GetClockTime {  
+    public id: number;  
+    constructor(time: number) {  
+        this.id = time;  
+    }  
+}  
+

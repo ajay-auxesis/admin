@@ -1,4 +1,4 @@
-import { ConnectionResolverService } from './service/HubServices/connection-resolver.service';
+
 import { CurrencyService } from './service/CurrencyServices/currency.service';
 import { CurenncyOrderComponent } from './components/SingletonComponent/curenncy-order/curenncy-order.component';
 import { DepositServiceService } from './service/deposit-service.service';
@@ -33,9 +33,8 @@ import { LtcUsdRouteComponent } from './components/RouteComponent/ltc-usd-route/
 import { DepositeBalanceRouteComponent } from './components/RouteComponent/deposite-balance-route/deposite-balance-route.component';
 import { DepositeBalanceComponent } from './components/SingletonComponent/deposite-balance/deposite-balance.component';
 import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my-currency-balance/my-currency-balance.component";
-import { ChannelConfig, ChannelService, SignalrWindow } from "app/service/HubServices/channel.service";
-import { SignalRModule } from 'ng2-signalr';
-import { SignalRConfiguration } from 'ng2-signalr';
+
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'SignUp', component: RegisterComponent },
@@ -43,18 +42,8 @@ const routes: Routes = [
  { path: 'deposit', component: DepositeBalanceRouteComponent,canActivate:[AuthGuard] },
  { path: 'LtcUsd', component: LtcUsdRouteComponent,canActivate:[AuthGuard] }
 ];
-// let channelConfig = new ChannelConfig();  
-// channelConfig.url = "http://localhost:25704/signalr";  
-// channelConfig.hubName = "myHub";
 
-export function createConfig(): SignalRConfiguration {
-  const c = new SignalRConfiguration();
-  c.hubName = 'myHub';
-  c.qs = { user: 'donald' };
-  c.url = 'http://localhost:25704/signalr';
-  c.logging = true;
-  return c;
-}
+
 
 @NgModule({
   declarations: [
@@ -79,7 +68,7 @@ export function createConfig(): SignalRConfiguration {
    MyCurrencyBalanceComponent
 ],
   imports: [
-    SignalRModule.forRoot(createConfig),
+   
     RouterModule.forRoot(routes),
     BrowserModule,
     FormsModule,
@@ -91,9 +80,7 @@ export function createConfig(): SignalRConfiguration {
    SpinnerComponentModule
   ],
   providers: [AuthGuard,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
-// ChannelService,
-//     { provide: SignalrWindow, useValue: window },
-//     { provide: 'channel.config', useValue: channelConfig },
+
    {
       provide: Http,
             useFactory: httpFactory,

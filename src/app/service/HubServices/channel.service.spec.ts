@@ -3,7 +3,7 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { ChannelService } from './channel.service';
 
-describe('ChannelService', () => {
+describe('Service: Channel', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [ChannelService]

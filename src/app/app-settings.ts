@@ -5,4 +5,8 @@ export class AppSettings {
 //  public static get API_ENDPOINT(): string { return 'http://cashaaapi.team3d.in/api/'; }
  public static get localtokenkey(): string { return '_cashaacryptoAcessToken'; }
 
+  public static get HubUrl(): string { return 'http://localhost:25704/signalr'; }
+
+
+
 }

@@ -28,9 +28,8 @@
         "./assets/css/materialize.css"
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.min.js",
-          "../node_modules/signalr/jquery.signalR.js",
-        "./assets/plugins/jquery/jquery.min.js",
+       
+       
         "./assets/plugins/bootstrap/js/bootstrap.js",
         "./assets/plugins/bootstrap-select/js/bootstrap-select.js",
         "./assets/plugins/jquery-slimscroll/jquery.slimscroll.js",
@@ -48,6 +47,7 @@
         "./assets/js/admin.js",
         "./assets/js/helpers.js",
         "./assets/js/script.js"
+       
       ],
       "environments": {
         "source": "environments/environment.ts",

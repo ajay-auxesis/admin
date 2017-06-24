@@ -1,7 +1,9 @@
-import { ChannelService,ConnectionState } from './service/HubServices/channel.service';
+
+import { GetClockTime } from './models/DepositModel';
+
 import { Observable } from 'rxjs/Rx';
 import { SharedService } from './service/shared.service';
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { LoaderService } from "./service/loader-service.service";
 
 
@@ -14,20 +16,41 @@ export class AppComponent {
 
 
 
-
  objLoaderStatus: boolean;
-  connectionState$: Observable<string>;
-  constructor(private _sharedservice: SharedService, private loaderService: LoaderService) { 
+   private connection: SignalR;
+
+    //signalR proxy reference
+    private proxy: SignalR.Hub.Proxy;
+  constructor( private _ngZone: NgZone,private _sharedservice: SharedService, private loaderService: LoaderService) { 
   this.objLoaderStatus=false; 
 
-  // Let's wire up to the signalr observables
-        //
+  this.connection = $.connection;
+     
+        var connection = $.hubConnection("http://localhost:25704/signalr");
+        var chatHubProxy = connection.createHubProxy('myHub');
+         connection.start().done(function () {
+
+            console.log('Now connected, connection ID=' + connection.id);
+            
+        });
+        chatHubProxy.on('updateUserTransction', function (name) {
+            console.log("updateUserTransction");
+            console.log(name);
+
+
+        });
         
     
   }
+
+  
+
   title = 'app works!';
 
  ngOnInit() {
+
+
+
 
 this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;

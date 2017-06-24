@@ -19,10 +19,15 @@ export enum ConnectionState {
     Disconnected = 4
 }
 
-export class ChannelConfig {  
-    url: string;
+export class ChannelConfig { 
+       url: string;
     hubName: string;
     channel: string;
+    constructor(_url:string,_hubname:string,_channel:string) {
+//,_channel:string
+    this.url=_url;this.hubName=_hubname;this.channel=_channel;
+    }
+ 
 }
 
 export class ChannelEvent {  
