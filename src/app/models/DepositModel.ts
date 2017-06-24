@@ -26,11 +26,9 @@ length:number;
 
 }
 
+export class ShowBalanceModel {
 
-export class GetClockTime {  
-    public id: number;  
-    constructor(time: number) {  
-        this.id = time;  
-    }  
-}  
+Currency:CurrencyType;
+Type:PaymentOperationMode;
 
+}
