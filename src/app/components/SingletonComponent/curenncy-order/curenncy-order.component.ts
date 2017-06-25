@@ -1,3 +1,4 @@
+import { GetFeeModel } from './../../../models/DepositModel';
 
 import { orderModel } from './../../../models/LTCUSDOrderModel';
 
@@ -13,7 +14,7 @@ import { LoginModel, tokenrespone } from './../../../models/login';
 import { ValidationmessageserviceService } from './../../../service/validationmessageservice.service';
 import { RegisterService } from './../../../service/registerservice/register.service';
 import { SharedService } from './../../../service/shared.service';
-import { Component, OnInit, ElementRef, Input, Output,EventEmitter} from '@angular/core';
+import { Component, OnInit, ElementRef, Input, Output,EventEmitter,ViewChild} from '@angular/core';
 import { Responsecode } from './../../../enums/responsecode.enum';
 import { Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl, FormArray } from '@angular/forms';
@@ -40,12 +41,13 @@ import { NgFor } from "@angular/common";
 export class CurenncyOrderComponent implements OnInit {
 @Input()  _currencyType:CurrencyType;
 @Input()  _orderMode: OrderMode;
-
+@Input() _newCurrencyType:CurrencyType;
+@ViewChild('f') child: any;
 OrderFormModel: FormGroup;
-
-
+_total:number=0;
+fee : GetFeeModel;
+_totalfee:number;
 constructor(myElement: ElementRef, private _sharedservice: SharedService, private _http: Http,private _fb: FormBuilder,private _registerservice: RegisterService,private _router: Router, private _buyselldealservice : BuyselldealserviceService,private loaderService: LoaderService) {
-
 
 }
 ngOnInit() {
@@ -56,17 +58,56 @@ Rate: new FormControl('', [Validators.required, ValidationmessageserviceService.
 
 }
 submitOrder({ value, valid }: { value: orderModel, valid: boolean }) {
-
-console.log(this._orderMode);
-
+console.log(value);
 //this._orderMode==OrderMode.Sell? value.OrderMode==OrderMode.Sell : value.OrderMode==OrderMode.Buy;
 value.OrderMode=this._orderMode;
+
 this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
 this.loaderService.displayLoader(false);
-
-
-}); 
+this.child.ngOnInit();
+},
+error => {
+  this.loaderService.displayLoader(false);
+    if(error.status=Responsecode.Unauthorized)
+ {
+    
+ }
+}
+); 
 this.OrderFormModel.reset();
+}
+
+getTotal(){
+ let _amount = this.OrderFormModel.controls['Amount'].value;
+ let _rate = this.OrderFormModel.controls['Rate'].value;
+  this._total = _amount*_rate; 
+}
+
+getFee(){
+  
+this.fee=new GetFeeModel();
+  
+this.fee.Amount = this.OrderFormModel.controls['Amount'].value;
+this.fee.OrderMode = this._orderMode;
+this.fee.fromCurrency=this._currencyType;
+this.fee.ToCurrency=this._newCurrencyType;
+
+this._buyselldealservice.PostFeeCalculation(this.fee).debounceTime(1200).subscribe(res =>{
+this.loaderService.displayLoader(false);
+
+this._totalfee=res.json().Fee;
+},
+error => {
+//     if(error.status=Responsecode.Unauthorized)
+//  {
+   this.loaderService.displayLoader(false);
+   //alert('Some Problem Ocurred. Try again');
+//   console.log('invalid user');
+//  }
+console.log(error);
+}
+);
+
 }
 
 }

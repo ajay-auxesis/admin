@@ -26,20 +26,21 @@ export class SharedService {
         this._IsAuthenticated.next(true);
         }
     else{
+        this.loaderservice.displayLoader(false);
           this._IsAuthenticated.next(false);
     }
     }
  logout() {
+     
      this.loaderservice.displayLoader(true);
-localStorage.removeItem(AppSettings.localtokenkey);
-      // localStorage.setItem(AppSettings.localtokenkey,null);
+    localStorage.removeItem(AppSettings.localtokenkey);
      this.IsAuthenticated();
      this.loaderservice.displayLoader(false);
      this._router.navigate(['SignIn']);
     }
  Login(login:LoginModel): Observable<Response> {
+       
         return this.http.post(`${AppSettings.API_ENDPOINT}token`,login);
-            // ...and calling .json() on the response to return data
-            //...errors if any
+            
     }
 }

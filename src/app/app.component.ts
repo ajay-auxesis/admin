@@ -1,5 +1,6 @@
 
-import { GetClockTime } from './models/DepositModel';
+import { Router } from '@angular/router';
+import { AppSettings } from 'app/app-settings';
 
 import { Observable } from 'rxjs/Rx';
 import { SharedService } from './service/shared.service';
@@ -14,19 +15,17 @@ import { LoaderService } from "./service/loader-service.service";
 })
 export class AppComponent {
 
-
-
  objLoaderStatus: boolean;
    private connection: SignalR;
 
     //signalR proxy reference
     private proxy: SignalR.Hub.Proxy;
-  constructor( private _ngZone: NgZone,private _sharedservice: SharedService, private loaderService: LoaderService) { 
+  constructor( private _ngZone: NgZone,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ) { 
   this.objLoaderStatus=false; 
 
   this.connection = $.connection;
      
-        var connection = $.hubConnection("http://localhost:25704/signalr");
+        var connection = $.hubConnection(AppSettings.HubUrl);
         var chatHubProxy = connection.createHubProxy('myHub');
          connection.start().done(function () {
 
@@ -36,27 +35,21 @@ export class AppComponent {
         chatHubProxy.on('updateUserTransction', function (name) {
             console.log("updateUserTransction");
             console.log(name);
-
-
         });
-        
-    
-  }
 
-  
+  }
 
   title = 'app works!';
 
  ngOnInit() {
-
-
-
-
 this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;
         });
 
-     
+ if (localStorage.getItem(AppSettings.localtokenkey)!=null) {
+        this._router.navigate(['LtcUsd']);
+        }
+    
     }
 
     ngAfterViewChecked() {

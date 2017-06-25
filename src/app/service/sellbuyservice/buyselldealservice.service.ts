@@ -1,3 +1,4 @@
+import { GetFeeModel } from './../../models/DepositModel';
 import { orderModel } from './../../models/LTCUSDOrderModel';
 import { AppSettings } from './../../app-settings';
 
@@ -16,10 +17,18 @@ export class BuyselldealserviceService {
     constructor(private http: Http,private _router: Router) {
     }
   PostsellbuyDeal(orderModel: orderModel): Observable<any> {
-    {
+   
       console.log(orderModel);
       let bodyString = JSON.stringify(orderModel); 
 return this.http.post(`${AppSettings.API_ENDPOINT}LtcUsdoder`, bodyString);
-    }
+    
+  }
+
+  PostFeeCalculation(feeModel: GetFeeModel): Observable<any> {
+   
+      console.log(feeModel);
+      let bodyString = JSON.stringify(feeModel); 
+return this.http.post(`${AppSettings.API_ENDPOINT}orderfee`, bodyString);
+    
   }
 }

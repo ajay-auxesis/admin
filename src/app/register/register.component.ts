@@ -55,7 +55,7 @@ onSubmit({ value, valid }: { value: Registermodel, valid: boolean }) {
   this._registerservice.PostUser(value).debounceTime(400).subscribe(result =>{
       this.registerresponse=result;
 
-if(this.registerresponse.status=Responsecode.CREATED)
+if(this.registerresponse.status=Responsecode.Created)
 {
 
 let Loginmodelobj=new LoginModel(); 
@@ -76,7 +76,7 @@ this._router.navigate(['LtcUsd']);
 }
  
  
-else if(this.loginresponse.status=Responsecode.UNAUTHORIZED)
+else if(this.loginresponse.status=Responsecode.Unauthorized)
 {
   
 

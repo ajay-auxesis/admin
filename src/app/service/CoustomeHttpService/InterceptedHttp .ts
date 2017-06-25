@@ -15,6 +15,7 @@ export class InterceptedHttp extends Http {
      this.loaderService.displayLoader(true);
      url = this.updateUrl(url);
     //this.loaderService.displayLoader(false);
+    // 
     return super.get(url, this.getRequestOptionArgs(options));
     }
 
@@ -50,4 +51,6 @@ export class InterceptedHttp extends Http {
         options.headers.append('Authorization', `Basic ${token}`);
         return options;
     }
+
+
 }

@@ -36,7 +36,7 @@ import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent},
   { path: 'SignUp', component: RegisterComponent },
   { path: 'SignIn', component: LoginComponent },
  { path: 'deposit', component: DepositeBalanceRouteComponent,canActivate:[AuthGuard] },
