@@ -1,3 +1,5 @@
+import { OrderMode } from 'app/enums/order-mode.enum';
+import { CurrencyType } from 'app/enums/currency-type.enum';
 import { Component, OnInit, Input } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 @Component({
@@ -6,14 +8,20 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
   styleUrls: ['./order-component.component.css']
 })
 export class OrderComponentComponent implements OnInit {
-@Input() ordertype : string;
+@Input()  _currencyType:CurrencyType;
+@Input()  _orderMode: OrderMode;
 
 public order:string;
-  constructor(private _http: Http) { }
+constructor(private _http: Http) { }
 
 
   ngOnInit() {
-this.order=this.ordertype;
+
+    console.log("this._currencyType");
+    console.log(this._currencyType);
+
+    console.log("this._orderMode");
+    console.log(this._orderMode);
   }
 
 }

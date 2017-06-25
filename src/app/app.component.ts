@@ -1,5 +1,6 @@
+import { AppSettings } from './app-settings';
 
-import { GetClockTime } from './models/DepositModel';
+
 
 import { Observable } from 'rxjs/Rx';
 import { SharedService } from './service/shared.service';
@@ -26,7 +27,8 @@ export class AppComponent {
 
   this.connection = $.connection;
      
-        var connection = $.hubConnection("http://localhost:25704/signalr");
+
+        var connection = $.hubConnection(AppSettings.HubUrl);
         var chatHubProxy = connection.createHubProxy('myHub');
          connection.start().done(function () {
 

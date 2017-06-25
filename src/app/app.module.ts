@@ -33,6 +33,8 @@ import { LtcUsdRouteComponent } from './components/RouteComponent/ltc-usd-route/
 import { DepositeBalanceRouteComponent } from './components/RouteComponent/deposite-balance-route/deposite-balance-route.component';
 import { DepositeBalanceComponent } from './components/SingletonComponent/deposite-balance/deposite-balance.component';
 import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my-currency-balance/my-currency-balance.component";
+import { StocChartComponent } from './components/SingletonComponent/stoc-chart/stoc-chart.component';
+import { StocMarketComponent } from './components/SingletonComponent/stoc-market/stoc-market.component';
 
 
 const routes: Routes = [
@@ -65,7 +67,9 @@ const routes: Routes = [
    LtcUsdRouteComponent,
    DepositeBalanceRouteComponent,
    DepositeBalanceComponent,
-   MyCurrencyBalanceComponent
+   MyCurrencyBalanceComponent,
+   StocChartComponent,
+   StocMarketComponent
 ],
   imports: [
    
