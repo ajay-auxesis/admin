@@ -1,3 +1,4 @@
+import { OrderMode } from 'app/enums/order-mode.enum';
 
 import {CurrencyType } from 'app/enums/currency-type.enum';
 import { PaymentOperationMode } from "app/enums/payment-operation-mode.enum";
@@ -30,5 +31,14 @@ export class ShowBalanceModel {
 
 Currency:CurrencyType;
 Type:PaymentOperationMode;
+
+}
+
+export class GetFeeModel {
+
+Amount:number;
+OrderMode:OrderMode;
+fromCurrency:CurrencyType;
+ToCurrency:CurrencyType;
 
 }

@@ -8,6 +8,7 @@ import { SharedService } from './../../../service/shared.service';
 import { ValidationmessageserviceService } from './../../../service/validationmessageservice.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { CurrencyType } from 'app/enums/currency-type.enum';
+import { Responsecode } from 'app/enums/responsecode.enum';
 import { Component, OnInit, Input,ViewChild } from '@angular/core';
 @Component({
   selector: 'app-deposite-balance',
@@ -17,7 +18,7 @@ import { Component, OnInit, Input,ViewChild } from '@angular/core';
 export class DepositeBalanceComponent implements OnInit {
 @Input() currencytype: CurrencyType;
 depositmodel: FormGroup;
- 
+ @ViewChild('f') child: any;
 constructor( private _sharedservice: SharedService, private _http: Http,private _fb: FormBuilder,private _router: Router,private loaderService: LoaderService, private _depositService: DepositServiceService) {
  
  }
@@ -33,8 +34,17 @@ value.CurrencyType=this.currencytype;
 
  this._depositService.PostDeposit(value).debounceTime(1200).subscribe(result =>{
  this.loaderService.displayLoader(false);
- 
- }); 
+ this.child.ngOnInit();
+},
+error => {
+  this.loaderService.displayLoader(false);
+    if(error.status=Responsecode.Unauthorized)
+ {
+   
+  console.log('invalid user');
+ }
+}
+); 
 this.depositmodel.reset();
 //this.f.ngOnInit();
 }

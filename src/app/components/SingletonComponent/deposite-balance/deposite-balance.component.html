@@ -2,7 +2,7 @@
    <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
       <div class="card">
         <div class="header bg-white">
-          <app-my-currency-balance CurrencyType="{{currencytype}}"  #updatebalance ></app-my-currency-balance>  
+          <app-my-currency-balance CurrencyType="{{currencytype}}"  #f ></app-my-currency-balance>  
    </div>
          <div class="body">
             <form  (ngSubmit)="onSubmit(depositmodel)" [formGroup]="depositmodel" >
@@ -14,7 +14,7 @@
                   <app-validation-message controlname="Amount"  [control]="depositmodel.controls.Amount"></app-validation-message>
                </div>
             </div>
-            <button [disabled]="depositmodel.invalid" type="submit" class="btn btn-primary m-t-15 waves-effect position" (click)="updatebalance.ngOnInit()" >Deposit</button> 
+            <button [disabled]="depositmodel.invalid" type="submit" class="btn btn-primary m-t-15 waves-effect position"  >Deposit</button> 
             </form>  
          </div>
       </div>

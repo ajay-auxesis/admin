@@ -42,7 +42,7 @@ import { ReverseArrayPipe } from './Pipes/reverse-array.pipe';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent},
   { path: 'SignUp', component: RegisterComponent },
   { path: 'SignIn', component: LoginComponent },
  { path: 'deposit', component: DepositeBalanceRouteComponent,canActivate:[AuthGuard] },

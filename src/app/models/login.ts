@@ -1,7 +1,7 @@
 export class LoginModel {
 UserName: string;
 Password: string;
-rememberme:string;
+//rememberme:string;
 }
 
 export class tokenrespone {

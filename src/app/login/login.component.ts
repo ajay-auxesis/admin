@@ -20,37 +20,41 @@ export class LoginComponent implements OnInit {
  objLoaderStatus: boolean;
   loginmodel: FormGroup;
    loginresponse: Response;
+   unauthoriza:string;
   constructor(myElement: ElementRef, private _sharedservice: SharedService, private _http: Http,private fb: FormBuilder,private _registerservice: RegisterService,private _router: Router,private loaderService: LoaderService) {
     this.loginmodel =this.fb.group({
            userName: new FormControl('', [Validators.required, ValidationmessageserviceService.emailValidator]),
            password: new FormControl('', [Validators.required]),
-            rememberme:new FormControl(),
+            rememberme:new FormControl(''),
        });
 
    }
 
 doLogin({ value, valid }: { value: LoginModel, valid: boolean }) {
-//this.loaderService.displayLoader(true);
+
   this._sharedservice.Login(value).debounceTime(400).subscribe(result =>{
 this.loginresponse=result;
 
-
-if(this.loginresponse.status=Responsecode.OK)
-{
- this.loaderService.displayLoader(false);
-this._router.navigate(['LtcUsd']);
-​let responobject:any=this.loginresponse.json();
-localStorage.setItem(AppSettings.localtokenkey, responobject.AccessToken);
-}
-else if(this.loginresponse.status=Responsecode.UNAUTHORIZED)
-{
+ if(this.loginresponse.status=Responsecode.OK)
+ {
   this.loaderService.displayLoader(false);
 
-}
-   return false;  
-  });
+this._router.navigate(['LtcUsd']);
+ ​let responobject:any=this.loginresponse.json();
+ localStorage.setItem(AppSettings.localtokenkey, responobject.AccessToken);
+ }
 
+  },
+  error => {
+  if(error.status=Responsecode.Unauthorized)
+{
+   this.loaderService.displayLoader(false);
+ this.unauthoriza="Invalid User Id or Password. Try again";
+ }
+        }
+  );
 
+return false;
     }
 
     ngOnInit(){

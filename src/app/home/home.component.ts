@@ -1,3 +1,7 @@
+import { AppSettings } from './../app-settings';
+import { LocalStorageService} from 'ngx-webstorage';
+import { Router } from '@angular/router';
+import { SharedService } from './../service/shared.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _sharedservice: SharedService,private _router : Router) { }
 
   ngOnInit() {
+   
   }
 
 }
