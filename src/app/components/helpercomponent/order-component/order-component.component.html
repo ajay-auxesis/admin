@@ -3,13 +3,16 @@
    <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
 <div class="card">
          <div class="header bg-light-green">
+            
             <span>{{_orderMode}} Order </span>  <span class="position">Total : 0.00  {{_currencyType}}</span>
          </div>
          <div class="body">
             <div class="body table-responsive scrollit">
+               
                <table class="table table-hover">
                   <thead>
                      <tr>
+                          <th>Sn</th>
                         <th>Price</th>
                         <th>LTC</th>
                         <th>USD</th>
@@ -17,66 +20,15 @@
                      </tr>
                   </thead>
                   <tbody >
-                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        
+                     <tr *ngFor="let order of _orderlist; let i = index" >
+                    
+                        <th scope="row">{{i+1}} </th>
+                        <td>{{order.Rate}}</td>
+                        <td>{{order.Amount}}</td>
+                        <td>{{order.Amount*order.Rate}}</td>
                      </tr>
-                     <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        
-                     </tr>
-                     <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        
-                     </tr>
-                     <tr>
-                        <th scope="row">4</th>
-                        <td>Larry</td>
-                        <td>Jellybean</td>
-                        
-                     </tr>
-                     <tr>
-                        <th scope="row">5</th>
-                        <td>Larry</td>
-                        <td>Kikat</td>
-                        
-                     </tr>
-                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        
-                     </tr>
-                     <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        
-                     </tr>
-                     <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        
-                     </tr>
-                     <tr>
-                        <th scope="row">4</th>
-                        <td>Larry</td>
-                        <td>Jellybean</td>
-                        
-                     </tr>
-                     <tr>
-                        <th scope="row">5</th>
-                        <td>Larry</td>
-                        <td>Kikat</td>
-                        
-                     </tr>
+                
+                  
                   </tbody>
                </table>
             </div>

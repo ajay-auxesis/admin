@@ -1,3 +1,5 @@
+import { orderListModel } from './models/LTCUSDOrderModel';
+import { SignalRService } from './service/HubServices/signal-r.service';
 import { AppSettings } from './app-settings';
 
 
@@ -17,51 +19,51 @@ export class AppComponent {
 
 
 
- objLoaderStatus: boolean;
-   private connection: SignalR;
+   objLoaderStatus: boolean;
 
-    //signalR proxy reference
-    private proxy: SignalR.Hub.Proxy;
-  constructor( private _ngZone: NgZone,private _sharedservice: SharedService, private loaderService: LoaderService) { 
-  this.objLoaderStatus=false; 
+public canSendMessage: Boolean;
+  constructor( private _ngZone: NgZone,private _signalRService: SignalRService, private loaderService: LoaderService) {
 
-  this.connection = $.connection;
-     
-
-        var connection = $.hubConnection(AppSettings.HubUrl);
-        var chatHubProxy = connection.createHubProxy('myHub');
-         connection.start().done(function () {
-
-            console.log('Now connected, connection ID=' + connection.id);
-            
-        });
-        chatHubProxy.on('updateUserTransction', function (name) {
-            console.log("updateUserTransction");
-            console.log(name);
+    //  this.canSendMessage = _signalRService.connectionExists;
+  this.objLoaderStatus=false;
 
 
-        });
-        
-    
+
+
+
   }
 
-  
 
-  title = 'app works!';
+
 
  ngOnInit() {
 
+var self=this;
+ var connection = $.hubConnection(AppSettings.HubUrl);
+         var chatHubProxy = connection.createHubProxy('myHub');
+          connection.start().done(function () {
+
+             console.log('Now connected, connection ID=' + connection.id);
+
+         });
+         chatHubProxy.on('updateUserTransction', function (name) {
+           let orderListModelobj:orderListModel=name as orderListModel;
+        
+           self._signalRService.startConnection(orderListModelobj);
+           
+             console.log(name);
 
 
+         });
 
 this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;
         });
 
-     
+
     }
 
     ngAfterViewChecked() {
-    
+
   }
 }

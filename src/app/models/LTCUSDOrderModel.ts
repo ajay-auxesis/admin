@@ -11,3 +11,13 @@ Fee:number;
 CurrencyType:CurrencyType;
 
 }
+
+
+export class orderListModel {
+
+Amount:number;
+Rate: number;
+owner:boolean;
+CurrencyType:CurrencyType;
+OrderMode:OrderMode ;
+}

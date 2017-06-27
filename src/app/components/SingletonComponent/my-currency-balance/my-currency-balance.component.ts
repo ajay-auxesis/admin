@@ -36,9 +36,7 @@ this.loaderService.displayLoader(false);
 
   }
 
-// console.log('-------------run----');
-// console.log(this._mybalance);
-// console.log('-------------run----');
+
 }); 
 
 }

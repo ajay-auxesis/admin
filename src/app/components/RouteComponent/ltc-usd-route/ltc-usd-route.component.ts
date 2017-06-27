@@ -1,3 +1,4 @@
+import { AppSettings } from './../../../app-settings';
 import { CurrencyType } from 'app/enums/currency-type.enum';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -8,7 +9,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LtcUsdRouteComponent implements OnInit {
 @Input() CurrencyType: CurrencyType;
-  constructor() { }
+  constructor() {
+
+
+
+
+
+   }
 
   ngOnInit() {
   }

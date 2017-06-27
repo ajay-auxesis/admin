@@ -57,7 +57,7 @@ Rate: new FormControl('', [Validators.required, ValidationmessageserviceService.
 }
 submitOrder({ value, valid }: { value: orderModel, valid: boolean }) {
 
-console.log(this._orderMode);
+
 
 //this._orderMode==OrderMode.Sell? value.OrderMode==OrderMode.Sell : value.OrderMode==OrderMode.Buy;
 value.OrderMode=this._orderMode;

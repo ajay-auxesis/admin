@@ -1,3 +1,6 @@
+import { SignalRService } from './service/HubServices/signal-r.service';
+
+import { CurrencyRateService } from './service/CurrencyServices/currency-rate.service';
 
 import { CurrencyService } from './service/CurrencyServices/currency.service';
 import { CurenncyOrderComponent } from './components/SingletonComponent/curenncy-order/curenncy-order.component';
@@ -18,7 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { XHRBackend, RequestOptions, Http ,ConnectionBackend,HttpModule} from '@angular/http';
+import { XHRBackend, RequestOptions, Http, ConnectionBackend, HttpModule, JsonpModule } from '@angular/http';
 import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
 import { LeftsidebarComponent } from './leftsidebar/leftsidebar.component';
 import {Ng2Webstorage} from 'ngx-webstorage';
@@ -35,6 +38,7 @@ import { DepositeBalanceComponent } from './components/SingletonComponent/deposi
 import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my-currency-balance/my-currency-balance.component";
 import { StocChartComponent } from './components/SingletonComponent/stoc-chart/stoc-chart.component';
 import { StocMarketComponent } from './components/SingletonComponent/stoc-market/stoc-market.component';
+import { ReverseArrayPipe } from './Pipes/reverse-array.pipe';
 
 
 const routes: Routes = [
@@ -69,7 +73,8 @@ const routes: Routes = [
    DepositeBalanceComponent,
    MyCurrencyBalanceComponent,
    StocChartComponent,
-   StocMarketComponent
+   StocMarketComponent,
+   ReverseArrayPipe
 ],
   imports: [
    
@@ -81,9 +86,10 @@ const routes: Routes = [
     Ng2Webstorage,
     SlimLoadingBarModule.forRoot(),
     InfiniteScrollModule,
-   SpinnerComponentModule
+   SpinnerComponentModule,
+   JsonpModule
   ],
-  providers: [AuthGuard,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
+  providers: [AuthGuard,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
 
    {
       provide: Http,
