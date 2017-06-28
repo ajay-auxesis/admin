@@ -25,7 +25,8 @@
         "./assets/plugins/morrisjs/morris.css",
         "./assets/css/style.css",
         "./assets/css/themes/all-themes.css",
-        "./assets/css/materialize.css"
+        "./assets/css/materialize.css",
+           "./assets/css/custom.css"
       ],
       "scripts": [
        

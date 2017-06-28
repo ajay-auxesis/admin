@@ -1,38 +1,38 @@
 
-<div class="tab-content">
-   <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
 <div class="card">
-         <div class="header bg-light-green">
-            
-            <span>{{_orderMode}} Order </span>  <span class="position">Total : 0.00  {{_currencyType}}</span>
-         </div>
-         <div class="body">
-            <div class="body table-responsive scrollit">
-               
-               <table class="table table-hover">
-                  <thead>
-                     <tr>
-                          <th>Sn</th>
-                        <th>Price</th>
-                        <th>LTC</th>
-                        <th>USD</th>
-                        
-                     </tr>
-                  </thead>
-                  <tbody >
-                     <tr *ngFor="let order of _orderlist; let i = index" >
-                    
-                        <th scope="row">{{i+1}} </th>
-                        <td>{{order.Rate}}</td>
-                        <td>{{order.Amount}}</td>
-                        <td>{{order.Amount*order.Rate}}</td>
-                     </tr>
-                
-                  
-                  </tbody>
-               </table>
-            </div>
-         </div>
+  <div class="header">
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-6">
+        <h2>{{_orderMode}} Order</h2>
       </div>
-   </div>
+      <div class="col-xs-12 col-sm-6 align-right">
+        <h2>Total : <span style="display:inline-block" class="fadeInDown animated">0.00</span>  {{_currencyType}}</h2>
+        <!--<div class="switch panel-switch-btn">
+          <label>OFF<input type="checkbox" id="realtime" checked><span class="lever switch-col-cyan"></span>ON</label>
+        </div>-->
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Sn</th>
+            <th>Price</th>
+            <th>LTC</th>
+            <th>USD</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let order of _orderlist; let i = index" >
+            <th scope="row">{{i+1}} </th>
+            <td>{{order.Rate}}</td>
+            <td>{{order.Amount}}</td>
+            <td>{{order.Amount*order.Rate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

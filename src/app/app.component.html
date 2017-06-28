@@ -1,26 +1,23 @@
 
  <script src="{{AppSettings.HubUrl}}/hubs"></script>  
-
-  <div >
-          <!--rahul check-->-...->
-
-          <app-header></app-header>
-          <app-leftsidebar></app-leftsidebar>
+<div>
          
-      <!--rahul check-->-...->
-   <main class="container-fluid">
+	<app-header></app-header>
+	<app-leftsidebar></app-leftsidebar>
+         
+	<main class="container-fluid">
    
- <span *ngIf="objLoaderStatus">
-     <app-loader></app-loader>
-</span>
-<section class="content">
- 
-        <router-outlet> </router-outlet>
-        <router-outlet name="parameters"></router-outlet>
-
+		<span *ngIf="objLoaderStatus">
+			<app-loader></app-loader>
+		</span>
+		
+		<section class="content">
+			<router-outlet> </router-outlet>
+			<router-outlet name="parameters"></router-outlet>
         </section>
-           </main>
+        
+	</main>
      
-        </div>
+</div>
 
         

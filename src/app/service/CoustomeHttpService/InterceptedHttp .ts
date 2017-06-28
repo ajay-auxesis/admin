@@ -55,7 +55,7 @@ export class InterceptedHttp extends Http {
     }
 private handleError (error: Response):Observable<Response> {
 
-this.emitterservice.emittError(error.status);
+// this.emitterservice.emittError(error.status);
     //     if(error.status==401){
     //        // console.error('invalid User');
     //       errorMessage="You are Invalid User"; 
