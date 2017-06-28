@@ -21,7 +21,7 @@ export class OrderComponentComponent implements OnInit {
 @Input()  _orderMode: OrderMode;
 private timerObserver: Subscription;
 
- @ContentChild('orderlistparent', {read: ViewContainerRef})
+ @ViewChild('orderlistparent', {read: ViewContainerRef})
   orderlistparent: ViewContainerRef;
 
 public _orderlist:  Array<orderListModel>;private orderListModelObject: orderListModel;
@@ -40,7 +40,7 @@ this._orderlist = new Array<orderListModel>();
            {
              console.log("come inside");
 
-       this.AddNewOrder(this.orderListModelObject);
+             this.AddNewOrder(this.orderListModelObject);
 
          // this._orderlist.push(this.orderListModelObject); 
               
@@ -58,14 +58,14 @@ this._orderlist = new Array<orderListModel>();
 }
 
   private AddNewOrder(orderListModelnew:orderListModel) {
-  var ordercomponent=  this.dynamicOrderRowService.CreateOrderRowComponent(this.orderlistparent,orderListModelnew);
+  // var ordercomponent=  this.dynamicOrderRowService.CreateOrderRowComponent(this.orderlistparent,orderListModelnew);
   
 
-  console.log("ordercomponent");
-   console.log(ordercomponent.hostView);
+  // console.log("ordercomponent");
+  //  console.log(ordercomponent.hostView);
   
-  this.orderlistparent.insert(ordercomponent.hostView);
-
+  // this.orderlistparent.insert(ordercomponent.hostView);
+this._orderlist.push(orderListModelnew);
 
 
 
