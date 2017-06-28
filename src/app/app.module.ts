@@ -1,3 +1,4 @@
+import { DynamicOrderRowService } from './components/helpercomponent/order-component/dynamic-order-row.service';
 
 import { CurrencyRateService } from './service/CurrencyServices/currency-rate.service';
 import { SignalRService } from './service/HubServices/signal-r.service';
@@ -99,7 +100,7 @@ const routes: Routes = [
     InfiniteScrollModule,
    SpinnerComponentModule
   ],
-  providers: [ HttpEmitterService,SignalRService,CurrencyRateService,AuthGuard,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,InterceptedHttp,
+  providers: [ HttpEmitterService,DynamicOrderRowService,SignalRService,CurrencyRateService,AuthGuard,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,InterceptedHttp,
 
    {
       provide: Http,

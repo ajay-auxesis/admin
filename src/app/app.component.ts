@@ -30,12 +30,6 @@ _IsAuthenticated:boolean=true;
   this.objLoaderStatus=false; 
 
 
-  // objLoaderStatus: boolean;
-
-//public canSendMessage: Boolean;
- // constructor( private _ngZone: NgZone,private _signalRService: SignalRService, private loaderService: LoaderService) {
-
-    //  this.canSendMessage = _signalRService.connectionExists;
   this.objLoaderStatus=false;
 
   }
@@ -67,7 +61,9 @@ this.loaderService.loaderStatus.subscribe((val: boolean) => {
         });
 
  if (this._sharedservice._IsAuthenticated) 
- { this._router.navigate(['LtcUsd']);
+ { 
+   this._router.navigate(['LtcUsd']);
+
       }
 
       
