@@ -1,5 +1,6 @@
 
 import { CurrencyVolumeComponent } from './components/SingletonComponent/currency-volume/currency-volume.component';
+import { OrderLisRowComponent } from './components/helpercomponent/order-lis-row/order-lis-row.component';
 import { MatchOrderComponent } from './components/SingletonComponent/match-order/match-order.component';
 import { ActiveOrderRouteComponent } from './components/RouteComponent/active-order-route/active-order-route.component';
 import { ActiveOrderComponent } from './components/SingletonComponent/active-order/active-order.component';
@@ -92,7 +93,8 @@ const routes: Routes = [
    MatchOrderRouteComponent,
    ActiveOrderComponent,
    ActiveOrderRouteComponent,
-   MatchOrderComponent
+   MatchOrderComponent,
+   OrderLisRowComponent
 ],
   imports: [
    
@@ -107,6 +109,8 @@ const routes: Routes = [
    SpinnerComponentModule,
    JsonpModule
   ],
+   entryComponents: [OrderLisRowComponent],
+ exports: [OrderComponentComponent],
   providers: [AuthGuard,DynamicOrderRowService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
 
    {

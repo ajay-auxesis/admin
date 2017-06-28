@@ -21,8 +21,9 @@
             <th>USD</th>
           </tr>
         </thead>
-        <tbody  >
-          <tr #orderlistparent *ngFor="let order of _orderlist; let i = index" >
+        <tbody  #orderlistparent >
+          <!--; let i = index-->
+          <tr  *ngFor="let order of _orderlist | orderBy : ['-lastName', 'age']" >
             <!--<th scope="row">{{i+1}} </th>-->
             <td>{{order.Rate}}</td>
             <td>{{order.Amount}}</td>
