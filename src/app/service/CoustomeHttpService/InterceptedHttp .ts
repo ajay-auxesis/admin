@@ -55,17 +55,18 @@ export class InterceptedHttp extends Http {
     }
 private handleError (error: Response):Observable<Response> {
 
-// this.emitterservice.emittError(error.status);
-    //     if(error.status==401){
-    //        // console.error('invalid User');
-    //       errorMessage="You are Invalid User"; 
+
+        if(error.status==401){
+            alert(" Invalid USer. Please Login and Try again.");
+            //console.log("error.status==401"+error.status);
+        // this.emitterservice.unauthorizedError(true);
                 
-    //     } 
-    //     if(error.status==402){
+        } 
+       if(error.status==402){
     //            // console.log('not enough balance');
     //           errorMessage="You have not enough balance for this operation"; 
-               
-    //       }
+            alert("You have not enough balance to perform this operation");   
+  }
 
     //    //y   this.ErrorMessageEmitter.emit(errorMessage);
          

@@ -1,3 +1,4 @@
+import { OrderMode } from 'app/enums/order-mode.enum';
 
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
@@ -10,7 +11,16 @@ export class CurrencyService {
 
   constructor(private _http:Http) { }
 
-   getrawleadger(currencyType: CurrencyType): Observable<any> 
+  getcurrencyvolume(currencyType: CurrencyType , orderType:OrderMode) : Observable<any>{
+    return this._http.get(`${AppSettings.API_ENDPOINT}volume?CurrencyType=${currencyType}&OrderMode=${orderType}`);
+  }
+
+  getlowestaskedprice(currencyType: CurrencyType , orderType:OrderMode) : Observable<any>{
+
+    return this._http.get(`${AppSettings.API_ENDPOINT}asklowest?CurrencyType=${currencyType}&OrderMode=${orderType}`);
+
+  }
+    getrawleadger(currencyType: CurrencyType): Observable<any> 
     {
     return this._http.get(`${AppSettings.API_ENDPOINT}getrawleadger?currencyType=${currencyType}`);
     }

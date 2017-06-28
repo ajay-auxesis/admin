@@ -36,8 +36,7 @@ getRecentListorder(): void {
   ngOnInit() {
    let timer = Observable.interval(100);
         this.timerObserver = timer.subscribe(() =>{ this._orderlist
-          //,
-        //this.cdRef.detectChanges();
+        
         });
 
 this.getRecentListorder();

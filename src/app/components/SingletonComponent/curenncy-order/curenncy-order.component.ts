@@ -42,7 +42,7 @@ import { NgFor } from "@angular/common";
 export class CurenncyOrderComponent implements OnInit {
 @Input()  _currencyType:CurrencyType;
 @Input()  _orderMode: OrderMode;
-//@Input() _newCurrencyType:CurrencyType;
+@Input() _newCurrencyType:CurrencyType;
 @ViewChild('f') child: any;
 OrderFormModel: FormGroup;
 _total:number=0;
@@ -94,8 +94,7 @@ this.fee=new GetFeeModel();
 this.fee.Amount = this.OrderFormModel.controls['Amount'].value;
 this.fee.OrderMode = this._orderMode;
 this.fee.fromCurrency=this._currencyType;
-
-  this.fee.ToCurrency=CurrencyType.USD;
+this.fee.ToCurrency=this._newCurrencyType;
 
 
 this._buyselldealservice.PostFeeCalculation(this.fee).debounceTime(1200).subscribe(res =>{
@@ -108,12 +107,7 @@ error => {
       if(error.status=Responsecode.Unauthorized)
   {
    this.loaderService.displayLoader(false);
-  //  this.modal.alert()
-  //       .size('lg')
-  //       .showClose(true)
-  //       .title('A simple Alert style modal window')
-  //       .body('hi')
-  //       .open();
+ 
    console.log('invalid user');
  }
 

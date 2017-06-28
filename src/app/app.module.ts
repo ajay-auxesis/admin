@@ -41,9 +41,12 @@ import { DepositeBalanceComponent } from './components/SingletonComponent/deposi
 import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my-currency-balance/my-currency-balance.component";
 import { ErrorMessagePopupComponent } from './components/SingletonComponent/error-message-popup/error-message-popup.component';
 import { StocMarketComponent } from "app/components/SingletonComponent/stoc-market/stoc-market.component";
+import { LowestAskPriceComponent } from './components/SingletonComponent/lowest-ask-price/lowest-ask-price.component';
+import { CurrencyVolumeComponent } from './components/SingletonComponent/currency-volume/currency-volume.component';
 
 
-//mm
+
+
 const routes: Routes = [
 { path: '', component: LoginComponent },
   { path: 'SignUp', component: RegisterComponent },
@@ -78,7 +81,10 @@ const routes: Routes = [
    ErrorMessagePopupComponent,
    ErrorMessagePopupComponent,
    StocChartComponent,
-   StocMarketComponent
+   StocMarketComponent,
+   LowestAskPriceComponent,
+   CurrencyVolumeComponent,
+   
 ],
   imports: [
    
@@ -98,7 +104,7 @@ const routes: Routes = [
    {
       provide: Http,
             useFactory: httpFactory,
-            deps: [XHRBackend, RequestOptions,LoaderService]
+            deps: [XHRBackend, RequestOptions,LoaderService,HttpEmitterService]
     }
   ],
   bootstrap: [AppComponent]

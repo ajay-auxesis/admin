@@ -6,10 +6,11 @@
         <h2>{{_orderMode}} Order</h2>
       </div>
       <div class="col-xs-12 col-sm-6 align-right">
-        <h2>Total : <span style="display:inline-block" class="fadeInDown animated">0.00</span>  {{_currencyType}}</h2>
+        <!--<h2>Total : <span style="display:inline-block" class="fadeInDown animated">0.00</span>  {{_currencyType}}</h2>-->
         <!--<div class="switch panel-switch-btn">
           <label>OFF<input type="checkbox" id="realtime" checked><span class="lever switch-col-cyan"></span>ON</label>
         </div>-->
+        <app-currency-volume CurrencyType="{{_currencyType}}" OrderMode="{{_orderMode}}"></app-currency-volume>
       </div>
     </div>
   </div>

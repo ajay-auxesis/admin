@@ -11,7 +11,6 @@ export class LtcUsdRouteComponent implements OnInit {
 @Input() CurrencyType: CurrencyType;
   constructor() {
 
-
    }
 
   ngOnInit() {

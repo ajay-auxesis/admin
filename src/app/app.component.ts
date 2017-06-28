@@ -25,7 +25,7 @@ _IsAuthenticated:boolean=true;
     private proxy: SignalR.Hub.Proxy;
     bodyClasses:string;
   constructor( private _ngZone: NgZone,private _signalRService: SignalRService,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ) { 
-  
+ 
    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
 
@@ -38,13 +38,7 @@ _IsAuthenticated:boolean=true;
     //  this.canSendMessage = _signalRService.connectionExists;
   this.objLoaderStatus=false;
 
-
-
-
-
   }
-
-
 
 
  ngOnInit() {
@@ -72,8 +66,8 @@ this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;
         });
 
- if (localStorage.getItem(AppSettings.localtokenkey)!=null) {
-        this._router.navigate(['LtcUsd']);
+ if (this._sharedservice._IsAuthenticated) 
+ { this._router.navigate(['LtcUsd']);
       }
 
       

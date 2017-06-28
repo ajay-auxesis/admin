@@ -5,12 +5,24 @@ import { Output,EventEmitter} from '@angular/core';
 @Injectable()
 export class HttpEmitterService {
   
-@Output() ErrorMessageEmitter : EventEmitter<any> = new EventEmitter();
+@Output() unauthorizeduseremiter : EventEmitter<boolean>;
 
-  constructor() { }
+  constructor() { 
 
-  // emittError(msg){
-  //   this.ErrorMessageEmitter.emit(msg);
-  // }
+
+ this.unauthorizeduseremiter= new EventEmitter();
+
+  }
+
+public unauthorizedError(status:boolean): void{
+
+            console.log("unauthorizedError status"+status);
+   
+            
+    if(status)
+    {
+      this.unauthorizeduseremiter.emit(status);
+    }
+  }
 
 }

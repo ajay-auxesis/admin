@@ -12,7 +12,6 @@ export class CurrencyRateService {
 
    GetCurrencyOrderList(currencyType: CurrencyType,orderType:OrderMode): Observable<any> 
   {
-    ///api/orderfee?CurrencyType=4&OrderMode=1
     return this._http.get(`${AppSettings.API_ENDPOINT}orderfee?currencyType=${currencyType}&OrderMode=${orderType}`);
   }
    
