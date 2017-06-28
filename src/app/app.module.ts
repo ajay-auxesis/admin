@@ -1,3 +1,4 @@
+
 import { CurrencyRateService } from './service/CurrencyServices/currency-rate.service';
 import { SignalRService } from './service/HubServices/signal-r.service';
 import { HttpEmitterService } from './service/CoustomeHttpService/http-emitter.service';
@@ -39,9 +40,10 @@ import { DepositeBalanceRouteComponent } from './components/RouteComponent/depos
 import { DepositeBalanceComponent } from './components/SingletonComponent/deposite-balance/deposite-balance.component';
 import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my-currency-balance/my-currency-balance.component";
 import { ErrorMessagePopupComponent } from './components/SingletonComponent/error-message-popup/error-message-popup.component';
+import { StocMarketComponent } from "app/components/SingletonComponent/stoc-market/stoc-market.component";
 
 
-
+//mm
 const routes: Routes = [
 { path: '', component: LoginComponent },
   { path: 'SignUp', component: RegisterComponent },
@@ -74,7 +76,9 @@ const routes: Routes = [
    DepositeBalanceComponent,
    MyCurrencyBalanceComponent,
    ErrorMessagePopupComponent,
-   ErrorMessagePopupComponent
+   ErrorMessagePopupComponent,
+   StocChartComponent,
+   StocMarketComponent
 ],
   imports: [
    

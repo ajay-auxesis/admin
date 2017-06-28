@@ -1,13 +1,13 @@
 <!-- Left Sidebar -->
-        <aside *ngIf="_IsAuthenticated==true "  id="leftsidebar" class="sidebar">
+        <aside *ngIf="_IsAuthenticated==true" id="leftsidebar" class="sidebar">
             <!-- User Info -->
-            <div class="user-info">
+            <!--<div class="user-info">
                 <div class="image">
                     <img src="assets/images/user.png" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
-                    
-                    <div class="email">{{username}}</div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
+                    <div class="email">john.doe@example.com</div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
@@ -21,13 +21,25 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!-- #User Info -->
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li class="header">MAIN NAVIGATION</li>
-                   
+                    <li class="header"><i class="material-icons">apps</i><span>MAIN NAVIGATION</span></li>
+                    <!--<li class="active">
+                        <a href="javascript:void(0);">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>-->
+                    <!--<li>
+                        <a [routerLink]="['mydeals']">
+                            <i class="material-icons">text_fields</i>
+                            <span>My Deals</span>
+                        </a>
+                    </li>-->
+                     
                      <li class='active'>
                         <a [routerLink]="['LtcUsd']">
                             <i class="material-icons">text_fields</i>
@@ -39,22 +51,16 @@
                             <i class="material-icons">text_fields</i>
                             <span>DEPOSIT FORM</span>
                         </a>
-                    </li>
-                    
-                   
-                    
-                  
+                    </li>                  
                 </ul>
             </div>
             <!-- #Menu -->
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2016 <a href="javascript:void(0);">Exchange server</a>.
+                    Copyright &copy; 2017 <a href="javascript:void(0);">CryptoTrading</a>.
                 </div>
-                <div class="version">
-                    <b>Version: </b> 1.0.4
-                </div>
+                <div class="rights">All rights reserved.</div>
             </div>
             <!-- #Footer -->
         </aside>

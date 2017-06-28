@@ -9,8 +9,8 @@ export class HttpEmitterService {
 
   constructor() { }
 
-  emittError(msg){
-    this.ErrorMessageEmitter.emit(msg);
-  }
+  // emittError(msg){
+  //   this.ErrorMessageEmitter.emit(msg);
+  // }
 
 }
