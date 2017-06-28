@@ -1,5 +1,5 @@
 import { HttpEmitterService } from './../../../service/CoustomeHttpService/http-emitter.service';
-import { InterceptedHttp } from './../../../service/CoustomeHttpService/InterceptedHttp ';
+//import { InterceptedHttp } from './../../../service/CoustomeHttpService/InterceptedHttp ';
 
 import { Component, OnInit } from '@angular/core';
 
@@ -11,7 +11,9 @@ import { Component, OnInit } from '@angular/core';
 export class ErrorMessagePopupComponent implements OnInit {
 value:any;
   constructor(private emitterService : HttpEmitterService){ 
-   
+   this.emitterService.ErrorMessageEmitter.subscribe(res => {
+      this.value=res;
+    }); 
 
   }
 

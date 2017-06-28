@@ -94,7 +94,9 @@ this.fee=new GetFeeModel();
 this.fee.Amount = this.OrderFormModel.controls['Amount'].value;
 this.fee.OrderMode = this._orderMode;
 this.fee.fromCurrency=this._currencyType;
-this.fee.ToCurrency=CurrencyType.USD;
+
+  this.fee.ToCurrency=CurrencyType.USD;
+
 
 this._buyselldealservice.PostFeeCalculation(this.fee).debounceTime(1200).subscribe(res =>{
 this.loaderService.displayLoader(false);
