@@ -1,7 +1,7 @@
 import { CurrencyRateService } from './service/CurrencyServices/currency-rate.service';
 import { SignalRService } from './service/HubServices/signal-r.service';
 import { HttpEmitterService } from './service/CoustomeHttpService/http-emitter.service';
-import { Modal } from 'angular2-modal/plugins/bootstrap';
+
 import { InterceptedHttp } from './service/CoustomeHttpService/InterceptedHttp ';
 import { StocChartComponent } from './components/SingletonComponent/stoc-chart/stoc-chart.component';
 import { CurrencyService } from './service/CurrencyServices/currency.service';
@@ -40,6 +40,10 @@ import { DepositeBalanceComponent } from './components/SingletonComponent/deposi
 import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my-currency-balance/my-currency-balance.component";
 import { ErrorMessagePopupComponent } from './components/SingletonComponent/error-message-popup/error-message-popup.component';
 import { StocMarketComponent } from "app/components/SingletonComponent/stoc-market/stoc-market.component";
+import { MatchOrderRouteComponent } from './components/RouteComponent/match-order-route/match-order-route.component';
+import { ActiveOrderRouteComponent } from './components/RouteComponent/active-order-route/active-order-route.component';
+import { MatchOrderComponent } from './components/SingletonComponent/match-order/match-order.component';
+import { ActiveOrderComponent } from './components/SingletonComponent/active-order/active-order.component';
 
 
 
@@ -77,7 +81,11 @@ const routes: Routes = [
    ErrorMessagePopupComponent,
    ErrorMessagePopupComponent,
    StocChartComponent,
-   StocMarketComponent
+   StocMarketComponent,
+   MatchOrderRouteComponent,
+   ActiveOrderRouteComponent,
+   MatchOrderComponent,
+   ActiveOrderComponent
 ],
   imports: [
    
