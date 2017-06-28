@@ -1,3 +1,5 @@
+
+import { CurrencyVolumeComponent } from './components/SingletonComponent/currency-volume/currency-volume.component';
 import { OrderLisRowComponent } from './components/helpercomponent/order-lis-row/order-lis-row.component';
 import { MatchOrderComponent } from './components/SingletonComponent/match-order/match-order.component';
 import { ActiveOrderRouteComponent } from './components/RouteComponent/active-order-route/active-order-route.component';
@@ -45,13 +47,14 @@ import { DepositeBalanceComponent } from './components/SingletonComponent/deposi
 import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my-currency-balance/my-currency-balance.component";
 import { StocChartComponent } from './components/SingletonComponent/stoc-chart/stoc-chart.component';
 import { StocMarketComponent } from './components/SingletonComponent/stoc-market/stoc-market.component';
-import { ReverseArrayPipe } from './Pipes/reverse-array.pipe';
+
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
+ 
+  { path: '', component: LoginComponent },
   { path: 'SignUp', component: RegisterComponent },
-  { path: 'SignIn', component: LoginComponent },
+  
  { path: 'deposit', component: DepositeBalanceRouteComponent,canActivate:[AuthGuard] },
  { path: 'LtcUsd', component: LtcUsdRouteComponent,canActivate:[AuthGuard] },
 
@@ -85,7 +88,7 @@ const routes: Routes = [
    MyCurrencyBalanceComponent,
    StocChartComponent,
    StocMarketComponent,
-   ReverseArrayPipe,
+   CurrencyVolumeComponent,
    LowestAskPriceComponent,
    MatchOrderRouteComponent,
    ActiveOrderComponent,
