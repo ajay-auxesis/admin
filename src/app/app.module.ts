@@ -1,3 +1,4 @@
+import { DynamicOrderRowService } from './components/helpercomponent/order-component/dynamic-order-row.service';
 import { CurrencyRateService } from './service/CurrencyServices/currency-rate.service';
 import { SignalRService } from './service/HubServices/signal-r.service';
 import { HttpEmitterService } from './service/CoustomeHttpService/http-emitter.service';
@@ -44,6 +45,7 @@ import { MatchOrderRouteComponent } from './components/RouteComponent/match-orde
 import { ActiveOrderRouteComponent } from './components/RouteComponent/active-order-route/active-order-route.component';
 import { MatchOrderComponent } from './components/SingletonComponent/match-order/match-order.component';
 import { ActiveOrderComponent } from './components/SingletonComponent/active-order/active-order.component';
+import { OrderLisRowComponent } from './components/helpercomponent/order-lis-row/order-lis-row.component';
 
 
 
@@ -88,8 +90,11 @@ const routes: Routes = [
    MatchOrderRouteComponent,
    ActiveOrderRouteComponent,
    MatchOrderComponent,
-   ActiveOrderComponent
+   ActiveOrderComponent,
+   OrderLisRowComponent
 ],
+ entryComponents: [OrderLisRowComponent],
+ exports: [OrderComponentComponent],
   imports: [
    
     RouterModule.forRoot(routes),
@@ -103,7 +108,7 @@ const routes: Routes = [
     InfiniteScrollModule,
    SpinnerComponentModule
   ],
-  providers: [ HttpEmitterService,SignalRService,CurrencyRateService,AuthGuard,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,InterceptedHttp,
+  providers: [ HttpEmitterService,SignalRService,DynamicOrderRowService,CurrencyRateService,AuthGuard,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,InterceptedHttp,
 
    {
       provide: Http,
