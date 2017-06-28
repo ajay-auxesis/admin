@@ -52,7 +52,10 @@ const routes: Routes = [
   { path: 'SignUp', component: RegisterComponent },
   
  { path: 'deposit', component: DepositeBalanceRouteComponent,canActivate:[AuthGuard] },
- { path: 'LtcUsd', component: LtcUsdRouteComponent,canActivate:[AuthGuard] }
+ { path: 'LtcUsd', component: LtcUsdRouteComponent,canActivate:[AuthGuard] },
+
+  { path: 'MatchOrder', component: MatchOrderRouteComponent,canActivate:[AuthGuard] },
+ { path: 'ActiveOrder', component: ActiveOrderRouteComponent,canActivate:[AuthGuard] }
 ];
 
 
