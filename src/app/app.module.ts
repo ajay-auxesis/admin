@@ -1,7 +1,7 @@
-import { SignalRService } from './service/HubServices/signal-r.service';
-
-import { CurrencyRateService } from './service/CurrencyServices/currency-rate.service';
-
+import { HttpEmitterService } from './service/CoustomeHttpService/http-emitter.service';
+import { Modal } from 'angular2-modal/plugins/bootstrap';
+import { InterceptedHttp } from './service/CoustomeHttpService/InterceptedHttp ';
+import { StocChartComponent } from './components/SingletonComponent/stoc-chart/stoc-chart.component';
 import { CurrencyService } from './service/CurrencyServices/currency.service';
 import { CurenncyOrderComponent } from './components/SingletonComponent/curenncy-order/curenncy-order.component';
 import { DepositServiceService } from './service/deposit-service.service';
@@ -21,7 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { XHRBackend, RequestOptions, Http, ConnectionBackend, HttpModule, JsonpModule } from '@angular/http';
+import { XHRBackend, RequestOptions, Http ,ConnectionBackend,HttpModule} from '@angular/http';
 import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
 import { LeftsidebarComponent } from './leftsidebar/leftsidebar.component';
 import {Ng2Webstorage} from 'ngx-webstorage';
@@ -36,15 +36,14 @@ import { LtcUsdRouteComponent } from './components/RouteComponent/ltc-usd-route/
 import { DepositeBalanceRouteComponent } from './components/RouteComponent/deposite-balance-route/deposite-balance-route.component';
 import { DepositeBalanceComponent } from './components/SingletonComponent/deposite-balance/deposite-balance.component';
 import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my-currency-balance/my-currency-balance.component";
-import { StocChartComponent } from './components/SingletonComponent/stoc-chart/stoc-chart.component';
-import { StocMarketComponent } from './components/SingletonComponent/stoc-market/stoc-market.component';
-import { ReverseArrayPipe } from './Pipes/reverse-array.pipe';
+import { ErrorMessagePopupComponent } from './components/SingletonComponent/error-message-popup/error-message-popup.component';
+
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
+{ path: '', component: LoginComponent },
   { path: 'SignUp', component: RegisterComponent },
-  { path: 'SignIn', component: LoginComponent },
+  
  { path: 'deposit', component: DepositeBalanceRouteComponent,canActivate:[AuthGuard] },
  { path: 'LtcUsd', component: LtcUsdRouteComponent,canActivate:[AuthGuard] }
 ];
@@ -72,13 +71,13 @@ const routes: Routes = [
    DepositeBalanceRouteComponent,
    DepositeBalanceComponent,
    MyCurrencyBalanceComponent,
-   StocChartComponent,
-   StocMarketComponent,
-   ReverseArrayPipe
+   ErrorMessagePopupComponent,
+   ErrorMessagePopupComponent
 ],
   imports: [
    
     RouterModule.forRoot(routes),
+    
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -86,10 +85,9 @@ const routes: Routes = [
     Ng2Webstorage,
     SlimLoadingBarModule.forRoot(),
     InfiniteScrollModule,
-   SpinnerComponentModule,
-   JsonpModule
+   SpinnerComponentModule
   ],
-  providers: [AuthGuard,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
+  providers: [ HttpEmitterService,AuthGuard,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,InterceptedHttp,
 
    {
       provide: Http,
