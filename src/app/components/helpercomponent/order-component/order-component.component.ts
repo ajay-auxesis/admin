@@ -17,6 +17,7 @@ import { Subscription } from "rxjs/Subscription";
 export class OrderComponentComponent implements OnInit {
 @Input()  _currencyType:CurrencyType;
 @Input()  _orderMode: OrderMode;
+private timerObserver: Subscription;
 
 public _orderlist:  Array<orderListModel>;private orderListModelObject: orderListModel;
 constructor(private cdRef: ChangeDetectorRef,private _http: Http,private _signalRService :SignalRService,private _currencyRateService:CurrencyRateService,private loaderService:LoaderService) {
@@ -33,7 +34,11 @@ getRecentListorder(): void {
             });
     }
   ngOnInit() {
-
+   let timer = Observable.interval(100);
+        this.timerObserver = timer.subscribe(() =>{ this._orderlist
+          //,
+        //this.cdRef.detectChanges();
+        });
 
 this.getRecentListorder();
 
