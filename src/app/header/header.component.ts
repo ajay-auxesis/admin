@@ -10,9 +10,13 @@ export class HeaderComponent
  {
 
 _IsAuthenticated:boolean=true;
+_user:string='';
 constructor(private _sharedservice:SharedService){
 
   this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
+
 }
-  
+
+
+
 }

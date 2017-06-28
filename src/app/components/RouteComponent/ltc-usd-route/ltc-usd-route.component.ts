@@ -11,6 +11,7 @@ export class LtcUsdRouteComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+   
   }
 
 }

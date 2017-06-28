@@ -42,6 +42,8 @@ this.loginresponse=result;
 this._router.navigate(['LtcUsd']);
  ​let responobject:any=this.loginresponse.json();
  localStorage.setItem(AppSettings.localtokenkey, responobject.AccessToken);
+localStorage.setItem('username',responobject.UserName );
+
  }
 
   },

@@ -34,9 +34,10 @@ export class SharedService {
      
      this.loaderservice.displayLoader(true);
     localStorage.removeItem(AppSettings.localtokenkey);
+    localStorage.removeItem('username');
      this.IsAuthenticated();
      this.loaderservice.displayLoader(false);
-     this._router.navigate(['SignIn']);
+     this._router.navigate(['']);
     }
  Login(login:LoginModel): Observable<Response> {
        

@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class LeftsidebarComponent implements OnInit {
 
 _IsAuthenticated:boolean=false;
+username:any;
   constructor(private _sharedservice:SharedService) { 
 
 this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
@@ -16,6 +17,7 @@ this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = 
   }
 
   ngOnInit() {
+
   }
 
 }

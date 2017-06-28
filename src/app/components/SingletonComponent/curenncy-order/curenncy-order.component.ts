@@ -33,6 +33,7 @@ import { SafeHtml } from "@angular/platform-browser";
 import { UserType } from "../../../enums/user-type.enum";
 import { OrderMode } from "../../../enums/order-mode.enum";
 import { NgFor } from "@angular/common";
+// import { Modal } from 'angular2-modal/plugins/bootstrap';
 @Component({
   selector: 'app-curenncy-order',
   templateUrl: './curenncy-order.component.html',
@@ -65,7 +66,8 @@ value.OrderMode=this._orderMode;
 this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
 this.loaderService.displayLoader(false);
 this.child.ngOnInit();
-},
+}
+,
 error => {
   this.loaderService.displayLoader(false);
     if(error.status=Responsecode.Unauthorized)
@@ -75,6 +77,8 @@ error => {
 }
 ); 
 this.OrderFormModel.reset();
+this._total=0.00;
+this._totalfee=0;
 }
 
 getTotal(){
@@ -96,15 +100,21 @@ this._buyselldealservice.PostFeeCalculation(this.fee).debounceTime(1200).subscri
 this.loaderService.displayLoader(false);
 
 this._totalfee=res.json().Fee;
-},
+ }
+ ,
 error => {
-//     if(error.status=Responsecode.Unauthorized)
-//  {
+      if(error.status=Responsecode.Unauthorized)
+  {
    this.loaderService.displayLoader(false);
-   //alert('Some Problem Ocurred. Try again');
-//   console.log('invalid user');
-//  }
-console.log(error);
+  //  this.modal.alert()
+  //       .size('lg')
+  //       .showClose(true)
+  //       .title('A simple Alert style modal window')
+  //       .body('hi')
+  //       .open();
+   console.log('invalid user');
+ }
+
 }
 );
 

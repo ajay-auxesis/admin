@@ -11,16 +11,20 @@ import { LoaderService } from "./service/loader-service.service";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+
 })
 export class AppComponent {
 
  objLoaderStatus: boolean;
    private connection: SignalR;
-
+_IsAuthenticated:boolean=true;
     //signalR proxy reference
     private proxy: SignalR.Hub.Proxy;
+    bodyClasses:string;
   constructor( private _ngZone: NgZone,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ) { 
+  
+   this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
 
   this.connection = $.connection;
@@ -42,17 +46,24 @@ export class AppComponent {
   title = 'app works!';
 
  ngOnInit() {
+
 this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;
         });
 
  if (localStorage.getItem(AppSettings.localtokenkey)!=null) {
         this._router.navigate(['LtcUsd']);
-        }
-    
+      }
+
+      
+  
     }
 
     ngAfterViewChecked() {
-    
+   
+    document.body.classList.remove(document.body.classList.item(1));
+   let location=window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+   if(location==''){location='home';}
+    document.body.classList.add(location);
   }
 }

@@ -1,4 +1,7 @@
-
+import { HttpEmitterService } from './service/CoustomeHttpService/http-emitter.service';
+import { Modal } from 'angular2-modal/plugins/bootstrap';
+import { InterceptedHttp } from './service/CoustomeHttpService/InterceptedHttp ';
+import { StocChartComponent } from './components/SingletonComponent/stoc-chart/stoc-chart.component';
 import { CurrencyService } from './service/CurrencyServices/currency.service';
 import { CurenncyOrderComponent } from './components/SingletonComponent/curenncy-order/curenncy-order.component';
 import { DepositServiceService } from './service/deposit-service.service';
@@ -33,12 +36,14 @@ import { LtcUsdRouteComponent } from './components/RouteComponent/ltc-usd-route/
 import { DepositeBalanceRouteComponent } from './components/RouteComponent/deposite-balance-route/deposite-balance-route.component';
 import { DepositeBalanceComponent } from './components/SingletonComponent/deposite-balance/deposite-balance.component';
 import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my-currency-balance/my-currency-balance.component";
+import { ErrorMessagePopupComponent } from './components/SingletonComponent/error-message-popup/error-message-popup.component';
+
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
+{ path: '', component: LoginComponent },
   { path: 'SignUp', component: RegisterComponent },
-  { path: 'SignIn', component: LoginComponent },
+  
  { path: 'deposit', component: DepositeBalanceRouteComponent,canActivate:[AuthGuard] },
  { path: 'LtcUsd', component: LtcUsdRouteComponent,canActivate:[AuthGuard] }
 ];
@@ -65,11 +70,14 @@ const routes: Routes = [
    LtcUsdRouteComponent,
    DepositeBalanceRouteComponent,
    DepositeBalanceComponent,
-   MyCurrencyBalanceComponent
+   MyCurrencyBalanceComponent,
+   ErrorMessagePopupComponent,
+   ErrorMessagePopupComponent
 ],
   imports: [
    
     RouterModule.forRoot(routes),
+    
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -79,7 +87,7 @@ const routes: Routes = [
     InfiniteScrollModule,
    SpinnerComponentModule
   ],
-  providers: [AuthGuard,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
+  providers: [ HttpEmitterService,AuthGuard,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,InterceptedHttp,
 
    {
       provide: Http,
