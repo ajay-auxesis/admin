@@ -29,7 +29,7 @@ import { SafeHtml } from "@angular/platform-browser";
 import { UserType } from "../../../enums/user-type.enum";
 import { OrderMode } from "../../../enums/order-mode.enum";
 import { NgFor } from "@angular/common";
-// import { Modal } from 'angular2-modal/plugins/bootstrap';
+
 @Component({
   selector: 'app-curenncy-order',
   templateUrl: './curenncy-order.component.html',
