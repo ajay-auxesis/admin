@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { orderListModel } from './models/LTCUSDOrderModel';
 import { SignalRService } from './service/HubServices/signal-r.service';
 import { AppSettings } from './app-settings';
@@ -23,16 +24,16 @@ _IsAuthenticated:boolean=true;
     //signalR proxy reference
     private proxy: SignalR.Hub.Proxy;
     bodyClasses:string;
-  constructor( private _ngZone: NgZone,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ) { 
+  constructor( private _ngZone: NgZone,private _signalRService: SignalRService,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ) { 
   
    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
 
 
-   objLoaderStatus: boolean;
+  // objLoaderStatus: boolean;
 
-public canSendMessage: Boolean;
-  constructor( private _ngZone: NgZone,private _signalRService: SignalRService, private loaderService: LoaderService) {
+//public canSendMessage: Boolean;
+ // constructor( private _ngZone: NgZone,private _signalRService: SignalRService, private loaderService: LoaderService) {
 
     //  this.canSendMessage = _signalRService.connectionExists;
   this.objLoaderStatus=false;
@@ -66,7 +67,7 @@ var self=this;
 
          });
 
- ngOnInit() {
+
 this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;
         });

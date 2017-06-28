@@ -1,3 +1,5 @@
+import { CurrencyRateService } from './service/CurrencyServices/currency-rate.service';
+import { SignalRService } from './service/HubServices/signal-r.service';
 import { HttpEmitterService } from './service/CoustomeHttpService/http-emitter.service';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
 import { InterceptedHttp } from './service/CoustomeHttpService/InterceptedHttp ';
@@ -87,7 +89,7 @@ const routes: Routes = [
     InfiniteScrollModule,
    SpinnerComponentModule
   ],
-  providers: [ HttpEmitterService,AuthGuard,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,InterceptedHttp,
+  providers: [ HttpEmitterService,SignalRService,CurrencyRateService,AuthGuard,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,InterceptedHttp,
 
    {
       provide: Http,
