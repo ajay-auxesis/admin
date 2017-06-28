@@ -18,21 +18,37 @@ import { LoaderService } from "./service/loader-service.service";
 })
 export class AppComponent {
 
+
  objLoaderStatus: boolean;
    private connection: SignalR;
 _IsAuthenticated:boolean=true;
     //signalR proxy reference
     private proxy: SignalR.Hub.Proxy;
     bodyClasses:string;
-  constructor( private _ngZone: NgZone,private _signalRService: SignalRService,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ) { 
- 
+location:string;
+public canSendMessage: Boolean;
+  constructor( private _ngZone: NgZone,private _signalRService:SignalRService,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ) { 
+  
    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
 
+  this.connection = $.connection;
+     
+        var connection = $.hubConnection(AppSettings.HubUrl);
+        var chatHubProxy = connection.createHubProxy('myHub');
+         connection.start().done(function () {
 
-  this.objLoaderStatus=false;
+            console.log('Now connected, connection ID=' + connection.id);
+            
+        });
+        chatHubProxy.on('updateUserTransction', function (name) {
+            console.log("updateUserTransction");
+            console.log(name);
+        });
 
   }
+
+
 
 
  ngOnInit() {
@@ -55,26 +71,21 @@ var self=this;
 
          });
 
-
 this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;
         });
-
- if (this._sharedservice._IsAuthenticated) 
- { 
-   this._router.navigate(['LtcUsd']);
-
+    if (localStorage.getItem(AppSettings.localtokenkey)!=null) {
+        this._router.navigate(['LtcUsd']);
+       
       }
 
-      
-  
     }
 
     ngAfterViewChecked() {
    
     document.body.classList.remove(document.body.classList.item(1));
-   let location=window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
-   if(location==''){location='home';}
-    document.body.classList.add(location);
+   this.location=window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+   if(this.location==''){this.location='home';}
+    document.body.classList.add(this.location);
   }
 }
