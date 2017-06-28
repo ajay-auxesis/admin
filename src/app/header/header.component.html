@@ -1,4 +1,5 @@
 <header *ngIf="_IsAuthenticated==true">
+
 	<div class="search-bar">
 		<div class="search-icon">
 			<i class="material-icons">search</i>
@@ -8,6 +9,7 @@
 			<i class="material-icons">close</i>
 		</div>
 	</div>
+
 	<nav class="navbar">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -27,7 +29,7 @@
 					<li  *ngIf="_IsAuthenticated==false"><a [routerLink]="['SignUp']" class="chat-button show-on-large">Register</a></li>-->
 
 
-					<li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+					<li><a href="javascript:void(0)" ng-click="open" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
 					<!--<li><a [routerLink]="['Logout']" class="chat-button show-on-large">Logout</a></li>-->
 					<li  *ngIf="_IsAuthenticated==true" class="dropdown">
 							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">

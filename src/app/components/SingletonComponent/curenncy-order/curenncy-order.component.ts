@@ -1,12 +1,8 @@
 import { GetFeeModel } from './../../../models/DepositModel';
-
 import { orderModel } from './../../../models/LTCUSDOrderModel';
-
 import { CurrencyType } from 'app/enums/currency-type.enum';
-
 import { TradingHistoryComponent } from './../../helpercomponent/trading-history/trading-history.component';
 import { CurrentActiveOrdersComponent } from './../../helpercomponent/current-active-orders/current-active-orders.component';
-
 import { BuyselldealserviceService } from './../../../service/sellbuyservice/buyselldealservice.service';
 import { AppSettings } from './../../../app-settings';
 import { LoaderService } from './../../../service/loader-service.service';
@@ -42,7 +38,7 @@ import { NgFor } from "@angular/common";
 export class CurenncyOrderComponent implements OnInit {
 @Input()  _currencyType:CurrencyType;
 @Input()  _orderMode: OrderMode;
-@Input() _newCurrencyType:CurrencyType;
+//@Input() _newCurrencyType:CurrencyType;
 @ViewChild('f') child: any;
 OrderFormModel: FormGroup;
 _total:number=0;
@@ -94,8 +90,7 @@ this.fee=new GetFeeModel();
 this.fee.Amount = this.OrderFormModel.controls['Amount'].value;
 this.fee.OrderMode = this._orderMode;
 this.fee.fromCurrency=this._currencyType;
-this.fee.ToCurrency=this._newCurrencyType;
-
+this.fee.ToCurrency=CurrencyType.USD;
 
 this._buyselldealservice.PostFeeCalculation(this.fee).debounceTime(1200).subscribe(res =>{
 this.loaderService.displayLoader(false);
@@ -107,7 +102,12 @@ error => {
       if(error.status=Responsecode.Unauthorized)
   {
    this.loaderService.displayLoader(false);
- 
+  //  this.modal.alert()
+  //       .size('lg')
+  //       .showClose(true)
+  //       .title('A simple Alert style modal window')
+  //       .body('hi')
+  //       .open();
    console.log('invalid user');
  }
 
