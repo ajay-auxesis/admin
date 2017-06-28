@@ -1,12 +1,8 @@
 import { GetFeeModel } from './../../../models/DepositModel';
-
 import { orderModel } from './../../../models/LTCUSDOrderModel';
-
 import { CurrencyType } from 'app/enums/currency-type.enum';
-
 import { TradingHistoryComponent } from './../../helpercomponent/trading-history/trading-history.component';
 import { CurrentActiveOrdersComponent } from './../../helpercomponent/current-active-orders/current-active-orders.component';
-
 import { BuyselldealserviceService } from './../../../service/sellbuyservice/buyselldealservice.service';
 import { AppSettings } from './../../../app-settings';
 import { LoaderService } from './../../../service/loader-service.service';
