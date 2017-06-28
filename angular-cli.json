@@ -47,6 +47,7 @@
         "./assets/js/admin.js",
         "./assets/js/helpers.js",
         "./assets/js/script.js"
+  
        
       ],
       "environments": {

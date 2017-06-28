@@ -1,6 +1,8 @@
+import { orderListModel } from './models/LTCUSDOrderModel';
+import { SignalRService } from './service/HubServices/signal-r.service';
+import { AppSettings } from './app-settings';
 
-import { Router } from '@angular/router';
-import { AppSettings } from 'app/app-settings';
+
 
 import { Observable } from 'rxjs/Rx';
 import { SharedService } from './service/shared.service';
@@ -11,8 +13,7 @@ import { LoaderService } from "./service/loader-service.service";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
 
@@ -27,26 +28,45 @@ _IsAuthenticated:boolean=true;
    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
 
-  this.connection = $.connection;
-     
-        var connection = $.hubConnection(AppSettings.HubUrl);
-        var chatHubProxy = connection.createHubProxy('myHub');
-         connection.start().done(function () {
 
-            console.log('Now connected, connection ID=' + connection.id);
-            
-        });
-        chatHubProxy.on('updateUserTransction', function (name) {
-            console.log("updateUserTransction");
-            console.log(name);
-        });
+   objLoaderStatus: boolean;
+
+public canSendMessage: Boolean;
+  constructor( private _ngZone: NgZone,private _signalRService: SignalRService, private loaderService: LoaderService) {
+
+    //  this.canSendMessage = _signalRService.connectionExists;
+  this.objLoaderStatus=false;
+
+
+
+
 
   }
 
-  title = 'app works!';
+
+
 
  ngOnInit() {
 
+var self=this;
+ var connection = $.hubConnection(AppSettings.HubUrl);
+         var chatHubProxy = connection.createHubProxy('myHub');
+          connection.start().done(function () {
+
+             console.log('Now connected, connection ID=' + connection.id);
+
+         });
+         chatHubProxy.on('updateUserTransction', function (name) {
+           let orderListModelobj:orderListModel=name as orderListModel;
+        
+           self._signalRService.startConnection(orderListModelobj);
+           
+             console.log(name);
+
+
+         });
+
+ ngOnInit() {
 this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;
         });
