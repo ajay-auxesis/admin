@@ -14,11 +14,16 @@ CurrencyType:CurrencyType;
 
 
 export class orderListModel {
-
+constructor(){
+this.IsHigheRate=false;
+this.IsNewOrder=false;
+}
 Amount:number;
 Rate: number;
 owner:boolean;
 CurrencyType:CurrencyType;
 OrderMode:OrderMode ;
 Date:Date;
+IsHigheRate:boolean;
+IsNewOrder:boolean;
 }

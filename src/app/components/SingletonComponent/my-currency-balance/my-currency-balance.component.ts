@@ -14,18 +14,27 @@ import { LoaderService } from "app/service/loader-service.service";
 })
 export class MyCurrencyBalanceComponent implements OnInit {
 
-@Input() CurrencyType: CurrencyType;
-@Input() OrderMode: OrderMode;
+@Input() _currencyType: CurrencyType;
+@Input() _orderMode: OrderMode;
 _mybalance:number=0;
 _creditsum:number=0;
 _debitsum:number=0;
 _total:number=0;
 value:number=0;
 //result:DepositModel;
-  constructor(private _currencyService:CurrencyService,private loaderService: LoaderService) { }
+  constructor(private _currencyService:CurrencyService,private loaderService: LoaderService) {
+  
+ 
+
+   }
 
   ngOnInit() {
-this._currencyService.getbalance(this.CurrencyType).debounceTime(1200).subscribe( result =>{
+
+
+  console.log("CurenncyOrderComponent this._orderMode");
+  console.log(this._orderMode);
+
+this._currencyService.getbalance(this._currencyType).debounceTime(1200).subscribe( result =>{
 this.loaderService.displayLoader(false);
 
   if (result.status==200) {
