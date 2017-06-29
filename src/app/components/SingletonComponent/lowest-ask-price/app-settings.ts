@@ -10,7 +10,7 @@ public static get localtokenkey(): string { return '_cashaacryptoAcessToken'; }
 
 
 
-/**live  setting 
+/**live  lllllsetting 
 
 
 public static get API_ENDPOINT(): string { return 'http://cashaa.team3d.in/api/'; }

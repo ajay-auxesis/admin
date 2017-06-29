@@ -49,8 +49,6 @@ public canSendMessage: Boolean;
   }
 
 
-
-
  ngOnInit() {
 
 var self=this;

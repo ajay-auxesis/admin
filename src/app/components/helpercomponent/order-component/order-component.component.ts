@@ -20,6 +20,7 @@ export class OrderComponentComponent implements OnInit {
 @Input()  _currencyType:CurrencyType;
 @Input()  _orderMode: OrderMode;
 private timerObserver: Subscription;
+ @ViewChild('total') updateVolume: any;
  @ViewChild('orderlistparent', {read: ViewContainerRef})
   orderlistparent: ViewContainerRef;
 public _orderlist:  Array<orderListModel>;private orderListModelObject: orderListModel;
@@ -56,6 +57,8 @@ private dynamicSort(array:Array<orderListModel>) {
   private AddNewOrder(orderListModelnew:orderListModel) {
 
 this._orderlist.push(orderListModelnew);
+
+this.updateVolume.ngOnInit();
 
       }
 getRecentListorder(): void {
