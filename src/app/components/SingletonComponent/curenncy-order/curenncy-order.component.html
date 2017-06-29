@@ -61,7 +61,7 @@
 				<div role="seperator" class="divider"></div>
 				<p class="no-margin">Click to sum your order.</p>			
 				<div class="group-btn-wrap clearfix">
-					<button  type="button" class="btn btn-primary waves-effect" (click)="getFee()">Calculate</button>
+					<button [disabled]="OrderFormModel.invalid" type="button" class="btn btn-primary waves-effect" (click)="getFee()">Calculate</button>
 					<button [disabled]="OrderFormModel.invalid" type="submit" class="btn btn-primary waves-effect position" >{{_orderMode}}</button>
 				</div>
 			</form>  

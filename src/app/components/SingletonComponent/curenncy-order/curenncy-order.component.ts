@@ -102,12 +102,6 @@ error => {
       if(error.status=Responsecode.Unauthorized)
   {
    this.loaderService.displayLoader(false);
-  //  this.modal.alert()
-  //       .size('lg')
-  //       .showClose(true)
-  //       .title('A simple Alert style modal window')
-  //       .body('hi')
-  //       .open();
    console.log('invalid user');
  }
 

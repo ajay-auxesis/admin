@@ -85,13 +85,14 @@ if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path
        this._router.events.filter(event => event instanceof NavigationEnd).pairwise()
         .subscribe(e => {
           this.previousUrl= e[1].url;
-          if(this.previousUrl=='/' || this.previousUrl=='/SignUp'){
+          if(this.previousUrl=='/' || this.previousUrl=='/SignUp' || this.previousUrl==''){
              this._router.navigate(['LtcUsd']);
            }
         });
        
         });
     
+     
     }
 
     ngAfterViewChecked() {
