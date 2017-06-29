@@ -1,3 +1,4 @@
+import { OrderMode } from 'app/enums/order-mode.enum';
 import { DepositModel } from './../../../models/DepositModel';
 import { PaymentOperationMode } from 'app/enums/payment-operation-mode.enum';
 import {Responsecode } from 'app/enums/responsecode.enum';
@@ -14,6 +15,7 @@ import { LoaderService } from "app/service/loader-service.service";
 export class MyCurrencyBalanceComponent implements OnInit {
 
 @Input() CurrencyType: CurrencyType;
+@Input() OrderMode: OrderMode;
 _mybalance:number=0;
 _creditsum:number=0;
 _debitsum:number=0;

@@ -18,7 +18,7 @@ this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = 
   }
 
   ngOnInit() {
-this.username=localStorage.getItem('username');
+
   }
 
 }

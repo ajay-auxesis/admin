@@ -48,6 +48,7 @@ import { DepositeBalanceComponent } from './components/SingletonComponent/deposi
 import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my-currency-balance/my-currency-balance.component";
 import { StocChartComponent } from './components/SingletonComponent/stoc-chart/stoc-chart.component';
 import { StocMarketComponent } from './components/SingletonComponent/stoc-market/stoc-market.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 //import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
@@ -97,7 +98,8 @@ const routes: Routes = [
    ActiveOrderComponent,
    ActiveOrderRouteComponent,
    MatchOrderComponent,
-   OrderLisRowComponent
+   OrderLisRowComponent,
+   UserProfileComponent
    //,
    //ReverseArrayPipe
 ],

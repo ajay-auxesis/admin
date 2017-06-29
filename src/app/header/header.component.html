@@ -19,14 +19,7 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse">
 				<ul class="nav navbar-nav navbar-right text-right">
-					<!-- Call Search -->
-					<!--<li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>-->
-					<!-- #END# Call Search -->
 				
-
-
-					<!--<li  *ngIf="_IsAuthenticated==false"><a [routerLink]="['SignIn']" class="chat-button show-on-large">Login</a></li>
-					<li  *ngIf="_IsAuthenticated==false"><a [routerLink]="['SignUp']" class="chat-button show-on-large">Register</a></li>-->
 
 
 					<li><a href="javascript:void(0)"  class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
@@ -139,22 +132,7 @@
 						</ul>
 					</li>
 					<li>
-						<div class="user-info  text-center">
-							<div class="image">
-								<img src="../../assets/images/user.png" width="48" height="48"  alt="User" />
-							</div>
-							<div class="btn-group user-helper-dropdown">
-								<i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-								<ul class="dropdown-menu pull-right">
-									<!--<div class="name">John Doe</div>-->
-									<div class="email">{{_user}}</div>
-									<li role="seperator" class="divider"></li>
-									<li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-									<li role="seperator" class="divider"></li>
-									<li><a (click)="_sharedservice.logout()"  class="chat-button show-on-large"><i class="material-icons">input</i>Sign Out</a></li>
-								</ul>
-							</div>
-						</div>
+					<app-user-profile></app-user-profile>
 					</li>
 					<!--<li>
 						<div class="preloader pl-size-sm" >
