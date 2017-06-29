@@ -40,7 +40,7 @@ section.content{
 }
 .page-loader-wrapper{
 	opacity:1!important;
-	background:#eee!important
+	background:rgba(238,238,238,.8);
 }
 .m-b-15 {
   margin-bottom: 15px; }
