@@ -32,19 +32,19 @@ public canSendMessage: Boolean;
    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
 
-  this.connection = $.connection;
+  // this.connection = $.connection;
      
-        var connection = $.hubConnection(AppSettings.HubUrl);
-        var chatHubProxy = connection.createHubProxy('myHub');
-         connection.start().done(function () {
+  //       var connection = $.hubConnection(AppSettings.HubUrl);
+  //       var chatHubProxy = connection.createHubProxy('myHub');
+  //        connection.start().done(function () {
 
-            console.log('Now connected, connection ID=' + connection.id);
+  //           console.log('Now connected, connection ID=' + connection.id);
             
-        });
-        chatHubProxy.on('updateUserTransction', function (name) {
-            console.log("updateUserTransction");
-            console.log(name);
-        });
+  //       });
+  //       chatHubProxy.on('updateUserTransction', function (name) {
+  //           console.log("updateUserTransction");
+  //           console.log(name);
+  //       });
 
   }
 
@@ -66,7 +66,7 @@ var self=this;
         
            self._signalRService.startConnection(orderListModelobj);
            
-             console.log(name);
+          
 
 
          });

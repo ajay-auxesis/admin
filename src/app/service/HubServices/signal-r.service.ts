@@ -22,30 +22,22 @@ export class SignalRService {
    
    public startConnection(data:orderListModel): void { 
 
-console.log("service");
-console.log(data);
+
 this.connectionEstablished.emit(data);
-     //this.myself=this;
-//  this.connection = $.hubConnection(AppSettings.HubUrl);
-//           this.chatHubProxy =this.connection.createHubProxy('myHub');
-//           this.connection.start().done(function () {
-//                this.connectionExists = true;  
-//       // this.myself.connectionEstablished.emit(true);  
-//              console.log('Now connected, connection ID=' + this.connection.id);
-            
-//          });
-     //return true;
+  
     }  
     private registerOnServerEvents(): void {  
        
 
-        //  this.chatHubProxy.on('updateUserTransction', function (name) {
-        //      console.log("updateUserTransction");
-        //      console.log(name);
-
-
-         //});
-         
+      
     }  
+
+
+   private sortArry(orlistarray:Array<orderListModel>): void {  
+       
+
+      
+    }  
+
 
 }
