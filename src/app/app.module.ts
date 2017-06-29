@@ -47,7 +47,7 @@ import { DepositeBalanceComponent } from './components/SingletonComponent/deposi
 import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my-currency-balance/my-currency-balance.component";
 import { StocChartComponent } from './components/SingletonComponent/stoc-chart/stoc-chart.component';
 import { StocMarketComponent } from './components/SingletonComponent/stoc-market/stoc-market.component';
-
+//import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 const routes: Routes = [
@@ -117,7 +117,8 @@ const routes: Routes = [
       provide: Http,
             useFactory: httpFactory,
             deps: [XHRBackend, RequestOptions,LoaderService]
-    }
+    },
+    // {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })

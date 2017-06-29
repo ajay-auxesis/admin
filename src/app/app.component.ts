@@ -1,10 +1,9 @@
-import { Router } from '@angular/router';
+import { Router,NavigationEnd } from '@angular/router';
 import { orderListModel } from './models/LTCUSDOrderModel';
 import { SignalRService } from './service/HubServices/signal-r.service';
 import { AppSettings } from './app-settings';
-
-
-
+import { Location } from '@angular/common';
+import { PlatformLocation } from '@angular/common'
 import { Observable } from 'rxjs/Rx';
 import { SharedService } from './service/shared.service';
 import { Component, NgZone } from '@angular/core';
@@ -26,8 +25,9 @@ _IsAuthenticated:boolean=true;
     private proxy: SignalR.Hub.Proxy;
     bodyClasses:string;
 location:string;
+previousUrl:any;
 public canSendMessage: Boolean;
-  constructor( private _ngZone: NgZone,private _signalRService:SignalRService,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ) { 
+  constructor( private _ngZone: NgZone,private _signalRService:SignalRService,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ,private _location: Location, private platform: PlatformLocation ) { 
   
    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
@@ -74,11 +74,24 @@ var self=this;
 this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;
         });
-    if (localStorage.getItem(AppSettings.localtokenkey)!=null) {
-        this._router.navigate(['LtcUsd']);
-       
-      }
+    
+if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path()=='') {
+   this._router.navigate(['LtcUsd']);
 
+  }
+    
+        
+    this.platform.onPopState(()=>{
+       this._router.events.filter(event => event instanceof NavigationEnd).pairwise()
+        .subscribe(e => {
+          this.previousUrl= e[1].url;
+          if(this.previousUrl=='/' || this.previousUrl=='/SignUp'){
+             this._router.navigate(['LtcUsd']);
+           }
+        });
+       
+        });
+    
     }
 
     ngAfterViewChecked() {
@@ -87,5 +100,6 @@ this.loaderService.loaderStatus.subscribe((val: boolean) => {
    this.location=window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
    if(this.location==''){this.location='home';}
     document.body.classList.add(this.location);
+    // 
   }
 }

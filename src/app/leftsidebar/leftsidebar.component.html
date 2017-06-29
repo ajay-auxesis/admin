@@ -1,5 +1,5 @@
 <!-- Left Sidebar -->
-        <aside *ngIf="_IsAuthenticated==true" id="leftsidebar" class="sidebar">
+        <aside *ngIf="_IsAuthenticated==true && location.path()!=''" id="leftsidebar" class="sidebar">
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">

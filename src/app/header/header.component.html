@@ -1,4 +1,4 @@
-<header *ngIf="_IsAuthenticated==true " >
+<header *ngIf="_IsAuthenticated==true && location.path()!=''" >
 
 	<div class="search-bar">
 		<div class="search-icon">
