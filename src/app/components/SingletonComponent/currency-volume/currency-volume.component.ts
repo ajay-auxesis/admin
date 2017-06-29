@@ -30,11 +30,7 @@ this.loaderService.displayLoader(false);
 },
 error => {
  this.loaderService.displayLoader(false);
-//     if(error.status=Responsecode.Unauthorized)
-//  {
-   
-//   console.log('invalid user');
-//  }
+
 }
 ); 
 

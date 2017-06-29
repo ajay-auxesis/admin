@@ -1,3 +1,4 @@
+import {  ReverseArrayPipe } from './Pipes/reverse-array.pipe';
 
 import { CurrencyVolumeComponent } from './components/SingletonComponent/currency-volume/currency-volume.component';
 import { OrderLisRowComponent } from './components/helpercomponent/order-lis-row/order-lis-row.component';
@@ -8,7 +9,7 @@ import { MatchOrderRouteComponent } from './components/RouteComponent/match-orde
 import { DynamicOrderRowService } from './components/helpercomponent/order-component/dynamic-order-row.service';
 import { LowestAskPriceComponent } from './components/SingletonComponent/lowest-ask-price/lowest-ask-price.component';
 import { SignalRService } from './service/HubServices/signal-r.service';
-
+import { Ng2OrderModule } from 'ng2-order-pipe';
 import { CurrencyRateService } from './service/CurrencyServices/currency-rate.service';
 
 import { CurrencyService } from './service/CurrencyServices/currency.service';
@@ -75,6 +76,8 @@ const routes: Routes = [
     ValidationMessageComponent,
     LeftsidebarComponent,
    LoaderComponent,
+  // ReverseArrayPipe,
+   
     CurrentActiveOrdersComponent,
     TradingHistoryComponent,
     OrderComponentComponent,
@@ -95,12 +98,15 @@ const routes: Routes = [
    ActiveOrderRouteComponent,
    MatchOrderComponent,
    OrderLisRowComponent
+   //,
+   //ReverseArrayPipe
 ],
   imports: [
    
     RouterModule.forRoot(routes),
     BrowserModule,
     FormsModule,
+    Ng2OrderModule,
     HttpModule,
     ReactiveFormsModule,
     Ng2Webstorage,
@@ -108,6 +114,8 @@ const routes: Routes = [
     InfiniteScrollModule,
    SpinnerComponentModule,
    JsonpModule
+   //,
+  // ReverseArrayPipe
   ],
    entryComponents: [OrderLisRowComponent],
  exports: [OrderComponentComponent],

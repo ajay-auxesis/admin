@@ -20,4 +20,5 @@ Rate: number;
 owner:boolean;
 CurrencyType:CurrencyType;
 OrderMode:OrderMode ;
+Date:Date;
 }

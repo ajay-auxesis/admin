@@ -16,6 +16,6 @@ public static get localtokenkey(): string { return '_cashaacryptoAcessToken'; }
 public static get API_ENDPOINT(): string { return 'http://cashaa.team3d.in/api/'; }
 
 public static get HubUrl(): string { return 'http://cashaa.team3d.in/signalr'; }
-
 */
+
 }
