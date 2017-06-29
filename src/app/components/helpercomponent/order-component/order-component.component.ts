@@ -23,7 +23,7 @@ private timerObserver: Subscription;
  @ViewChild('orderlistparent', {read: ViewContainerRef})
   orderlistparent: ViewContainerRef;
 public _orderlist:  Array<orderListModel>;private orderListModelObject: orderListModel;
-constructor(private dynamicOrderRowService: DynamicOrderRowService,private componentFactoryResolver: ComponentFactoryResolver,private cdRef: ChangeDetectorRef,private _http: Http,private _signalRService :SignalRService,private _currencyRateService:CurrencyRateService,private loaderService:LoaderService) {
+constructor(private _SignalRService: SignalRService,private dynamicOrderRowService: DynamicOrderRowService,private componentFactoryResolver: ComponentFactoryResolver,private cdRef: ChangeDetectorRef,private _http: Http,private _signalRService :SignalRService,private _currencyRateService:CurrencyRateService,private loaderService:LoaderService) {
 this._orderlist = new Array<orderListModel>();
     this._signalRService.connectionEstablished.subscribe(json => { 
       this.orderListModelObject = json;
@@ -34,34 +34,26 @@ this._orderlist = new Array<orderListModel>();
              this.AddNewOrder(this.orderListModelObject);
        
            }
-           else{
-           }
-      // if(this.orderListModelObject.OrderMode==this._orderMode)  
-      // this._orderlist.push(this.orderListModelObject); 
-      // console.log('Change made!'+this._orderMode) 
+         
+     
   });
 }
-private dynamicSort(array:Array<orderListModel>) {
-  array.sort((a: orderListModel, b: orderListModel) => {
-      if (a.Rate < b.Rate) {
-        return -1;
-      } else if (a.Rate > b.Rate) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
-    return array;
-}
+
   private AddNewOrder(orderListModelnew:orderListModel) {
 
-this._orderlist.push(orderListModelnew);
+let neworderlist= new  Array<orderListModel>();
+neworderlist=this._orderlist;
+orderListModelnew.IsNewOrder=true;
+neworderlist.push(orderListModelnew);
+this._orderlist=this._SignalRService.sortArry(neworderlist,orderListModelnew);
 
       }
 getRecentListorder(): void {
         this._currencyRateService.GetCurrencyOrderList(this._currencyType,this._orderMode)
             .subscribe(result => { 
-                this._orderlist=result.json()  as  Array<orderListModel>;
+             
+ this._orderlist=this._SignalRService.sortArry(this._orderlist=result.json()  as  Array<orderListModel>,null);
+
             });
     }
   ngOnInit() {

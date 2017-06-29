@@ -8,7 +8,10 @@
 			
 			<div class="inblock order_header clearfix">
 				<div style="width:105px; float: left;">
-				<app-my-currency-balance CurrencyType="{{_currencyType}}" #f ></app-my-currency-balance> 
+
+				<app-my-currency-balance   *ngIf="_orderMode== 'Buy'"   _orderMode="{{_orderMode}}" _currencyType="USD" #f ></app-my-currency-balance> 
+
+			   <app-my-currency-balance  *ngIf="_orderMode=='Sell'" _orderMode="{{_orderMode}}" _currencyType="{{_currencyType}}" #f ></app-my-currency-balance> 
 				<!--Your balance:
 				<p>
 					<a href="javascript:void(0)">

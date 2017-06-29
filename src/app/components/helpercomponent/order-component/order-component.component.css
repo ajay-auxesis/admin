@@ -5,3 +5,21 @@
 .position{
     float: right;
 }
+
+
+.Higherate{
+
+background-color:#ceebd3!important;
+ -webkit-transition:color 0.5s ease-in-out, background-color 0.5s ease-in-out ;  
+     -moz-transition:color 0.5s ease-in-out, background-color 0.5s ease-in-out;  
+     -o-transition:color 0.5s ease-in-out, background-color 0.5s ease-in-out;  
+     transition:color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+.IsNewOrder{
+    background-color:#f6d4d1!important;
+    -webkit-transition:color 0.5s ease-in-out, background-color 0.5s ease-in-out ;  
+     -moz-transition:color 0.5s ease-in-out, background-color 0.5s ease-in-out;  
+     -o-transition:color 0.5s ease-in-out, background-color 0.5s ease-in-out;  
+     transition:color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+

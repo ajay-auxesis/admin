@@ -46,8 +46,13 @@ fee : GetFeeModel;
 _totalfee:number;
 constructor(myElement: ElementRef, private _sharedservice: SharedService, private _http: Http,private _fb: FormBuilder,private _registerservice: RegisterService,private _router: Router, private _buyselldealservice : BuyselldealserviceService,private loaderService: LoaderService) {
 
+
+
+
 }
 ngOnInit() {
+  
+
 this.OrderFormModel =this._fb.group({
 Amount: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),
 Rate: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),
