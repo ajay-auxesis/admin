@@ -7,16 +7,17 @@
 		<div class="body">
 			
 			<div class="inblock order_header clearfix">
-				<div style="width:105px; float: left;">
 
-				<app-my-currency-balance   *ngIf="_orderMode== 'Buy'"   _orderMode="{{_orderMode}}" _currencyType="USD" #f ></app-my-currency-balance> 
-
-			   <app-my-currency-balance  *ngIf="_orderMode=='Sell'" _orderMode="{{_orderMode}}" _currencyType="{{_currencyType}}" #f ></app-my-currency-balance>
-				
-				</div>
-				<div style="width:115px; float: right;">
-				<app-lowest-ask-price CurrencyType="{{_currencyType}}" OrderMode="{{_orderMode}}" #lowestprice></app-lowest-ask-price>
-				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<app-my-currency-balance  *ngIf="_orderMode== 'Buy'" _orderMode="{{_orderMode}}" _currencyType="USD" #f ></app-my-currency-balance> 
+						<app-my-currency-balance  *ngIf="_orderMode=='Sell'" _orderMode="{{_orderMode}}" _currencyType="{{_currencyType}}" #f ></app-my-currency-balance>
+					</div>
+					
+					<div class="col-xs-6 text-right">
+						<app-lowest-ask-price CurrencyType="{{_currencyType}}" OrderMode="{{_orderMode}}" #lowestprice></app-lowest-ask-price>
+					</div>
+				</div>	
 			</div>
 			
 			<div role="seperator" class="divider"></div>
