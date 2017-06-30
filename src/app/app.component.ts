@@ -1,4 +1,4 @@
-import { Router,NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { orderListModel } from './models/LTCUSDOrderModel';
 import { SignalRService } from './service/HubServices/signal-r.service';
 import { AppSettings } from './app-settings';
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Rx';
 import { SharedService } from './service/shared.service';
 import { Component, NgZone } from '@angular/core';
 import { LoaderService } from "./service/loader-service.service";
-
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +27,8 @@ _IsAuthenticated:boolean=true;
 location:string;
 previousUrl:any;
 public canSendMessage: Boolean;
-  constructor( private _ngZone: NgZone,private _signalRService:SignalRService,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ,private _location: Location, private platform: PlatformLocation ) { 
+  constructor( private _ngZone: NgZone,private _signalRService:SignalRService,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ,private _location: Location, private platform: PlatformLocation ,private activatedRoute: ActivatedRoute,
+    private titleService: Title) { 
   
    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
@@ -48,7 +49,6 @@ public canSendMessage: Boolean;
 
   }
 
-
  ngOnInit() {
 
 var self=this;
@@ -64,9 +64,6 @@ var self=this;
         
            self._signalRService.startConnection(orderListModelobj);
            
-          
-
-
          });
 
 this.loaderService.loaderStatus.subscribe((val: boolean) => {
@@ -77,21 +74,41 @@ if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path
    this._router.navigate(['LtcUsd']);
 
   }
-    
-        
+
+  this._router.events.filter(event => event instanceof NavigationEnd).pairwise()
+        .subscribe(e => {
+         
+          
+         console.log(e[0].url);console.log(e[1].url);
+        });
+
     this.platform.onPopState(()=>{
        this._router.events.filter(event => event instanceof NavigationEnd).pairwise()
         .subscribe(e => {
           this.previousUrl= e[1].url;
-          if(this.previousUrl=='/' || this.previousUrl=='/SignUp' || this.previousUrl==''){
+          
+          if(this.previousUrl=='/' || this.previousUrl=='/SignUp' || this.previousUrl=='/LtcUsd' || this.previousUrl==''){
              this._router.navigate(['LtcUsd']);
            }
         });
-       
+       if(this._location.path()=='/LtcUsd')
+       {
+         this._router.navigate(['LtcUsd']);
+       }
         });
     
-     
-    }
+
+    this._router.events
+      .filter(event => event instanceof NavigationEnd)
+      .map(() => this.activatedRoute)
+      .map(route => {
+        while (route.firstChild) route = route.firstChild;
+        return route;
+      })
+      .filter(route => route.outlet === 'primary')
+      .mergeMap(route => route.data)
+      .subscribe((event) => this.titleService.setTitle("Crypto Trading | " +event['title']));
+ }
 
     ngAfterViewChecked() {
    

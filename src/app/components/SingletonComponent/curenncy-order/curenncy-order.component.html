@@ -11,16 +11,11 @@
 
 				<app-my-currency-balance   *ngIf="_orderMode== 'Buy'"   _orderMode="{{_orderMode}}" _currencyType="USD" #f ></app-my-currency-balance> 
 
-			   <app-my-currency-balance  *ngIf="_orderMode=='Sell'" _orderMode="{{_orderMode}}" _currencyType="{{_currencyType}}" #f ></app-my-currency-balance> 
-				<!--Your balance:
-				<p>
-					<a href="javascript:void(0)">
-						<b><span class="money_usd">0</span><input id="" value="0" type="hidden"> USD</b>
-					</a>
-				</p>-->
+			   <app-my-currency-balance  *ngIf="_orderMode=='Sell'" _orderMode="{{_orderMode}}" _currencyType="{{_currencyType}}" #f ></app-my-currency-balance>
+				
 				</div>
 				<div style="width:115px; float: right;">
-				<app-lowest-ask-price CurrencyType="{{_currencyType}}" OrderMode="{{_orderMode}}"></app-lowest-ask-price>
+				<app-lowest-ask-price CurrencyType="{{_currencyType}}" OrderMode="{{_orderMode}}" #lowestprice></app-lowest-ask-price>
 				</div>
 			</div>
 			

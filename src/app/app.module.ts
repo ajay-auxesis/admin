@@ -21,7 +21,7 @@ import { RegisterService } from './service/registerservice/register.service';
 import { SharedService } from './service/shared.service';
 import { ValidationmessageserviceService } from './service/validationmessageservice.service';
 import { AuthGuard } from './service/auth-guard.service';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule , Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
@@ -54,14 +54,14 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
  
-  { path: '', component: LoginComponent },
-  { path: 'SignUp', component: RegisterComponent },
+  { path: '', component: LoginComponent ,data: {title: 'SignIn' }},
+  { path: 'SignUp', component: RegisterComponent , data: {title: 'SignUp' } },
   
- { path: 'deposit', component: DepositeBalanceRouteComponent,canActivate:[AuthGuard] },
- { path: 'LtcUsd', component: LtcUsdRouteComponent,canActivate:[AuthGuard] },
+ { path: 'deposit', component: DepositeBalanceRouteComponent,canActivate:[AuthGuard],data: {title: 'Deposit Form' } },
+ { path: 'LtcUsd', component: LtcUsdRouteComponent,canActivate:[AuthGuard], data: {title: 'LTC/USD' } },
 
- { path: 'MatchOrder', component: MatchOrderRouteComponent,canActivate:[AuthGuard] },
- { path: 'ActiveOrder', component: ActiveOrderRouteComponent,canActivate:[AuthGuard] }
+ { path: 'MatchOrder', component: MatchOrderRouteComponent,canActivate:[AuthGuard] , data: {title: 'Match Order' } },
+ { path: 'ActiveOrder', component: ActiveOrderRouteComponent,canActivate:[AuthGuard] , data: {title: 'Active Order' } }
 
 ];
 
