@@ -31,8 +31,7 @@ value:number=0;
   ngOnInit() {
 
 
-  console.log("CurenncyOrderComponent this._orderMode");
-  console.log(this._orderMode);
+ 
 
 this._currencyService.getbalance(this._currencyType).debounceTime(1200).subscribe( result =>{
 this.loaderService.displayLoader(false);

@@ -19,9 +19,9 @@ private IsUserunauthorizedObserver: Subscription;
 
     this.emitterService.unauthorizeduseremiter.subscribe(json => {
 
-console.log(" before IsUserunauthorizedObserver" + json);
+
        this.IsUserunauthorized = json as boolean;
-       console.log(" after IsUserunauthorizedObserver" + json);
+     
       })
 
   }
