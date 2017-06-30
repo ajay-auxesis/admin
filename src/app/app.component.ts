@@ -33,19 +33,6 @@ public canSendMessage: Boolean;
    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
 
-  // this.connection = $.connection;
-     
-  //       var connection = $.hubConnection(AppSettings.HubUrl);
-  //       var chatHubProxy = connection.createHubProxy('myHub');
-  //        connection.start().done(function () {
-
-  //           console.log('Now connected, connection ID=' + connection.id);
-            
-  //       });
-  //       chatHubProxy.on('updateUserTransction', function (name) {
-  //           console.log("updateUserTransction");
-  //           console.log(name);
-  //       });
 
   }
 
@@ -69,34 +56,28 @@ var self=this;
 this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;
         });
+
+ 
     
 if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path()=='') {
    this._router.navigate(['LtcUsd']);
 
   }
 
-  this._router.events.filter(event => event instanceof NavigationEnd).pairwise()
-        .subscribe(e => {
-         
-          
-         console.log(e[0].url);console.log(e[1].url);
-        });
-
-    this.platform.onPopState(()=>{
+  this.platform.onPopState(()=>{
+    // if(this._location.path()==''){
+    //  this._router.navigate(['LtcUsd']);
+    // }
        this._router.events.filter(event => event instanceof NavigationEnd).pairwise()
         .subscribe(e => {
           this.previousUrl= e[1].url;
-          
           if(this.previousUrl=='/' || this.previousUrl=='/SignUp' || this.previousUrl=='/LtcUsd' || this.previousUrl==''){
              this._router.navigate(['LtcUsd']);
            }
         });
-       if(this._location.path()=='/LtcUsd')
-       {
-         this._router.navigate(['LtcUsd']);
-       }
-        });
-    
+
+      });
+     
 
     this._router.events
       .filter(event => event instanceof NavigationEnd)

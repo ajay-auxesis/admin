@@ -15,7 +15,7 @@ CurrencyType:CurrencyType;
 
 export class orderListModel {
 constructor(){
-this.IsHigheRate=false;
+this.IsHigestVolume=false;
 this.IsNewOrder=false;
 }
 Amount:number;
@@ -24,6 +24,6 @@ owner:boolean;
 CurrencyType:CurrencyType;
 OrderMode:OrderMode ;
 Date:Date;
-IsHigheRate:boolean;
+IsHigestVolume:boolean;
 IsNewOrder:boolean;
 }

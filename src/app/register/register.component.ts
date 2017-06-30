@@ -73,19 +73,12 @@ if(this.loginresponse.status=Responsecode.OK)
 localStorage.setItem(AppSettings.localtokenkey, responobject.AccessToken);
 this.loaderService.displayLoader(false);
 this._router.navigate(['LtcUsd']);
-
 }
- 
- 
-else if(this.loginresponse.status=Responsecode.Unauthorized)
-{
-  
+});
+
 }
 
    return false;  
-  });
-
-}
   }
   ,
   error =>{
@@ -95,10 +88,14 @@ else if(this.loginresponse.status=Responsecode.Unauthorized)
     this._errormsg="User with this email already registered "
     }
 
-  }
-  );
+  });
+
+
 
     }
+
+
+
 
     }
 

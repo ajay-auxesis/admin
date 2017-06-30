@@ -13,11 +13,14 @@ export class InterceptedHttp extends Http {
 
     constructor(backend: ConnectionBackend, defaultOptions: RequestOptions, private loaderService: LoaderService,private emitterservice : HttpEmitterService) {
         super(backend, defaultOptions);
+
+       // this.emitterservice=new HttpEmitterService();
     }
 
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-     this.loaderService.displayLoader(true);
-     url = this.updateUrl(url);
+        if(url.indexOf("volume")== -1)this.loaderService.displayLoader(true);
+        url = this.updateUrl(url);
+     
     return super.get(url, this.getRequestOptionArgs(options)).catch(this.handleError);
     }
 
@@ -58,17 +61,16 @@ private handleError (error: Response):Observable<Response> {
 
         if(error.status==401){
            // alert(" Invalid USer. Please Login and Try again.");
-            //console.log("error.status==401"+error.status);
-        // this.emitterservice.unauthorizedError(true);
-                
+            console.log("error.status==401"+error.status);
+        //  this.emitterservice.unauthorizedError(true);  
+        //   console.log('hsgdgdd');      
         } 
        if(error.status==402){
-    //            // console.log('not enough balance');
-    //           errorMessage="You have not enough balance for this operation"; 
-            //alert("You have not enough balance to perform this operation");   
+            console.log("error.status==402"+error.status);
+            // this.emitterservice.unauthorizedError(true);   
   }
 
-    //    //y   this.ErrorMessageEmitter.emit(errorMessage);
+
          
         return Observable.throw(error);
     }
