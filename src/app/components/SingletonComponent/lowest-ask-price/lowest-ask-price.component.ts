@@ -1,3 +1,7 @@
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Rx';
+import { orderListModel } from './../../../models/LTCUSDOrderModel';
+import { SignalRService } from './../../../service/HubServices/signal-r.service';
 import { OrderMode } from 'app/enums/order-mode.enum';
 import { DepositModel } from './../../../models/DepositModel';
 import { PaymentOperationMode } from 'app/enums/payment-operation-mode.enum';
@@ -16,26 +20,45 @@ export class LowestAskPriceComponent implements OnInit {
 @Input() CurrencyType: CurrencyType;
 @Input()OrderMode : OrderMode;
 _lowestPrice:number=0;
+_class:any;
+private timerObserver: Subscription;
+private neworder:orderListModel;
+  constructor(private _signalRService:SignalRService,private _currencyService:CurrencyService,private loaderService: LoaderService) {
 
-  constructor(private _currencyService:CurrencyService,private loaderService: LoaderService) {
+   this._signalRService.neworderEmitter.subscribe(json => { 
+   
 
+      this.neworder = json;
+ var curname:CurrencyType=this.CurrencyType ;
+ var  ordername:OrderMode=this.OrderMode;
+
+           if(CurrencyType[this.neworder.CurrencyType]==curname.toString()  && OrderMode[this.neworder.OrderMode] !=ordername.toString())
+           {
+            this._lowestPrice=this.neworder.Rate;
+       
+           }
+
+ 
+  });
    }
 
   ngOnInit() {
+
+  let timer = Observable.interval(100);
+        this.timerObserver = timer.subscribe(() =>{ this._lowestPrice
+        });
     this._currencyService.getlowestaskedprice(this.CurrencyType,this.OrderMode).debounceTime(1200).subscribe( result =>{
-this.loaderService.displayLoader(false);
+    this.loaderService.displayLoader(false);
 
   if (result.status==200) {
    this._lowestPrice=result.json().lowestAsk;
-   console.log("lowestPrice");
-console.log(this._lowestPrice);
-}
-},
-error => {
-this.loaderService.displayLoader(false);
+    }
+    },
+    error => {
+    this.loaderService.displayLoader(false);
 
-}
-); 
+    }
+    ); 
   }
 
 }

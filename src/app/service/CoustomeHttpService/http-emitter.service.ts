@@ -16,7 +16,7 @@ export class HttpEmitterService {
 
 public unauthorizedError(status:boolean): void{
 
-     
+            console.log("unauthorizedError status "+status);
    
             
     if(status)

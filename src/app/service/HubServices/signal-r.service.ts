@@ -4,9 +4,14 @@ import { AppSettings } from './../../app-settings';
 import { Injectable, EventEmitter } from '@angular/core';
 @Injectable()
 export class SignalRService {
-  public connectionEstablished: EventEmitter <orderListModel> ;  
+  public connectionEstablished: EventEmitter <orderListModel> ;
+   public neworderEmitter: EventEmitter <orderListModel> ; 
+     
   constructor() {
    this.connectionEstablished= new EventEmitter <orderListModel>();
+
+   this.neworderEmitter= new EventEmitter <orderListModel>();
+
    }
    public startConnection(data:orderListModel): void { 
 this.connectionEstablished.emit(data);
@@ -55,9 +60,22 @@ newarray.forEach(element => {
 });
 
 if(OrderMode[orderMode]==OrderMode.Buy.toString()){
- console.log("come to buy"); console.log(newarray); return newarray.sort(function(obj1, obj2) {	return obj2.Rate - obj1.Rate;});;
-}
-if(OrderMode[orderMode]==OrderMode.Sell.toString())console.log("come to sell"); console.log(newarray); return newarray.sort(function(obj1, obj2) {	return obj1.Rate - obj2.Rate;});;
 
+  newarray.sort(function(obj1, obj2) {	return obj2.Rate - obj1.Rate;});;
+   console.log("newarray[0] OrderMode.Buy");
+    console.log(newarray[0]);
+  this.neworderEmitter.emit(newarray[0]);
+  return newarray;
+}
+if(OrderMode[orderMode]==OrderMode.Sell.toString()){
+   
+
+    
+    newarray.sort(function(obj1, obj2) {	return obj1.Rate - obj2.Rate;});;
+        console.log("newarray[0] OrderMode.Sell");
+    console.log(newarray[0]);
+     this.neworderEmitter.emit(newarray[0]);
+    return newarray;
+}
 } 
 }

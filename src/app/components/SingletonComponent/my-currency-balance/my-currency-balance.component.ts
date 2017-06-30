@@ -41,36 +41,13 @@ this.loaderService.displayLoader(false);
 }
 },
 error => {
- // this.loaderService.displayLoader(false);
-//     if(error.status=Responsecode.Unauthorized)
-//  {
-   
-//   console.log('invalid user');
-//  }
+ 
 }
 ); 
 
 }
 
-// getBalance(val){
 
-//   val.forEach(element => {
-
-//   if(element.Type==PaymentOperationMode.Credit)
-//    { 
-//      this._creditsum+=element.Amount;
-//    }
-//    if( element.Type==PaymentOperationMode.Debit)
-//     {
-//       this._debitsum+=element.Amount;
-//     }
-      
-//    });
-// this._total=this._creditsum-this._debitsum;
-
-//   return this._total;
-
-// }
 
 
 
