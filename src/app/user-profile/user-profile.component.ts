@@ -4,24 +4,22 @@ import { SharedService } from './../service/shared.service';
 import { Component, OnInit,Optional  } from '@angular/core';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.css']
 })
-export class HeaderComponent 
- {
+export class UserProfileComponent implements OnInit {
 
-_IsAuthenticated:boolean;
+
 _user:string='';
 _router;
 constructor(private _sharedservice:SharedService,private route: Router,private location: Location){
 
-this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
-//this._user = localStorage.getItem('username');
+this._user = localStorage.getItem('username');
 
 }
 
-ngAfterViewload() {
+ngOnInit() {
    
 
   }

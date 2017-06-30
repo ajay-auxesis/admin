@@ -39,3 +39,6 @@ testem.log
 .DS_Store
 Thumbs.db
 /src/app/Pipes
+/ng2projectgit/
+/src/app/app.component.zip
+/src/src.zip

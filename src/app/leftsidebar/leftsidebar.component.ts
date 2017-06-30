@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { SharedService } from './../service/shared.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,7 +11,7 @@ export class LeftsidebarComponent implements OnInit {
 
 _IsAuthenticated:boolean=false;
 username:any;
-  constructor(private _sharedservice:SharedService) { 
+  constructor(private _sharedservice:SharedService,private location: Location) { 
 
 this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
 

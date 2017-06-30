@@ -29,7 +29,7 @@ import { SafeHtml } from "@angular/platform-browser";
 import { UserType } from "../../../enums/user-type.enum";
 import { OrderMode } from "../../../enums/order-mode.enum";
 import { NgFor } from "@angular/common";
-// import { Modal } from 'angular2-modal/plugins/bootstrap';
+
 @Component({
   selector: 'app-curenncy-order',
   templateUrl: './curenncy-order.component.html',
@@ -46,8 +46,13 @@ fee : GetFeeModel;
 _totalfee:number;
 constructor(myElement: ElementRef, private _sharedservice: SharedService, private _http: Http,private _fb: FormBuilder,private _registerservice: RegisterService,private _router: Router, private _buyselldealservice : BuyselldealserviceService,private loaderService: LoaderService) {
 
+
+
+
 }
 ngOnInit() {
+  
+
 this.OrderFormModel =this._fb.group({
 Amount: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),
 Rate: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),

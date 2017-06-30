@@ -1,7 +1,7 @@
 <div class="tab-content" >
   <div class="card">
     <div class="header">
-      <h2><app-my-currency-balance CurrencyType="{{currencytype}}"  #f ></app-my-currency-balance> </h2> 
+      <h2><app-my-currency-balance _currencyType="{{currencytype}}"  #f ></app-my-currency-balance> </h2> 
     </div>
     <div class="body">
             <form   class="rahul{{_orderMode}}" (ngSubmit)="onSubmit(depositmodel)" [formGroup]="depositmodel" >

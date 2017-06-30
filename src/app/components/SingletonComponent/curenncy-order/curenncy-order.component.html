@@ -8,7 +8,10 @@
 			
 			<div class="inblock order_header clearfix">
 				<div style="width:105px; float: left;">
-				<app-my-currency-balance CurrencyType="{{_currencyType}}" #f ></app-my-currency-balance> 
+
+				<app-my-currency-balance   *ngIf="_orderMode== 'Buy'"   _orderMode="{{_orderMode}}" _currencyType="USD" #f ></app-my-currency-balance> 
+
+			   <app-my-currency-balance  *ngIf="_orderMode=='Sell'" _orderMode="{{_orderMode}}" _currencyType="{{_currencyType}}" #f ></app-my-currency-balance> 
 				<!--Your balance:
 				<p>
 					<a href="javascript:void(0)">
@@ -16,7 +19,9 @@
 					</a>
 				</p>-->
 				</div>
-				<div style="width:115px; float: right;">Lowest ask Price<p><b><button id="" class=" animate-flicker">0.00</button> USD</b></p></div>
+				<div style="width:115px; float: right;">
+				<app-lowest-ask-price CurrencyType="{{_currencyType}}" OrderMode="{{_orderMode}}"></app-lowest-ask-price>
+				</div>
 			</div>
 			
 			<div role="seperator" class="divider"></div>
@@ -59,7 +64,7 @@
 				<div role="seperator" class="divider"></div>
 				<p class="no-margin">Click to sum your order.</p>			
 				<div class="group-btn-wrap clearfix">
-					<button  type="button" class="btn btn-primary waves-effect" (click)="getFee()">Calculate</button>
+					<button [disabled]="OrderFormModel.invalid" type="button" class="btn btn-primary waves-effect" (click)="getFee()">Calculate</button>
 					<button [disabled]="OrderFormModel.invalid" type="submit" class="btn btn-primary waves-effect position" >{{_orderMode}}</button>
 				</div>
 			</form>  

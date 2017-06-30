@@ -1,12 +1,15 @@
+
+
 <div class="row clearfix">
 	<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
 		<app-stoc-chart></app-stoc-chart>
 		<div class="row clearfix price_wrap">
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-				<app-curenncy-order _orderMode="Sell" _currencyType="USD" _newCurrencyType="LTC"></app-curenncy-order>
+				
+			<app-curenncy-order _orderMode="Buy" _currencyType="LTC"></app-curenncy-order>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-				<app-curenncy-order _orderMode="Buy" _currencyType="LTC" _newCurrencyType="USD"></app-curenncy-order>
+				<app-curenncy-order _orderMode="Sell" _currencyType="LTC"></app-curenncy-order>
 			</div>
 		</div>
 	</div>
@@ -24,3 +27,4 @@
 		<app-order-component _orderMode="Buy" _currencyType="LTC" ></app-order-component>
 	</div>
 </div>
+
