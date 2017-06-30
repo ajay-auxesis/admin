@@ -38,16 +38,14 @@ import { NgFor } from "@angular/common";
 export class CurenncyOrderComponent implements OnInit {
 @Input()  _currencyType:CurrencyType;
 @Input()  _orderMode: OrderMode;
-//@Input() _newCurrencyType:CurrencyType;
+
 @ViewChild('f') child: any;
+@ViewChild('lowestprice') lowestprice : any;
 OrderFormModel: FormGroup;
 _total:number=0;
 fee : GetFeeModel;
 _totalfee:number;
 constructor(myElement: ElementRef, private _sharedservice: SharedService, private _http: Http,private _fb: FormBuilder,private _registerservice: RegisterService,private _router: Router, private _buyselldealservice : BuyselldealserviceService,private loaderService: LoaderService) {
-
-
-
 
 }
 ngOnInit() {
@@ -67,6 +65,7 @@ value.OrderMode=this._orderMode;
 this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
 this.loaderService.displayLoader(false);
 this.child.ngOnInit();
+this.lowestprice.ngOnInit();
 }
 ,
 error => {

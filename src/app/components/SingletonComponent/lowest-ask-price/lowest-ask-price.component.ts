@@ -27,16 +27,13 @@ this.loaderService.displayLoader(false);
 
   if (result.status==200) {
    this._lowestPrice=result.json().lowestAsk;
-
+   console.log("lowestPrice");
+console.log(this._lowestPrice);
 }
 },
 error => {
 this.loaderService.displayLoader(false);
-//     if(error.status=Responsecode.Unauthorized)
-//  {
-   
-//   console.log('invalid user');
-//  }
+
 }
 ); 
   }
