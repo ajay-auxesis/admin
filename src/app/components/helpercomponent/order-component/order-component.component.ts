@@ -46,7 +46,7 @@ let neworderlist= new  Array<orderListModel>();
 neworderlist=this._orderlist;
 orderListModelnew.IsNewOrder=true;
 neworderlist.push(orderListModelnew);
-this._orderlist=this._SignalRService.sortArry(neworderlist,orderListModelnew);
+this._orderlist=this._SignalRService.sortArry(neworderlist,orderListModelnew,this._orderMode);
 
 this.updateVolume.ngOnInit();
 
@@ -55,7 +55,7 @@ getRecentListorder(): void {
         this._currencyRateService.GetCurrencyOrderList(this._currencyType,this._orderMode)
             .subscribe(result => { 
              
- this._orderlist=this._SignalRService.sortArry(this._orderlist=result.json()  as  Array<orderListModel>,null);
+ this._orderlist=this._SignalRService.sortArry(this._orderlist=result.json()  as  Array<orderListModel>,null,this._orderMode);
 
             });
     }

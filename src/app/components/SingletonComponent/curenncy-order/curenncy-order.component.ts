@@ -60,8 +60,7 @@ Rate: new FormControl('', [Validators.required, ValidationmessageserviceService.
 
 }
 submitOrder({ value, valid }: { value: orderModel, valid: boolean }) {
-console.log(value);
-//this._orderMode==OrderMode.Sell? value.OrderMode==OrderMode.Sell : value.OrderMode==OrderMode.Buy;
+
 value.OrderMode=this._orderMode;
 
 this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
@@ -113,7 +112,7 @@ error => {
   //       .title('A simple Alert style modal window')
   //       .body('hi')
   //       .open();
-   console.log('invalid user');
+   
  }
 
 }

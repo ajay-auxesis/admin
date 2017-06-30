@@ -21,7 +21,7 @@ _volume:number=0;
   ngOnInit() {
 
  this._currencyService.getcurrencyvolume(this.CurrencyType,this.OrderMode).debounceTime(1200).subscribe( result =>{
-this.loaderService.displayLoader(false);
+ this.loaderService.displayLoader(false);
 
   if (result.status==200) {
    this._volume=result.json().volume;
