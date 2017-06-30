@@ -4,23 +4,23 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li class="header"><i class="material-icons">apps</i><span>MAIN NAVIGATION</span></li>
+                    <li class="header"><i class="material-icons">apps</i><span>{{_title}}</span></li>
                 
             
-                     <li class='active'>
+                     <li [routerLinkActive]="['active']">
                         <a [routerLink]="['LtcUsd']">
                             <i class="material-icons">text_fields</i>
                             <span>LTC/USD</span>
                         </a>
                     </li>
-                   <li>
+                    <li [routerLinkActive]="['active']">
                         <a [routerLink]="['MatchOrder']">
                             <i class="material-icons">text_fields</i>
                             <span>MatchOrder</span>
                         </a>
                     </li> 
 
-  <li>
+                    <li [routerLinkActive]="['active']">
                         <a [routerLink]="['ActiveOrder']">
                             <i class="material-icons">text_fields</i>
                             <span>ActiveOrder</span>
@@ -28,7 +28,7 @@
                     </li>  
 
 
-  <li>
+                    <li [routerLinkActive]="['active']">
                         <a [routerLink]="['deposit']">
                             <i class="material-icons">text_fields</i>
                             <span>DEPOSIT FORM</span>
