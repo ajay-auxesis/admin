@@ -1,3 +1,4 @@
+import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
 
 
 import { CurrencyVolumeComponent } from './components/SingletonComponent/currency-volume/currency-volume.component';
@@ -121,12 +122,12 @@ const routes: Routes = [
   ],
    entryComponents: [OrderLisRowComponent],
  exports: [OrderComponentComponent],
-  providers: [AuthGuard,DynamicOrderRowService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
+  providers: [AuthGuard,DynamicOrderRowService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
 
    {
       provide: Http,
             useFactory: httpFactory,
-            deps: [XHRBackend, RequestOptions,LoaderService]
+            deps: [XHRBackend, RequestOptions,LoaderService,HttpEmitterService]
     },
     // {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],

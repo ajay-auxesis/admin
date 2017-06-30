@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
  registerresponse:Response;
 //     private count: number = 1;
 //     public items: Array<any>;
+errormsg:any;
   loginresponse: Response;
   ngOnInit() {
   }
@@ -74,16 +75,17 @@ this.loaderService.displayLoader(false);
 this._router.navigate(['LtcUsd']);
 
 }
- 
- 
-else if(this.loginresponse.status=Responsecode.Unauthorized)
-{
-  
 
-  
-}
 
    return false;  
+//   },
+//   error =>{
+//     this.loaderService.displayLoader(false);
+//     if(error.status=='409')
+//     {
+// this.errormsg="USer with this email already registered "
+//     }
+
   });
 
 

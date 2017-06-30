@@ -16,12 +16,13 @@ export class LowestAskPriceComponent implements OnInit {
 @Input() CurrencyType: CurrencyType;
 @Input()OrderMode : OrderMode;
 _lowestPrice:number=0;
-
+_class:any;
   constructor(private _currencyService:CurrencyService,private loaderService: LoaderService) {
 
    }
 
   ngOnInit() {
+
     this._currencyService.getlowestaskedprice(this.CurrencyType,this.OrderMode).debounceTime(1200).subscribe( result =>{
 this.loaderService.displayLoader(false);
 
