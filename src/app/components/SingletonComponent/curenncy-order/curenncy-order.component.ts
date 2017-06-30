@@ -40,7 +40,7 @@ export class CurenncyOrderComponent implements OnInit {
 @Input()  _orderMode: OrderMode;
 
 @ViewChild('f') child: any;
-@ViewChild('lowestprice') lowestprice : any;
+
 OrderFormModel: FormGroup;
 _total:number=0;
 fee : GetFeeModel;
@@ -64,7 +64,7 @@ value.OrderMode=this._orderMode;
 this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
 this.loaderService.displayLoader(false);
 this.child.ngOnInit();
-this.lowestprice.ngOnInit();
+// this.lowestprice.ngOnInit();
 }
 ,
 error => {
@@ -105,12 +105,7 @@ error => {
       if(error.status=Responsecode.Unauthorized)
   {
    this.loaderService.displayLoader(false);
-  //  this.modal.alert()
-  //       .size('lg')
-  //       .showClose(true)
-  //       .title('A simple Alert style modal window')
-  //       .body('hi')
-  //       .open();
+
    
  }
 
