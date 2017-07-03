@@ -1,6 +1,5 @@
+import { ErrorMessagePopupComponent } from './components/SingletonComponent/error-message-popup/error-message-popup.component';
 import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
-
-
 import { CurrencyVolumeComponent } from './components/SingletonComponent/currency-volume/currency-volume.component';
 import { OrderLisRowComponent } from './components/helpercomponent/order-lis-row/order-lis-row.component';
 import { MatchOrderComponent } from './components/SingletonComponent/match-order/match-order.component';
@@ -10,9 +9,7 @@ import { MatchOrderRouteComponent } from './components/RouteComponent/match-orde
 import { DynamicOrderRowService } from './components/helpercomponent/order-component/dynamic-order-row.service';
 import { LowestAskPriceComponent } from './components/SingletonComponent/lowest-ask-price/lowest-ask-price.component';
 import { SignalRService } from './service/HubServices/signal-r.service';
-
 import { CurrencyRateService } from './service/CurrencyServices/currency-rate.service';
-
 import { CurrencyService } from './service/CurrencyServices/currency.service';
 import { CurenncyOrderComponent } from './components/SingletonComponent/curenncy-order/curenncy-order.component';
 import { DepositServiceService } from './service/deposit-service.service';
@@ -79,7 +76,7 @@ const routes: Routes = [
     LeftsidebarComponent,
    LoaderComponent,
   // ReverseArrayPipe,
-   
+   ErrorMessagePopupComponent,
     CurrentActiveOrdersComponent,
     TradingHistoryComponent,
     OrderComponentComponent,

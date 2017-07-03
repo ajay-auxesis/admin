@@ -1,2 +1,7 @@
 
-<label ><h1>{{IsUserunauthorized}}</h1></label>
+<!--<label ><h1>{{IsUserunauthorized}}</h1></label>-->
+<div class="popup-login" *ngIf="IsUserunauthorized">
+    <div class="home">
+<app-login  ></app-login>
+    </div>
+</div>

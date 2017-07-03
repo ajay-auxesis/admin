@@ -1,3 +1,4 @@
+import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
 import { GetFeeModel } from './../../../models/DepositModel';
 import { orderModel } from './../../../models/LTCUSDOrderModel';
 import { CurrencyType } from 'app/enums/currency-type.enum';
@@ -45,7 +46,7 @@ OrderFormModel: FormGroup;
 _total:number=0;
 fee : GetFeeModel;
 _totalfee:number;
-constructor(myElement: ElementRef, private _sharedservice: SharedService, private _http: Http,private _fb: FormBuilder,private _registerservice: RegisterService,private _router: Router, private _buyselldealservice : BuyselldealserviceService,private loaderService: LoaderService) {
+constructor(myElement: ElementRef, private _sharedservice: SharedService, private _http: Http,private _fb: FormBuilder,private _registerservice: RegisterService,private _router: Router, private _buyselldealservice : BuyselldealserviceService,private loaderService: LoaderService,public erroremitter: HttpEmitterService) {
 
 }
 ngOnInit() {
@@ -105,7 +106,7 @@ error => {
       if(error.status=Responsecode.Unauthorized)
   {
    this.loaderService.displayLoader(false);
-
+this.erroremitter.unauthorizedError(true);
    
  }
 

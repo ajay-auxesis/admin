@@ -14,8 +14,7 @@ _IsAuthenticated:boolean=true;
     }
 
   constructor(private _sharedservice:SharedService) {
-this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
-
+    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
 
    }
 

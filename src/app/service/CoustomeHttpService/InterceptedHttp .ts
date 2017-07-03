@@ -62,7 +62,7 @@ private handleError (error: Response):Observable<Response> {
         if(error.status==401){
            // alert(" Invalid USer. Please Login and Try again.");
             console.log("error.status==401"+error.status);
-        //  this.emitterservice.unauthorizedError(true);  
+      this.emitterservice.unauthorizedError(true);  
         //   console.log('hsgdgdd');      
         } 
        if(error.status==402){

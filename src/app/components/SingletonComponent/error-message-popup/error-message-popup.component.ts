@@ -1,3 +1,6 @@
+
+import { AppSettings } from 'app/app-settings';
+import { SharedService } from './../../../service/shared.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Rx';
 import { HttpEmitterService } from './../../../service/CoustomeHttpService/http-emitter.service';
@@ -13,25 +16,26 @@ import { Component, OnInit } from '@angular/core';
 export class ErrorMessagePopupComponent implements OnInit {
 
 IsUserunauthorized:boolean=false;
+
 private IsUserunauthorizedObserver: Subscription;
-  constructor(private emitterService : HttpEmitterService){ 
 
+  constructor(private emitterService : HttpEmitterService,private _sharedservice:SharedService ){ 
 
-    this.emitterService.unauthorizeduseremiter.subscribe(json => {
-
-
-       this.IsUserunauthorized = json as boolean;
-     
+this.emitterService.unauthorizeduseremiter.subscribe(json => {
+ this.IsUserunauthorized = json as boolean;
       })
 
+    
   }
-
-
 
   ngOnInit() {
    let timer = Observable.interval(100);
-        this.IsUserunauthorizedObserver = timer.subscribe(() =>{ this.IsUserunauthorized
-        
-        });
+        this.IsUserunauthorizedObserver = timer.subscribe(() =>{
+           this.IsUserunauthorized
+
+         
+
+       });
+
   }
 }
