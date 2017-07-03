@@ -13,6 +13,7 @@
 
 				<div class="body">
 					<form  [formGroup]="registermodel" (ngSubmit)="onSubmit(registermodel)" class="clearfix" >
+						<span class="errormsg">{{_errormsg}}</span>
 						<div class="form-group form-float">
 							<div class="form-line">
 								<input type="text" id="email" formControlName="Email" placeholder="Email" class="form-control">

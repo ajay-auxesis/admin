@@ -13,6 +13,7 @@
 				</div>
 				<div class="body">
 					<form  [formGroup]="loginmodel" (ngSubmit)="doLogin(loginmodel)" >
+						<span class="errormsg">{{unauthoriza}}</span>
 						<div class="form-group form-float">
 							<div class="form-line">
 								<input type="text" id="email_address" formControlName="userName" placeholder="Email Address"  class="form-control validate">
@@ -35,8 +36,7 @@
 								<input type="checkbox" id="rememberme" class="form-control filled-in" formControlName="rememberme">
 								<label for="rememberme">Remember Me?</label>
 								</div>
-								<div class="col-xs-6 align-right">
-									<span class="errormsg">{{unauthoriza}}</span> 
+								<div class="col-xs-6 align-right">									 
 									<button [disabled]="loginmodel.invalid" type="submit" class="btn btn-primary waves-effect">LogIn</button>
 								</div>
 							</div>
