@@ -1,3 +1,4 @@
+
 import { MatchOrderService } from './../../../service/OrderServices/match-order.service';
 import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
 import { OrderMode } from 'app/enums/order-mode.enum';
@@ -16,7 +17,7 @@ import {DataTableModule} from "angular2-datatable";
 export class MatchOrderComponent implements OnInit {
 
 _matchOrders:any;
-
+//  @ViewChild('someVar') el:ElementRef;
 @Input()  _currencyType:CurrencyType;
 @Input()  _orderMode: OrderMode;
 _Count:any=0;

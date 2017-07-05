@@ -34,9 +34,9 @@ public canSendMessage: Boolean;
   this.objLoaderStatus=false; 
 this._sharedservice.IsAuthenticated();
 
-// if(this._IsAuthenticated){
-//   this._router.navigate(['LtcUsd']);
-// }
+if(!this._IsAuthenticated){
+  this._router.navigate(['']);
+}
 
   }
 
@@ -61,10 +61,10 @@ this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;
         });
 
- if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path()=='') {
-   this._router.navigate(['LtcUsd']);
+//  if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path()=='') {
+//    this._router.navigate(['LtcUsd']);
 
-  }
+//   }
     
 
 
