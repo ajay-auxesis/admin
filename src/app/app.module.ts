@@ -1,3 +1,5 @@
+import { MatchOrderService } from './service/OrderServices/match-order.service';
+import { ActiveOrderService } from './service/OrderServices/active-order.service';
 import { ErrorMessagePopupComponent } from './components/SingletonComponent/error-message-popup/error-message-popup.component';
 import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
 import { CurrencyVolumeComponent } from './components/SingletonComponent/currency-volume/currency-volume.component';
@@ -47,6 +49,10 @@ import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my
 import { StocChartComponent } from './components/SingletonComponent/stoc-chart/stoc-chart.component';
 import { StocMarketComponent } from './components/SingletonComponent/stoc-market/stoc-market.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import {DataTableModule} from "angular2-datatable";
+//import { DataTableModule } from 'angular-2-data-table';
 //import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
@@ -54,7 +60,7 @@ const routes: Routes = [
  
   { path: '', component: LoginComponent ,data: {title: 'SignIn' }},
   { path: 'SignUp', component: RegisterComponent , data: {title: 'SignUp' } },
-  
+ { path: 'Forgotpassword', component: ForgotPasswordComponent , data: {title: 'Password Reset' } },
  { path: 'deposit', component: DepositeBalanceRouteComponent,canActivate:[AuthGuard],data: {title: 'Deposit Form' } },
  { path: 'LtcUsd', component: LtcUsdRouteComponent,canActivate:[AuthGuard], data: {title: 'LTC/USD' } },
 
@@ -97,7 +103,10 @@ const routes: Routes = [
    ActiveOrderRouteComponent,
    MatchOrderComponent,
    OrderLisRowComponent,
-   UserProfileComponent
+   UserProfileComponent,
+
+   ForgotPasswordComponent,
+  
    //,
    //ReverseArrayPipe
 ],
@@ -113,13 +122,15 @@ const routes: Routes = [
     SlimLoadingBarModule.forRoot(),
     InfiniteScrollModule,
    SpinnerComponentModule,
-   JsonpModule
+   JsonpModule,
+   DataTableModule,
+    
    //,
   // ReverseArrayPipe
   ],
    entryComponents: [OrderLisRowComponent],
  exports: [OrderComponentComponent],
-  providers: [AuthGuard,DynamicOrderRowService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
+  providers: [AuthGuard,DynamicOrderRowService,ActiveOrderService,MatchOrderService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
 
    {
       provide: Http,

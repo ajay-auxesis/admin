@@ -1,3 +1,4 @@
+import { HttpEmitterService } from './../../../service/CoustomeHttpService/http-emitter.service';
 import { MyCurrencyBalanceComponent } from './../my-currency-balance/my-currency-balance.component';
 import { DepositModel } from './../../../models/DepositModel';
 import { DepositServiceService } from './../../../service/deposit-service.service';
@@ -19,7 +20,7 @@ export class DepositeBalanceComponent implements OnInit {
 @Input() currencytype: CurrencyType;
 depositmodel: FormGroup;
  @ViewChild('f') child: any;
-constructor( private _sharedservice: SharedService, private _http: Http,private _fb: FormBuilder,private _router: Router,private loaderService: LoaderService, private _depositService: DepositServiceService) {
+constructor( private _sharedservice: SharedService, private _http: Http,private _fb: FormBuilder,private _router: Router,private loaderService: LoaderService, private _depositService: DepositServiceService,private erroremitter : HttpEmitterService) {
  
  }
   ngOnInit() {
@@ -35,14 +36,16 @@ value.CurrencyType=this.currencytype;
  this._depositService.PostDeposit(value).debounceTime(1200).subscribe(result =>{
  this.loaderService.displayLoader(false);
  this.child.ngOnInit();
-},
+} ,
 error => {
-  this.loaderService.displayLoader(false);
-    if(error.status=Responsecode.Unauthorized)
- {
+   this.loaderService.displayLoader(false);
+      if(error.status==Responsecode.Unauthorized)
+  {
+  
+this.erroremitter.unauthorizedError(true);
    
-
  }
+
 }
 ); 
 this.depositmodel.reset();

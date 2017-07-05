@@ -6,12 +6,12 @@ import { Output,EventEmitter} from '@angular/core';
 export class HttpEmitterService {
   
 @Output() unauthorizeduseremiter : EventEmitter<boolean>;
-
+@Output() paymentrequiredemiter : EventEmitter<boolean>;
   constructor() { 
 
 
  this.unauthorizeduseremiter= new EventEmitter();
-
+this.paymentrequiredemiter= new EventEmitter();
   }
 
 public unauthorizedError(status:boolean): void{
@@ -19,10 +19,19 @@ public unauthorizedError(status:boolean): void{
             console.log("unauthorizedError status "+status);
    
             
-    if(status)
-    {
+    // if(status)
+    // {
       this.unauthorizeduseremiter.emit(status);
-    }
+    //}
   }
+public paymentRequiredError(status:boolean): void{
 
+            console.log("paymentRequiredError status "+status);
+   
+            
+    // if(status)
+    // {
+      this.paymentrequiredemiter.emit(status);
+    //}
+  }
 }

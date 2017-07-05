@@ -1,3 +1,4 @@
+import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
 import { OrderMode } from 'app/enums/order-mode.enum';
 import { DepositModel } from './../../../models/DepositModel';
 import { PaymentOperationMode } from 'app/enums/payment-operation-mode.enum';
@@ -22,10 +23,8 @@ _debitsum:number=0;
 _total:number=0;
 value:number=0;
 //result:DepositModel;
-  constructor(private _currencyService:CurrencyService,private loaderService: LoaderService) {
+  constructor(private _currencyService:CurrencyService,private loaderService: LoaderService,private erroremitter: HttpEmitterService) {
   
- 
-
    }
 
   ngOnInit() {
@@ -39,14 +38,16 @@ this.loaderService.displayLoader(false);
   if (result.status==200) {
    this._mybalance=result.json().Balance;
 }
-},
+} ,
 error => {
- // this.loaderService.displayLoader(false);
-//     if(error.status=Responsecode.Unauthorized)
-//  {
+   this.loaderService.displayLoader(false);
+      if(error.status==Responsecode.Unauthorized)
+  {
+  
+this.erroremitter.unauthorizedError(true);
    
-//   console.log('invalid user');
-//  }
+ }
+
 }
 ); 
 

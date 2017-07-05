@@ -22,8 +22,11 @@ export class LoginComponent implements OnInit {
   loginmodel: FormGroup;
    loginresponse: Response;
    unauthoriza:string;
+_IsAuthenticated:boolean= false;
 
   constructor(myElement: ElementRef, private _sharedservice: SharedService, private _http: Http,private fb: FormBuilder,private _registerservice: RegisterService,private _router: Router,private loaderService: LoaderService,private erroremitter: HttpEmitterService) {
+   this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
+   
     this.loginmodel =this.fb.group({
            userName: new FormControl('', [Validators.required, ValidationmessageserviceService.emailValidator]),
            password: new FormControl('', [Validators.required]),
@@ -50,7 +53,7 @@ this.erroremitter.unauthorizedError(false);
 
   },
   error => {
-  if(error.status=Responsecode.Unauthorized)
+  if(error.status==Responsecode.Unauthorized)
 {
    this.loaderService.displayLoader(false);
  this.unauthoriza="Invalid User Id or Password. Try again";
@@ -62,7 +65,11 @@ return false;
     }
 
     ngOnInit(){
-      
+      //  console.log("this._IsAuthenticated");
+      // console.log(this._IsAuthenticated);
+      // if(this._IsAuthenticated){
+      //   this._router.navigate(['LTCUSD']);
+      // }
 
     }
 }

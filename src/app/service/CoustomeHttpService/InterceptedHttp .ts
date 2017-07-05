@@ -1,3 +1,4 @@
+import { AppSettings } from 'app/app-settings';
 import { HttpEmitterService } from './http-emitter.service';
 import { LoaderService } from './../loader-service.service';
 import { Output,EventEmitter} from '@angular/core';
@@ -60,14 +61,13 @@ private handleError (error: Response):Observable<Response> {
 
 
         if(error.status==401){
-           // alert(" Invalid USer. Please Login and Try again.");
-            console.log("error.status==401"+error.status);
-      this.emitterservice.unauthorizedError(true);  
-        //   console.log('hsgdgdd');      
+         localStorage.removeItem(AppSettings.localtokenkey);
+            localStorage.removeItem('username');
         } 
+        
        if(error.status==402){
             console.log("error.status==402"+error.status);
-            // this.emitterservice.unauthorizedError(true);   
+            
   }
 
 

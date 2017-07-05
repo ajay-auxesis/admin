@@ -32,7 +32,11 @@ public canSendMessage: Boolean;
   
    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
+this._sharedservice.IsAuthenticated();
 
+// if(this._IsAuthenticated){
+//   this._router.navigate(['LtcUsd']);
+// }
 
   }
 
@@ -57,21 +61,19 @@ this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;
         });
 
- 
-    
-if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path()=='') {
+ if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path()=='') {
    this._router.navigate(['LtcUsd']);
 
   }
+    
+
 
   this.platform.onPopState(()=>{
-    // if(this._location.path()==''){
-    //  this._router.navigate(['LtcUsd']);
-    // }
+   
        this._router.events.filter(event => event instanceof NavigationEnd).pairwise()
         .subscribe(e => {
           this.previousUrl= e[1].url;
-          if(this.previousUrl=='/' || this.previousUrl=='/SignUp' || this.previousUrl=='/LtcUsd' || this.previousUrl==''){
+          if(this.previousUrl=='/' || this.previousUrl=='/SignUp' ){
              this._router.navigate(['LtcUsd']);
            }
         });
