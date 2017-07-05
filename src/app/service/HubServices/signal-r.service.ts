@@ -1,3 +1,6 @@
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import { LoginModel, HuBConectionRequestModel } from './../../models/login';
 import { OrderMode } from 'app/enums/order-mode.enum';
 import { orderListModel } from './../../models/LTCUSDOrderModel';
 import { AppSettings } from './../../app-settings';
@@ -7,12 +10,23 @@ export class SignalRService {
   public connectionEstablished: EventEmitter <orderListModel> ;
    public neworderEmitter: EventEmitter <orderListModel> ; 
      
-  constructor() {
+  constructor(private _http:Http) {
    this.connectionEstablished= new EventEmitter <orderListModel>();
 
    this.neworderEmitter= new EventEmitter <orderListModel>();
 
-   }
+}
+
+
+   ConectUser(hubConectionRequestModel: HuBConectionRequestModel): Observable<any> {
+        let bodyString = JSON.stringify(hubConectionRequestModel); 
+        return this._http.post(`${AppSettings.API_ENDPOINT}conectuser`, bodyString);
+      
+    }
+
+
+
+
    public startConnection(data:orderListModel): void { 
 this.connectionEstablished.emit(data);
     }  
@@ -62,8 +76,7 @@ newarray.forEach(element => {
 if(OrderMode[orderMode]==OrderMode.Buy.toString()){
 
   newarray.sort(function(obj1, obj2) {	return obj2.Rate - obj1.Rate;});;
-   console.log("newarray[0] OrderMode.Buy");
-    console.log(newarray[0]);
+
   this.neworderEmitter.emit(newarray[0]);
   return newarray;
 }
@@ -72,8 +85,7 @@ if(OrderMode[orderMode]==OrderMode.Sell.toString()){
 
     
     newarray.sort(function(obj1, obj2) {	return obj1.Rate - obj2.Rate;});;
-        console.log("newarray[0] OrderMode.Sell");
-    console.log(newarray[0]);
+     
      this.neworderEmitter.emit(newarray[0]);
     return newarray;
 }

@@ -16,7 +16,7 @@ this.paymentrequiredemiter= new EventEmitter();
 
 public unauthorizedError(status:boolean): void{
 
-            console.log("unauthorizedError status "+status);
+        
    
             
     // if(status)

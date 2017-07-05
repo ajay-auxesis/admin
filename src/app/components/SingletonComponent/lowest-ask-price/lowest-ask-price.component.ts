@@ -28,8 +28,7 @@ private neworder:orderListModel;
   constructor(private _signalRService:SignalRService,private _currencyService:CurrencyService,private loaderService: LoaderService, private erroremitter : HttpEmitterService) {
 
    this._signalRService.neworderEmitter.subscribe(json => { 
-      console.log("this._signalRService.neworderEmitter");
-     console.log(json);
+   
 
       this.neworder = json;
  var curname:CurrencyType=this.CurrencyType ;

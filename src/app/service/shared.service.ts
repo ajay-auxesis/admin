@@ -31,16 +31,39 @@ export class SharedService {
     }
  logout() {
      
-     this.loaderservice.displayLoader(true);
-    localStorage.removeItem(AppSettings.localtokenkey);
+    this.loaderservice.displayLoader(true);
+    
+   this.Disconecthub().debounceTime(1200).subscribe(result =>{
+//  self.loaderService.displayLoader(false);
+//    console.log(result);
+
+  localStorage.removeItem(AppSettings.localtokenkey);
     localStorage.removeItem('username');
      this.IsAuthenticated();
      this.loaderservice.displayLoader(false);
      this._router.navigate(['']);
+
+},
+error => {
+   this.loaderservice.displayLoader(false);
+}
+); 
+    
+  
+
+
+
     }
  Login(login:LoginModel): Observable<Response> {
        
         return this.http.post(`${AppSettings.API_ENDPOINT}token`,login);
+            
+    }
+
+
+     Disconecthub(): Observable<Response> {
+       
+      return this.http.put(`${AppSettings.API_ENDPOINT}conectuser`,"");
             
     }
 }
