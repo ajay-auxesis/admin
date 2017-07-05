@@ -1,3 +1,5 @@
+import { Responsecode } from 'app/enums/responsecode.enum';
+import { HuBConectionRequestModel } from './models/login';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { orderListModel } from './models/LTCUSDOrderModel';
 import { SignalRService } from './service/HubServices/signal-r.service';
@@ -9,15 +11,12 @@ import { SharedService } from './service/shared.service';
 import { Component, NgZone } from '@angular/core';
 import { LoaderService } from "./service/loader-service.service";
 import { Title } from '@angular/platform-browser';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-
  objLoaderStatus: boolean;
    private connection: SignalR;
 _IsAuthenticated:boolean=true;
@@ -29,41 +28,51 @@ previousUrl:any;
 public canSendMessage: Boolean;
   constructor( private _ngZone: NgZone,private _signalRService:SignalRService,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ,private _location: Location, private platform: PlatformLocation ,private activatedRoute: ActivatedRoute,
     private titleService: Title) { 
-  
    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
-
-
   }
-
  ngOnInit() {
-
 var self=this;
  var connection = $.hubConnection(AppSettings.HubUrl);
-         var chatHubProxy = connection.createHubProxy('myHub');
+         var cryptohubproxy = connection.createHubProxy('myHub');
           connection.start().done(function () {
-
              console.log('Now connected, connection ID=' + connection.id);
+             let humconection=new HuBConectionRequestModel();
+             humconection.ConectionId=connection.id;
+      
+ self._signalRService.ConectUser(humconection).debounceTime(1200).subscribe(result =>{
+//  self.loaderService.displayLoader(false);
+//    console.log(result);
 
+},
+error => {
+  //this.loaderService.displayLoader(false);
+    if(error.status=Responsecode.Unauthorized)
+ {
+ }
+}
+); 
          });
-         chatHubProxy.on('updateUserTransction', function (name) {
-           let orderListModelobj:orderListModel=name as orderListModel;
-        
+         cryptohubproxy.on('whennewOrderAdded', function (newOrder) {
+            console.log("newOrder");
+           console.log(newOrder);
+           let orderListModelobj:orderListModel=newOrder as orderListModel;
            self._signalRService.startConnection(orderListModelobj);
-           
+         });
+
+
+    cryptohubproxy.on('whenMatchHappend', function (matchorder) {
+            console.log("whenMatchHappend");
+           console.log(matchorder);
+         
          });
 
 this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;
         });
-
- 
-    
 if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path()=='') {
    this._router.navigate(['LtcUsd']);
-
   }
-
   this.platform.onPopState(()=>{
     // if(this._location.path()==''){
     //  this._router.navigate(['LtcUsd']);
@@ -75,10 +84,7 @@ if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path
              this._router.navigate(['LtcUsd']);
            }
         });
-
       });
-     
-
     this._router.events
       .filter(event => event instanceof NavigationEnd)
       .map(() => this.activatedRoute)
@@ -90,9 +96,7 @@ if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path
       .mergeMap(route => route.data)
       .subscribe((event) => this.titleService.setTitle("Crypto Trading | " +event['title']));
  }
-
     ngAfterViewChecked() {
-   
     document.body.classList.remove(document.body.classList.item(1));
    this.location=window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
    if(this.location==''){this.location='home';}

@@ -10,3 +10,7 @@ AccessToken: string;
 UserName:string;
 }
 
+export class HuBConectionRequestModel {
+ConectionId: string;
+
+}

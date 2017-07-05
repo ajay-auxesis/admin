@@ -54,8 +54,7 @@ this.updateVolume.ngOnInit();
 getRecentListorder(): void {
         this._currencyRateService.GetCurrencyOrderList(this._currencyType,this._orderMode)
             .subscribe(result => { 
-             console.log("GetCurrencyOrderList");
-    console.log(result);
+       
  this._orderlist=this._SignalRService.sortArry(this._orderlist=result.json()  as  Array<orderListModel>,null,this._orderMode);
 
             });

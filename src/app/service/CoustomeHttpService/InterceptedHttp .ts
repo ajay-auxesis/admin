@@ -25,7 +25,7 @@ export class InterceptedHttp extends Http {
     }
 
     post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-        this.loaderService.displayLoader(true);
+     if(url.indexOf("conectuser")== -1)this.loaderService.displayLoader(true);
         url = this.updateUrl(url);
         return super.post(url, body, this.getRequestOptionArgs(options)).catch(this.handleError);
     }
@@ -60,14 +60,10 @@ private handleError (error: Response):Observable<Response> {
 
 
         if(error.status==401){
-           // alert(" Invalid USer. Please Login and Try again.");
-            console.log("error.status==401"+error.status);
-        //  this.emitterservice.unauthorizedError(true);  
-        //   console.log('hsgdgdd');      
+       
         } 
        if(error.status==402){
-            console.log("error.status==402"+error.status);
-            // this.emitterservice.unauthorizedError(true);   
+         
   }
 
 
