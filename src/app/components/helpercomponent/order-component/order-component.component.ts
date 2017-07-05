@@ -35,8 +35,7 @@ this._orderlist = new Array<orderListModel>();
              this.AddNewOrder(this.orderListModelObject);
        
            }
-         
-     
+       
   });
 }
 

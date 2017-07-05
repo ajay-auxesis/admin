@@ -1,6 +1,7 @@
+import { MatchOrderService } from './service/OrderServices/match-order.service';
+import { ActiveOrderService } from './service/OrderServices/active-order.service';
+import { ErrorMessagePopupComponent } from './components/SingletonComponent/error-message-popup/error-message-popup.component';
 import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
-
-
 import { CurrencyVolumeComponent } from './components/SingletonComponent/currency-volume/currency-volume.component';
 import { OrderLisRowComponent } from './components/helpercomponent/order-lis-row/order-lis-row.component';
 import { MatchOrderComponent } from './components/SingletonComponent/match-order/match-order.component';
@@ -10,9 +11,7 @@ import { MatchOrderRouteComponent } from './components/RouteComponent/match-orde
 import { DynamicOrderRowService } from './components/helpercomponent/order-component/dynamic-order-row.service';
 import { LowestAskPriceComponent } from './components/SingletonComponent/lowest-ask-price/lowest-ask-price.component';
 import { SignalRService } from './service/HubServices/signal-r.service';
-
 import { CurrencyRateService } from './service/CurrencyServices/currency-rate.service';
-
 import { CurrencyService } from './service/CurrencyServices/currency.service';
 import { CurenncyOrderComponent } from './components/SingletonComponent/curenncy-order/curenncy-order.component';
 import { DepositServiceService } from './service/deposit-service.service';
@@ -50,6 +49,10 @@ import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my
 import { StocChartComponent } from './components/SingletonComponent/stoc-chart/stoc-chart.component';
 import { StocMarketComponent } from './components/SingletonComponent/stoc-market/stoc-market.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import {DataTableModule} from "angular2-datatable";
+//import { DataTableModule } from 'angular-2-data-table';
 //import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
@@ -57,7 +60,7 @@ const routes: Routes = [
  
   { path: '', component: LoginComponent ,data: {title: 'SignIn' }},
   { path: 'SignUp', component: RegisterComponent , data: {title: 'SignUp' } },
-  
+ { path: 'Forgotpassword', component: ForgotPasswordComponent , data: {title: 'Password Reset' } },
  { path: 'deposit', component: DepositeBalanceRouteComponent,canActivate:[AuthGuard],data: {title: 'Deposit Form' } },
  { path: 'LtcUsd', component: LtcUsdRouteComponent,canActivate:[AuthGuard], data: {title: 'LTC/USD' } },
 
@@ -79,7 +82,7 @@ const routes: Routes = [
     LeftsidebarComponent,
    LoaderComponent,
   // ReverseArrayPipe,
-   
+   ErrorMessagePopupComponent,
     CurrentActiveOrdersComponent,
     TradingHistoryComponent,
     OrderComponentComponent,
@@ -100,7 +103,10 @@ const routes: Routes = [
    ActiveOrderRouteComponent,
    MatchOrderComponent,
    OrderLisRowComponent,
-   UserProfileComponent
+   UserProfileComponent,
+
+   ForgotPasswordComponent,
+  
    //,
    //ReverseArrayPipe
 ],
@@ -116,13 +122,15 @@ const routes: Routes = [
     SlimLoadingBarModule.forRoot(),
     InfiniteScrollModule,
    SpinnerComponentModule,
-   JsonpModule
+   JsonpModule,
+   DataTableModule,
+    
    //,
   // ReverseArrayPipe
   ],
    entryComponents: [OrderLisRowComponent],
  exports: [OrderComponentComponent],
-  providers: [AuthGuard,DynamicOrderRowService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
+  providers: [AuthGuard,DynamicOrderRowService,ActiveOrderService,MatchOrderService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
 
    {
       provide: Http,

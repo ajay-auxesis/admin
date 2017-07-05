@@ -17,7 +17,6 @@ export class SharedService {
      showLoader = false;
       public _IsAuthenticated:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     constructor(private http: Http,private _router: Router, private loaderservice: LoaderService) {
-    
     }
    
     

@@ -1,3 +1,4 @@
+import { HttpEmitterService } from './../../../service/CoustomeHttpService/http-emitter.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Rx';
 import { orderListModel } from './../../../models/LTCUSDOrderModel';
@@ -20,10 +21,11 @@ export class LowestAskPriceComponent implements OnInit {
 @Input() CurrencyType: CurrencyType;
 @Input()OrderMode : OrderMode;
 _lowestPrice:number=0;
-_class:any;
+_class:any="animate-down";
+_changevalue:any=0;
 private timerObserver: Subscription;
 private neworder:orderListModel;
-  constructor(private _signalRService:SignalRService,private _currencyService:CurrencyService,private loaderService: LoaderService) {
+  constructor(private _signalRService:SignalRService,private _currencyService:CurrencyService,private loaderService: LoaderService, private erroremitter : HttpEmitterService) {
 
    this._signalRService.neworderEmitter.subscribe(json => { 
    
@@ -34,8 +36,9 @@ private neworder:orderListModel;
 
            if(CurrencyType[this.neworder.CurrencyType]==curname.toString()  && OrderMode[this.neworder.OrderMode] !=ordername.toString())
            {
+             this.removeclass();
             this._lowestPrice=this.neworder.Rate;
-       
+           
            }
 
  
@@ -45,7 +48,14 @@ private neworder:orderListModel;
   ngOnInit() {
 
   let timer = Observable.interval(100);
-        this.timerObserver = timer.subscribe(() =>{ this._lowestPrice
+        this.timerObserver = timer.subscribe(() =>{ //this._lowestPrice
+        
+         if(this._changevalue!=this._lowestPrice){
+           
+          this.addclass();
+          this._changevalue=this._lowestPrice;
+        }
+        
         });
     this._currencyService.getlowestaskedprice(this.CurrencyType,this.OrderMode).debounceTime(1200).subscribe( result =>{
     this.loaderService.displayLoader(false);
@@ -53,12 +63,28 @@ private neworder:orderListModel;
   if (result.status==200) {
    this._lowestPrice=result.json().lowestAsk;
     }
-    },
-    error => {
-    this.loaderService.displayLoader(false);
+    } ,
+error => {
+   this.loaderService.displayLoader(false);
+      if(error.status==Responsecode.Unauthorized)
+  {
+  
+this.erroremitter.unauthorizedError(true);
+   
+ }
 
-    }
+}
     ); 
   }
 
+public addclass()
+{
+this._class="fadeInDown animated animate-down";
+ 
+}
+public removeclass()
+{
+this._class="animate-down";
+
+}
 }

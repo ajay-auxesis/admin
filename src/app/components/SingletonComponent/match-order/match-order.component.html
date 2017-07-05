@@ -1,3 +1,112 @@
-<p>
-  match-order works!
-</p>
+
+<!--<div class="card">
+  <div class="header">
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-6">
+        <h2>Match Order</h2>
+      </div>
+      <div class="col-xs-12 col-sm-6 align-right">
+      
+     </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="table-responsive price-table-wrap">
+      <table class="table table-hover ">
+        <thead>
+          <tr>
+            <th width="4%">sn</th>
+            <th width="16%">Type</th>
+            <th width="16%">Amount</th>
+            <th width="16%">Filled Amount</th>
+            <th width="16%">Remaining Amount</th>
+            <th width="16%">Order Status</th>
+            <th  width="16%">Date</th>
+          </tr>
+        </thead>
+        <tbody   >
+        
+          <tr  *ngFor="let order of _matchOrders ; let i = index"  >
+            <th scope="row">{{i+1}}</th>
+            <td *ngIf="order.OrderMode==1">Sell</td>
+            <td *ngIf="order.OrderMode==2">Buy</td>
+            <td>{{order.Amount}}</td>
+            <td>{{order.FilledAmount}}</td>
+            <td>{{order.RemainigAmount}}</td>
+            <td>{{order.OrdeStatus}}</td>
+            <td>{{order.CreationDateTime}}</td>
+            
+        </tr>
+          <tr>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>-->
+
+
+<div class="card">
+  <div class="header">
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-6">
+        <h2>Match Order</h2>
+      </div>
+      <div class="col-xs-12 col-sm-6 align-right">
+     </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="table-responsive ">
+    <table class="table table-striped " [mfData]="_matchOrders" #mf="mfDataTable" [mfRowsOnPage]="10" >
+    <thead>
+    <tr>
+      <th width="4%">
+        <mfDefaultSorter >Sn</mfDefaultSorter>
+        </th>
+        <th width="16%">
+          <mfDefaultSorter by="Type">Type</mfDefaultSorter>
+          </th>
+        <th th width="16%">
+            <mfDefaultSorter by="Amount">Amount</mfDefaultSorter>
+        </th>
+       
+        <th th width="16%">
+            <mfDefaultSorter by="FilledAmount">Filled Amount</mfDefaultSorter>
+        </th>
+        <th th width="16%">
+            <mfDefaultSorter by="RemainigAmount">Remainig Amount</mfDefaultSorter>
+        </th>
+        <th width="16%"> 
+          <mfDefaultSorter by="OrderStatus">Order Status</mfDefaultSorter>
+          </th>
+            <th  width="16%"> 
+              <mfDefaultSorter by="Date">Date</mfDefaultSorter>
+              </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr  *ngFor="let order of mf.data ; let i = index"  >
+            <th scope="row">{{i+1}}</th>
+            <td *ngIf="order.OrderMode==1">Sell</td>
+            <td *ngIf="order.OrderMode==2">Buy</td>
+            <td>{{order.Amount}}</td>
+            <td>{{order.FilledAmount}}</td>
+            <td>{{order.RemainigAmount}}</td>
+            <td>{{order.OrdeStatus}}</td>
+            <td>{{order.CreationDateTime | date:'yyyy-MM-dd'}}</td>
+            
+        </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="7">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+        </td>
+    </tr>
+    
+    </tfoot>
+</table>
+ </div>
+  </div>
+</div>

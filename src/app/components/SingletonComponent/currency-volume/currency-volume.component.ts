@@ -1,3 +1,4 @@
+import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
 import { OrderMode } from 'app/enums/order-mode.enum';
 import { DepositModel } from './../../../models/DepositModel';
 import { PaymentOperationMode } from 'app/enums/payment-operation-mode.enum';
@@ -16,7 +17,7 @@ export class CurrencyVolumeComponent implements OnInit {
 @Input() CurrencyType: CurrencyType;
 @Input()OrderMode : OrderMode;
 _volume:number=0;
-  constructor(private _currencyService:CurrencyService,private loaderService: LoaderService) { }
+  constructor(private _currencyService:CurrencyService,private loaderService: LoaderService, private erroremitter : HttpEmitterService) { }
 
   ngOnInit() {
 
@@ -27,9 +28,15 @@ _volume:number=0;
    this._volume=result.json().volume;
 
 }
-},
+} ,
 error => {
- this.loaderService.displayLoader(false);
+   this.loaderService.displayLoader(false);
+      if(error.status==Responsecode.Unauthorized)
+  {
+  
+this.erroremitter.unauthorizedError(true);
+   
+ }
 
 }
 ); 
