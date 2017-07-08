@@ -1,4 +1,5 @@
 
+
 import { AppSettings } from 'app/app-settings';
 import { SharedService } from './../../../service/shared.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -45,4 +46,5 @@ this.emitterService.paymentrequiredemiter.subscribe(json => {
 {
 this.Ispaymentrequired=false;
 }
+
 }

@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs/Subscription';
 import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
 import { GetFeeModel } from './../../../models/DepositModel';
 import { orderModel } from './../../../models/LTCUSDOrderModel';
@@ -47,14 +48,17 @@ _total:number=0;
 fee : GetFeeModel;
 _totalfee:number;
 
+
 constructor(myElement: ElementRef, private _sharedservice: SharedService, private _http: Http,private _fb: FormBuilder,private _registerservice: RegisterService,private _router: Router, private _buyselldealservice : BuyselldealserviceService,private loaderService: LoaderService,public erroremitter: HttpEmitterService) {
 
+     
 }
 ngOnInit() {
-  
+
 
 this.OrderFormModel =this._fb.group({
-Amount: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),
+ 
+Amount: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber/*,ValidationmessageserviceService.maxValue(this._orderMode,this._currencyType)*/]),
 Rate: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),
 });
 
@@ -64,6 +68,7 @@ submitOrder({ value, valid }: { value: orderModel, valid: boolean }) {
 value.OrderMode=this._orderMode;
 
 this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
+  //console.log(result);
 this.loaderService.displayLoader(false);
 this.child.ngOnInit();
 

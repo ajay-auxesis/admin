@@ -40,18 +40,18 @@ var self=this;
              let humconection=new HuBConectionRequestModel();
              humconection.ConectionId=connection.id;
       
- self._signalRService.ConectUser(humconection).debounceTime(1200).subscribe(result =>{
-//  self.loaderService.displayLoader(false);
-//    console.log(result);
+//  self._signalRService.ConectUser(humconection).debounceTime(1200).subscribe(result =>{
+// //  self.loaderService.displayLoader(false);
+// //    console.log(result);
 
-},
-error => {
-  //this.loaderService.displayLoader(false);
-    if(error.status=Responsecode.Unauthorized)
- {
- }
-}
-); 
+// },
+// error => {
+//   //this.loaderService.displayLoader(false);
+//     if(error.status=Responsecode.Unauthorized)
+//  {
+//  }
+// }
+// ); 
          });
          cryptohubproxy.on('whennewOrderAdded', function (newOrder) {
             console.log("newOrder");

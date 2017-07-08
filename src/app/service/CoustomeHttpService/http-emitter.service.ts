@@ -7,11 +7,15 @@ export class HttpEmitterService {
   
 @Output() unauthorizeduseremiter : EventEmitter<boolean>;
 @Output() paymentrequiredemiter : EventEmitter<boolean>;
+@Output() myBalanceemiter : EventEmitter<number>;
+@Output() myBalanceUSDemiter :  EventEmitter<number>;
   constructor() { 
 
 
  this.unauthorizeduseremiter= new EventEmitter();
 this.paymentrequiredemiter= new EventEmitter();
+this.myBalanceemiter= new EventEmitter();
+this.myBalanceUSDemiter= new EventEmitter();
   }
 
 public unauthorizedError(status:boolean): void{
@@ -26,7 +30,7 @@ public unauthorizedError(status:boolean): void{
   }
 public paymentRequiredError(status:boolean): void{
 
-            console.log("paymentRequiredError status "+status);
+           // console.log("paymentRequiredError status "+status);
    
             
     // if(status)
@@ -34,4 +38,18 @@ public paymentRequiredError(status:boolean): void{
       this.paymentrequiredemiter.emit(status);
     //}
   }
+
+//   public myBalanceLTC(balance:number): void{
+// //console.log("mybalance "+balance);
+   
+//     this.myBalanceemiter.emit(balance);
+
+//   }
+
+//   public myBalanceUSD(balance:number): void{
+// console.log("mybalance "+balance);
+   
+//     this.myBalanceUSDemiter.emit(balance);
+
+//   }
 }

@@ -1,3 +1,4 @@
+import { ValidationmessageserviceService } from './../../../service/validationmessageservice.service';
 import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
 import { OrderMode } from 'app/enums/order-mode.enum';
 import { DepositModel } from './../../../models/DepositModel';
@@ -7,6 +8,7 @@ import { CurrencyType } from 'app/enums/currency-type.enum';
 import { Component, OnInit, Input } from '@angular/core';
 import { CurrencyService } from "app/service/CurrencyServices/currency.service";
 import { LoaderService } from "app/service/loader-service.service";
+import { Output,EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-my-currency-balance',
@@ -24,20 +26,21 @@ _total:number=0;
 value:number=0;
 //result:DepositModel;
   constructor(private _currencyService:CurrencyService,private loaderService: LoaderService,private erroremitter: HttpEmitterService) {
-  
+
    }
 
   ngOnInit() {
-
-
- 
 
 this._currencyService.getbalance(this._currencyType).debounceTime(1200).subscribe( result =>{
 this.loaderService.displayLoader(false);
 
   if (result.status==200) {
    this._mybalance=result.json().Balance;
+//console.log(result);
+
 }
+
+
 } ,
 error => {
    this.loaderService.displayLoader(false);

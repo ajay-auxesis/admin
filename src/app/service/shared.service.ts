@@ -32,28 +32,31 @@ export class SharedService {
  logout() {
      
     this.loaderservice.displayLoader(true);
-    
-   this.Disconecthub().debounceTime(1200).subscribe(result =>{
-//  self.loaderService.displayLoader(false);
-//    console.log(result);
-
-  localStorage.removeItem(AppSettings.localtokenkey);
-    localStorage.removeItem('username');
+     localStorage.removeItem(AppSettings.localtokenkey);
+   localStorage.removeItem('username');
      this.IsAuthenticated();
      this.loaderservice.displayLoader(false);
      this._router.navigate(['']);
+//    this.Disconecthub().debounceTime(1200).subscribe(result =>{
+// //  self.loaderService.displayLoader(false);
+// //    console.log(result);
 
-},
-error => {
-   this.loaderservice.displayLoader(false);
-}
-); 
+//   localStorage.removeItem(AppSettings.localtokenkey);
+//     localStorage.removeItem('username');
+//      this.IsAuthenticated();
+//      this.loaderservice.displayLoader(false);
+//      this._router.navigate(['']);
+
+// },
+// error => {
+//    this.loaderservice.displayLoader(false);
+//    console.log(error);
+// }
+// ); 
     
   
-
-
-
     }
+
  Login(login:LoginModel): Observable<Response> {
        
         return this.http.post(`${AppSettings.API_ENDPOINT}token`,login);
@@ -61,9 +64,9 @@ error => {
     }
 
 
-     Disconecthub(): Observable<Response> {
+    //  Disconecthub(): Observable<Response> {
        
-      return this.http.put(`${AppSettings.API_ENDPOINT}conectuser`,"");
+    //   return this.http.put(`${AppSettings.API_ENDPOINT}conectuser`,"");
             
-    }
+    // }
 }

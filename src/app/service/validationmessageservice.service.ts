@@ -1,3 +1,8 @@
+import { CurrencyService } from './CurrencyServices/currency.service';
+import { Http } from '@angular/http';
+import { OrderMode } from 'app/enums/order-mode.enum';
+
+import { CurrencyType } from 'app/enums/currency-type.enum';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { Validator, AbstractControl , NG_VALIDATORS } from '@angular/forms';
@@ -8,15 +13,22 @@ export class ValidationmessageserviceService {
 
   formgroupparents: FormGroup;
 
-     static getValidatorErrorMessage(validatorName: string, validatorValue?: any,confirmpassword?:string,controlname?:string) {
+constructor(private _http : Http,private _currencyService:CurrencyService){}
+   
+     static getValidatorErrorMessage(validatorName: string, validatorValue?: any,confirmpassword?:string,controlname?:string,currencytype?:string) {
+        if(currencytype==undefined){ currencytype=''; }
+
         let config = {
-            'required': `${controlname} Required`,
+            'required': `${currencytype} ${controlname} Required`,
             'invalidEmailAddress': 'Invalid email address',
             'invalidPassword': 'Invalid password. Password must be at least 6 characters long, and contain a number.',
             'minlength': `Minimum length ${validatorValue.requiredLength}`,
             'EmailInuse': `This Email Id Already taken.`,
             'passwordnotmatch':`Password does not match`,
             'onlynumber' : `${controlname} must be a number .`,
+            'maxValue' : `Not enough ${currencytype} balance`,
+            'Check' : `Not enough ${currencytype} balance`,
+            'balanceCheck' : `Not enough USD balance`,
         };
 
         return config[validatorName];
@@ -77,7 +89,27 @@ catch(error)
 }
    
 }
+// static  Check(control){
+// try
+// {
+//      let currencyService: CurrencyService;
+//       let Currency:CurrencyType=CurrencyType.LTC;
+     
+//         currencyService.getbalance(Currency).debounceTime(1200).subscribe( result =>{ 
+//          const myvalue = result.json().Balance;
+//       if (control.value < myvalue) {
+//             return null;
+//         } else {
+//             return { 'Check': true };
+//         }
+// });
 
+// }
+// catch(error)
+// {
+//  return null;
+// }
+// }
 
 
  static ConfirmpasswordValidator(control:FormControl) {
@@ -104,6 +136,40 @@ if(password!==control.value)
        
        
     }
+
+//    static  maxValue(order,Currency){
+//   return (control: AbstractControl): {[key: string]: any} => {
+//       let _http:Http;
+//       let currencyService: CurrencyService = new CurrencyService(_http);
+    
+//    // const max = 0;
+//     currencyService.getbalance(Currency).debounceTime(1200).subscribe( result =>{ 
+//          const max = result.json().Balance;
+// //    console.log(myvalue);
+// const input = control.value,
+//         isValid = input > max ;
+     
+//          if(isValid && order=='Sell') 
+//         return { 'maxValue': true }
+//     else 
+//         return null;
+// });
+// return 
+ 
+// };    
+  
+//  }
+//  static  balanceCheck(max:number,order,total){
+//   return (control: AbstractControl): {[key: string]: any} => {
+//     const input = control.value,
+//           isValid = max < total ;
+// //console.log(total);
+//     if(isValid && order=='Buy') 
+//         return { 'balanceCheck': true }
+//     else 
+//         return null;
+//   };
+// }
 
 
 }
