@@ -1,13 +1,14 @@
+
 import { AppSettings } from './../components/SingletonComponent/lowest-ask-price/app-settings';
 import { Observable } from 'rxjs/Observable';
 import { CurrencyService } from './CurrencyServices/currency.service';
 import { Http } from '@angular/http';
 import { OrderMode } from 'app/enums/order-mode.enum';
-
+import 'rxjs/Rx';
 import { CurrencyType } from 'app/enums/currency-type.enum';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { Injectable } from '@angular/core';
-import { Validator, AbstractControl , NG_VALIDATORS } from '@angular/forms';
+import { Validator,  NG_VALIDATORS } from '@angular/forms';
 
 @Injectable()
 export class ValidationmessageserviceService {
@@ -121,40 +122,19 @@ if(password!==control.value)
 
 
 
- static Check(control){
+ static CheckBalance(control ){
 
-     var self=this;
-    try
- {      let _http:Http;
-   
-      let Currency:CurrencyType=CurrencyType.LTC;
-//let url= _http.get(`$AppSettings.API_ENDPOINT}getbalance?currencyType=${'LTC'}`);
 
-            return new Promise((resolve, reject) => {
-                
-                  self._currencyService.getbalance(Currency).debounceTime(1200).subscribe(
-                  response => {
-                        const myvalue =response.json().Balance;
-                    if (control.value < myvalue) {
-                            return resolve(null) ;
-                        } else {
-                            return resolve({ 'Check': true });
-                        }
-                           },
-                error => {
-                     console.log(error); 
-                    })
-        });
-
- }
- catch(error)
-{
-    console.log(error);
-
-}
+ return checkmybalance(control , 'Amounnt');
 
 }
 
 
 
 }
+
+
+// function checkmybalance(control,source: string) : Observable <any> {
+
+
+// }

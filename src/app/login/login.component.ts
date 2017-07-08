@@ -45,7 +45,10 @@ this.loginresponse=result;
   
 if(location.pathname=='/LtcUsd'){location.reload();}
 
-else{this._router.navigate(['LtcUsd']);this.loaderService.displayLoader(false);}
+else{
+  this._router.navigate(['LtcUsd']);
+  this.loaderService.displayLoader(false);
+}
 
  ​let responobject:any=this.loginresponse.json();
  localStorage.setItem(AppSettings.localtokenkey, responobject.AccessToken);
