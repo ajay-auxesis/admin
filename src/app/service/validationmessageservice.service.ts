@@ -1,15 +1,16 @@
+import { ConnectionBackend } from '@angular/http';
 
 import { AppSettings } from './../components/SingletonComponent/lowest-ask-price/app-settings';
 import { Observable } from 'rxjs/Observable';
 import { CurrencyService } from './CurrencyServices/currency.service';
-import { Http } from '@angular/http';
+import { Http, HttpModule, RequestOptions } from '@angular/http';
 import { OrderMode } from 'app/enums/order-mode.enum';
 import 'rxjs/Rx';
 import { CurrencyType } from 'app/enums/currency-type.enum';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { Validator,  NG_VALIDATORS } from '@angular/forms';
-
+import {Injector} from '@angular/core';
 @Injectable()
 export class ValidationmessageserviceService {
 
@@ -134,7 +135,39 @@ if(password!==control.value)
 }
 
 
-// function checkmybalance(control,source: string) : Observable <any> {
+function checkmybalance(control,source: string) : Observable <any> {
+    
+//let injector = Injector.resolveAndCreate([HttpModule]);
+
+  //let http = injector.get(Http);
+  let _backend: ConnectionBackend;
+    let  _defaultOptions:RequestOptions;
+   //  let _http:Http=new Http(_backend, _defaultOptions);
+
+  let http:Http=new Http(_backend, _defaultOptions);
+  return new Observable((obs: any) => {
+    control
+      .valueChanges
+      .debounceTime(400)
+      .flatMap(value => http.get(`${AppSettings.API_ENDPOINT}getbalance?currencyType=${'LTC'}`))
+      .subscribe(
+        data => {
+            if(source < data.json().Balance){
+          obs.next(null);
+          obs.complete();
+          console.log(data);
+        }
+        else
+        {let reason='Not enough LTC balance';
+          obs.next({ [reason]: true });
+          obs.complete();   
+        }
+    },
+    error=>{
+        console.log(error);
+    }
+        );
+    });
 
 
-// }
+}

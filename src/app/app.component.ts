@@ -53,16 +53,7 @@ var self=this;
              let humconection=new HuBConectionRequestModel();
              humconection.ConectionId=connection.id;
       
-//  self._signalRService.ConectUser(humconection).debounceTime(1200).subscribe(result =>{
 
-// },
-// error => {
-  
-//     if(error.status=Responsecode.Unauthorized)
-//  {
-//  }
-// }
-// ); 
          });
          cryptohubproxy.on('whennewOrderAdded', function (newOrder) {
 
@@ -89,9 +80,7 @@ if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path
    this._router.navigate(['LtcUsd']);
   }
   this.platform.onPopState(()=>{
-    // if(this._location.path()==''){
-    //  this._router.navigate(['LtcUsd']);
-    // }
+    
        this._router.events.filter(event => event instanceof NavigationEnd).pairwise()
         .subscribe(e => {
           this.previousUrl= e[1].url;
