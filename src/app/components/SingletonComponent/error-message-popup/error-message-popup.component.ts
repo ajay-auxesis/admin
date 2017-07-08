@@ -69,6 +69,7 @@ location.reload();
 ​let responobject:any=result.json();
  localStorage.setItem(AppSettings.localtokenkey, responobject.AccessToken);
 localStorage.setItem('username',responobject.UserName );
+localStorage.setItem('HubId',responobject.HubID);
 this.IsUserunauthorized=false;
  }
  },

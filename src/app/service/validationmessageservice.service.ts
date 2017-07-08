@@ -1,4 +1,4 @@
-import { ConnectionBackend } from '@angular/http';
+
 
 import { AppSettings } from './../components/SingletonComponent/lowest-ask-price/app-settings';
 import { Observable } from 'rxjs/Observable';
@@ -8,9 +8,10 @@ import { OrderMode } from 'app/enums/order-mode.enum';
 import 'rxjs/Rx';
 import { CurrencyType } from 'app/enums/currency-type.enum';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
-import { Injectable } from '@angular/core';
+import { Injectable, ReflectiveInjector } from '@angular/core';
 import { Validator,  NG_VALIDATORS } from '@angular/forms';
-import {Injector} from '@angular/core';
+
+
 @Injectable()
 export class ValidationmessageserviceService {
 
@@ -31,7 +32,7 @@ constructor(private _http : Http,private  _currencyService:CurrencyService){}
             'passwordnotmatch':`Password does not match`,
             'onlynumber' : `${controlname} must be a number .`,
             'maxValue' : `Not enough ${currencytype} balance`,
-            'Check' : `Not enough ${currencytype} balance`,
+            'CheckBalance' : `Not enough ${currencytype} balance`,
             'balanceCheck' : `Not enough USD balance`,
         };
 
@@ -126,7 +127,7 @@ if(password!==control.value)
  static CheckBalance(control ){
 
 
- return checkmybalance(control , 'Amounnt');
+ return //checkmybalance(control , 'Amounnt');
 
 }
 
@@ -135,39 +136,34 @@ if(password!==control.value)
 }
 
 
-function checkmybalance(control,source: string) : Observable <any> {
+// function checkmybalance(control,source: string) : Observable <any> {
     
-//let injector = Injector.resolveAndCreate([HttpModule]);
+// let injector = ReflectiveInjector.resolveAndCreate([Http]);
+// let http = injector.get(Http);
 
-  //let http = injector.get(Http);
-  let _backend: ConnectionBackend;
-    let  _defaultOptions:RequestOptions;
-   //  let _http:Http=new Http(_backend, _defaultOptions);
-
-  let http:Http=new Http(_backend, _defaultOptions);
-  return new Observable((obs: any) => {
-    control
-      .valueChanges
-      .debounceTime(400)
-      .flatMap(value => http.get(`${AppSettings.API_ENDPOINT}getbalance?currencyType=${'LTC'}`))
-      .subscribe(
-        data => {
-            if(source < data.json().Balance){
-          obs.next(null);
-          obs.complete();
-          console.log(data);
-        }
-        else
-        {let reason='Not enough LTC balance';
-          obs.next({ [reason]: true });
-          obs.complete();   
-        }
-    },
-    error=>{
-        console.log(error);
-    }
-        );
-    });
+//   return new Observable((obs: any) => {
+//     control
+//       .valueChanges
+//       .debounceTime(400)
+//       .flatMap(value => http.get(`${AppSettings.API_ENDPOINT}getbalance?currencyType=${'LTC'}`))
+//       .subscribe(
+//         data => {
+//             if(source < data.json().Balance){
+//           obs.next(null);
+//           obs.complete();
+//           console.log(data);
+//         }
+//         else
+//         {let reason='Not enough LTC balance';
+//           obs.next({ [reason]: true });
+//           obs.complete();   
+//         }
+//     },
+//     error=>{
+//         console.log(error);
+//     }
+//         );
+//     });
 
 
-}
+// }
