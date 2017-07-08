@@ -6,8 +6,9 @@ import { OrderMode } from 'app/enums/order-mode.enum';
 
 import { CurrencyType } from 'app/enums/currency-type.enum';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { Validator, AbstractControl , NG_VALIDATORS } from '@angular/forms';
+
 
 @Injectable()
 export class ValidationmessageserviceService {
@@ -120,38 +121,49 @@ if(password!==control.value)
     }
 
 
+private supportcheckmethod(){
+
+}
+
 
  static Check(control){
 
-     var self=this;
-    try
- {      let _http:Http;
+
+
+
+//      console.log("Check(control,injector: Injector){");
+//   let currencysevice: CurrencyService = injector.get(CurrencyService);
+// //   let service = new CurrencyService();
+
+//      var self=this;
+//     try
+//  {      let _http:Http;
    
-      let Currency:CurrencyType=CurrencyType.LTC;
-//let url= _http.get(`$AppSettings.API_ENDPOINT}getbalance?currencyType=${'LTC'}`);
+//       let Currency:CurrencyType=CurrencyType.LTC;
+// //let url= _http.get(`$AppSettings.API_ENDPOINT}getbalance?currencyType=${'LTC'}`);
 
-            return new Promise((resolve, reject) => {
+//             return new Promise((resolve, reject) => {
                 
-                  self._currencyService.getbalance(Currency).debounceTime(1200).subscribe(
-                  response => {
-                        const myvalue =response.json().Balance;
-                    if (control.value < myvalue) {
-                            return resolve(null) ;
-                        } else {
-                            return resolve({ 'Check': true });
-                        }
-                           },
-                error => {
-                     console.log(error); 
-                    })
-        });
+//                 //   this._currencyService.getbalance(Currency).debounceTime(1200).subscribe(
+//                 //   response => {
+//                 //         const myvalue =response.json().Balance;
+//                 //     if (control.value < myvalue) {
+//                 //             return resolve(null) ;
+//                 //         } else {
+//                 //             return resolve({ 'Check': true });
+//                 //         }
+//                 //            },
+//                 // error => {
+//                 //      console.log(error); 
+//                 //     })
+//         });
 
- }
- catch(error)
-{
-    console.log(error);
+//  }
+//  catch(error)
+// {
+//     console.log(error);
 
-}
+// }
 
 }
 

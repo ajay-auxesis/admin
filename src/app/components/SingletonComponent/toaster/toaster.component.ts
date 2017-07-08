@@ -16,6 +16,7 @@ public IstosterOn:boolean;
 
  this.IstosterOn=false;
       this._matchEmitterService.whenMatchedHappendEvent.subscribe(json => { 
+         this.IstosterOn=true;
    this.matchdto=json;
        console.log("from whenMatchedHappendEvent");
        console.log(json);
@@ -29,7 +30,7 @@ public IstosterOn:boolean;
   }
 
   closenotifaction(): void {
-   this.IstosterOn=true;
+   this.IstosterOn=false;
     }
 
 }

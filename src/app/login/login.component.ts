@@ -48,7 +48,7 @@ if(location.pathname=='/LtcUsd'){location.reload();}
 else{this._router.navigate(['LtcUsd']);this.loaderService.displayLoader(false);}
 
  ​let responobject:any=this.loginresponse.json();
-let responobject:any=this.loginresponse.json();
+
  localStorage.setItem(AppSettings.localtokenkey, responobject.AccessToken);
 localStorage.setItem('username',responobject.UserName );
 localStorage.setItem('HubId',responobject.HubID);
