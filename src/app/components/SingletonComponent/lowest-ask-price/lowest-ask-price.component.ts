@@ -51,12 +51,13 @@ private neworder:orderListModel;
         this.timerObserver = timer.subscribe(() =>{ //this._lowestPrice
         
          if(this._changevalue!=this._lowestPrice){
-           
+          // console.log(this._lowestPrice);
           this.addclass();
           this._changevalue=this._lowestPrice;
         }
         
-        });
+      });
+      
     this._currencyService.getlowestaskedprice(this.CurrencyType,this.OrderMode).debounceTime(1200).subscribe( result =>{
     this.loaderService.displayLoader(false);
 

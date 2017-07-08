@@ -19,7 +19,7 @@ import {DataTableModule} from "angular2-datatable";
 export class MatchOrderComponent implements OnInit {
 
 _matchOrders:any;
-
+//  @ViewChild('someVar') el:ElementRef;
 @Input()  _currencyType:CurrencyType;
 @Input()  _orderMode: OrderMode;
 _Count:any=0;
@@ -32,9 +32,9 @@ public matchdto: any;
        console.log("from whenMatchedHappendEvent");
        console.log(json);
   });
-
+   
   }
-
+ 
   ngOnInit() {
        let timer = Observable.interval(100);
         this.timerObserver = timer.subscribe(() =>{ 

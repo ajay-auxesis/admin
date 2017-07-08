@@ -35,10 +35,12 @@ value.CurrencyType=this.currencytype;
 
  this._depositService.PostDeposit(value).debounceTime(1200).subscribe(result =>{
  this.loaderService.displayLoader(false);
+ console.log(result);
  this.child.ngOnInit();
 } ,
 error => {
    this.loaderService.displayLoader(false);
+   console.log(error);
       if(error.status==Responsecode.Unauthorized)
   {
   

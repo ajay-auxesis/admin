@@ -53,6 +53,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import {DataTableModule} from "angular2-datatable";
+import { LoginRouteComponent } from './login-route/login-route.component';
 import { ToasterComponent } from './components/SingletonComponent/toaster/toaster.component';
 //import { DataTableModule } from 'angular-2-data-table';
 //import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -60,7 +61,7 @@ import { ToasterComponent } from './components/SingletonComponent/toaster/toaste
 
 const routes: Routes = [
  
-  { path: '', component: LoginComponent ,data: {title: 'SignIn' }},
+  { path: '', component: LoginRouteComponent ,data: {title: 'SignIn' }},
   { path: 'SignUp', component: RegisterComponent , data: {title: 'SignUp' } },
  { path: 'Forgotpassword', component: ForgotPasswordComponent , data: {title: 'Password Reset' } },
  { path: 'deposit', component: DepositeBalanceRouteComponent,canActivate:[AuthGuard],data: {title: 'Deposit Form' } },
@@ -108,7 +109,9 @@ const routes: Routes = [
    UserProfileComponent,
 
    ForgotPasswordComponent,
-
+  
+   LoginRouteComponent,
+  
    ToasterComponent,
   
    //,

@@ -33,7 +33,7 @@ public canSendMessage: Boolean;
    
    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
-}
+  }
 
 
 
@@ -78,8 +78,8 @@ var self=this;
 
         self._matchEmitterService.whenMatchedHappend(matchorder);
 
-        console.log("whenMatchHappend");
-        
+            console.log("whenMatchHappend");
+         
          });
 
 this.loaderService.loaderStatus.subscribe((val: boolean) => {

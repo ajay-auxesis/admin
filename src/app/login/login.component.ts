@@ -1,4 +1,4 @@
-import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
+﻿import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
 import { LoaderService } from './../service/loader-service.service';
 import { AppSettings } from './../app-settings';
 import { LoginModel, tokenrespone } from './../models/login';
@@ -42,10 +42,14 @@ this.loginresponse=result;
 
  if(this.loginresponse.status=Responsecode.OK)
  {
-  this.loaderService.displayLoader(false);
+  
+if(location.pathname=='/LtcUsd'){location.reload();}
 
+else{this._router.navigate(['LtcUsd']);this.loaderService.displayLoader(false);}
+
+ ​let responobject:any=this.loginresponse.json();
 let responobject:any=this.loginresponse.json();
-localStorage.setItem(AppSettings.localtokenkey, responobject.AccessToken);
+ localStorage.setItem(AppSettings.localtokenkey, responobject.AccessToken);
 localStorage.setItem('username',responobject.UserName );
 localStorage.setItem('HubId',responobject.HubID);
 
@@ -69,7 +73,11 @@ return false;
     }
 
     ngOnInit(){
-     
+      //  console.log("this._IsAuthenticated");
+      // console.log(this._IsAuthenticated);
+      // if(this._IsAuthenticated){
+      //   this._router.navigate(['LTCUSD']);
+      // }
 
     }
 }

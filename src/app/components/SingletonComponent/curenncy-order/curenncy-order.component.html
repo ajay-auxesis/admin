@@ -27,9 +27,11 @@
 				<div class="form-group m-b-15">
 					<div class="form-line">
 					   <input type="text"  formControlName="Amount"  class="form-control " placeholder="Amount" (keyup)="getTotal()">
+					   
 					</div>
 					<div>
-						<app-validation-message controlname="Amount"  [control]="OrderFormModel.controls.Amount"></app-validation-message>
+						<app-validation-message CurrencyType="{{_currencyType}}" controlname="Amount"  [control]="OrderFormModel.controls.Amount"></app-validation-message>
+						
 					</div>
 				</div>  
 				<!--<label>Price per LTC:</label>-->
@@ -38,7 +40,7 @@
 						<input type="text"  formControlName="Rate" class="form-control " placeholder="Price per unit in USD" (keyup)="getTotal()">
 					</div>
 					<div>
-						<app-validation-message controlname="Rate"  [control]="OrderFormModel.controls.Rate"></app-validation-message>
+						<app-validation-message  controlname="Rate"  [control]="OrderFormModel.controls.Rate"></app-validation-message>
 					</div>
 				</div>  
 				

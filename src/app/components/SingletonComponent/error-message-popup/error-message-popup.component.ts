@@ -1,4 +1,5 @@
 
+
 import { AppSettings } from 'app/app-settings';
 import { SharedService } from './../../../service/shared.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -35,6 +36,7 @@ this.emitterService.paymentrequiredemiter.subscribe(json => {
    let timer = Observable.interval(1000);
         this.IsUserunauthorizedObserver = timer.subscribe(() =>{
            this.IsUserunauthorized
+           
        });
  this.IspaymentrequiredObserver = timer.subscribe(() =>{
            this.Ispaymentrequired
@@ -45,4 +47,5 @@ this.emitterService.paymentrequiredemiter.subscribe(json => {
 {
 this.Ispaymentrequired=false;
 }
+
 }
