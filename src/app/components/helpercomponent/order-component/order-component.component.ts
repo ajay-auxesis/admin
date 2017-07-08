@@ -23,28 +23,25 @@ private timerObserver: Subscription;
  @ViewChild('total') updateVolume: any;
  @ViewChild('orderlistparent', {read: ViewContainerRef})
   orderlistparent: ViewContainerRef;
-public _orderlist:  Array<orderListModel>;private orderListModelObject: orderListModel;
+public _orderlist: Array<orderListModel>;private orderListModelObject: orderListModel;
 constructor(private _SignalRService: SignalRService,private dynamicOrderRowService: DynamicOrderRowService,private componentFactoryResolver: ComponentFactoryResolver,private cdRef: ChangeDetectorRef,private _http: Http,private _signalRService :SignalRService,private _currencyRateService:CurrencyRateService,private loaderService:LoaderService) {
+
 this._orderlist = new Array<orderListModel>();
-    this._signalRService.connectionEstablished.subscribe(json => { 
-      this.orderListModelObject = json;
- var curname:CurrencyType=this._currencyType ;
- var  ordername:OrderMode=this._orderMode;
-           if(CurrencyType[this.orderListModelObject.CurrencyType]==curname.toString()  && OrderMode[this.orderListModelObject.OrderMode] ==ordername.toString())
-           {
-             this.AddNewOrder(this.orderListModelObject);
-       
-           }
-       
-  });
+  
 }
 
-  private AddNewOrder(orderListModelnew:orderListModel) {
+private AddNewOrder(orderListModelnew:orderListModel) {
 
-let neworderlist= new  Array<orderListModel>();
+var neworderlist= new  Array<orderListModel>();
 neworderlist=this._orderlist;
-orderListModelnew.IsNewOrder=true;
+// orderListModelnew.IsNewOrder=true;
+// orderListModelnew.IsHigestVolume=false;
+if(neworderlist!=null){
+
 neworderlist.push(orderListModelnew);
+}
+
+
 this._orderlist=this._SignalRService.sortArry(neworderlist,orderListModelnew,this._orderMode);
 
 this.updateVolume.ngOnInit();
@@ -59,9 +56,30 @@ getRecentListorder(): void {
             });
     }
   ngOnInit() {
+    
    let timer = Observable.interval(100);
         this.timerObserver = timer.subscribe(() =>{ this._orderlist
         });
 this.getRecentListorder();
+
+
+  this._signalRService.connectionEstablished.subscribe(json => { 
+      this.orderListModelObject = json;
+ var curname:CurrencyType=this._currencyType ;
+ var  ordername:OrderMode=this._orderMode;
+           if(CurrencyType[this.orderListModelObject.CurrencyType]==curname.toString()  && OrderMode[this.orderListModelObject.OrderMode] ==ordername.toString())
+           {
+           
+if(this._orderlist==null){
+this._orderlist=new  Array<orderListModel>();
+
+
+}
+
+             this.AddNewOrder(this.orderListModelObject);
+       
+           }
+       
+  });
   }
 }

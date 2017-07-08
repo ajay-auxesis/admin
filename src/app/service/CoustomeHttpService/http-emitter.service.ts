@@ -7,13 +7,11 @@ export class HttpEmitterService {
   
 @Output() unauthorizeduseremiter : EventEmitter<boolean>;
 @Output() paymentrequiredemiter : EventEmitter<boolean>;
-
   constructor() { 
 
 
  this.unauthorizeduseremiter= new EventEmitter();
 this.paymentrequiredemiter= new EventEmitter();
-
   }
 
 public unauthorizedError(status:boolean): void{
@@ -28,7 +26,7 @@ public unauthorizedError(status:boolean): void{
   }
 public paymentRequiredError(status:boolean): void{
 
-           // console.log("paymentRequiredError status "+status);
+            console.log("paymentRequiredError status "+status);
    
             
     // if(status)
@@ -36,6 +34,4 @@ public paymentRequiredError(status:boolean): void{
       this.paymentrequiredemiter.emit(status);
     //}
   }
-
-
 }

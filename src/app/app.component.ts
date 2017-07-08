@@ -1,3 +1,4 @@
+import { MatchEmitterService } from './service/Emitters/match-emitter.service';
 import { Responsecode } from 'app/enums/responsecode.enum';
 import { HuBConectionRequestModel } from './models/login';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
@@ -11,6 +12,7 @@ import { SharedService } from './service/shared.service';
 import { Component, NgZone } from '@angular/core';
 import { LoaderService } from "./service/loader-service.service";
 import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -26,27 +28,36 @@ _IsAuthenticated:boolean=true;
 location:string;
 previousUrl:any;
 public canSendMessage: Boolean;
-  constructor( private _ngZone: NgZone,private _signalRService:SignalRService,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ,private _location: Location, private platform: PlatformLocation ,private activatedRoute: ActivatedRoute,
+  constructor(private _matchEmitterService:MatchEmitterService,private _ngZone: NgZone,private _signalRService:SignalRService,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ,private _location: Location, private platform: PlatformLocation ,private activatedRoute: ActivatedRoute,
     private titleService: Title) { 
+   
    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
   }
+
+
+
+
+
  ngOnInit() {
 var self=this;
  var connection = $.hubConnection(AppSettings.HubUrl);
          var cryptohubproxy = connection.createHubProxy('myHub');
           connection.start().done(function () {
+
+    var hubidstring=localStorage.getItem('HubId');
+
+    cryptohubproxy.invoke("Subscribe",hubidstring);
+
              console.log('Now connected, connection ID=' + connection.id);
              let humconection=new HuBConectionRequestModel();
              humconection.ConectionId=connection.id;
       
 //  self._signalRService.ConectUser(humconection).debounceTime(1200).subscribe(result =>{
-// //  self.loaderService.displayLoader(false);
-// //    console.log(result);
 
 // },
 // error => {
-//   //this.loaderService.displayLoader(false);
+  
 //     if(error.status=Responsecode.Unauthorized)
 //  {
 //  }
@@ -54,16 +65,20 @@ var self=this;
 // ); 
          });
          cryptohubproxy.on('whennewOrderAdded', function (newOrder) {
-            console.log("newOrder");
-           console.log(newOrder);
+
+             
            let orderListModelobj:orderListModel=newOrder as orderListModel;
+
+          
            self._signalRService.startConnection(orderListModelobj);
          });
 
 
     cryptohubproxy.on('whenMatchHappend', function (matchorder) {
+
+        self._matchEmitterService.whenMatchedHappend(matchorder);
+
             console.log("whenMatchHappend");
-           console.log(matchorder);
          
          });
 

@@ -1,4 +1,6 @@
-
+import { Observable } from 'rxjs/Rx';
+import { MatchEmitterService } from './../../../service/Emitters/match-emitter.service';
+import { Subscription } from 'rxjs/Subscription';
 import { MatchOrderService } from './../../../service/OrderServices/match-order.service';
 import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
 import { OrderMode } from 'app/enums/order-mode.enum';
@@ -21,11 +23,22 @@ _matchOrders:any;
 @Input()  _currencyType:CurrencyType;
 @Input()  _orderMode: OrderMode;
 _Count:any=0;
-  constructor(private _matchorderservice : MatchOrderService,private loaderService : LoaderService , private erroremitter : HttpEmitterService) { }
+private timerObserver: Subscription;
+public matchdto: any;
+  constructor(private _matchEmitterService:MatchEmitterService,private _matchorderservice : MatchOrderService,private loaderService : LoaderService , private erroremitter : HttpEmitterService) { 
 
-  ngOnInit() {
+      this._matchEmitterService.whenMatchedHappendEvent.subscribe(json => { 
+   this.matchdto=json;
+       console.log("from whenMatchedHappendEvent");
+       console.log(json);
+  });
    
+  }
  
+  ngOnInit() {
+       let timer = Observable.interval(100);
+        this.timerObserver = timer.subscribe(() =>{ 
+ });
    this._matchorderservice.getallmatchorder(this._currencyType,this._orderMode).debounceTime(1200).subscribe( result =>{
 this.loaderService.displayLoader(false);
 //result.
@@ -48,5 +61,10 @@ this.erroremitter.unauthorizedError(true);
 ); 
 
   }
-
 }
+
+
+
+
+
+

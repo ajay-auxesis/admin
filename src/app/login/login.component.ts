@@ -1,4 +1,4 @@
-import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
+﻿import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
 import { LoaderService } from './../service/loader-service.service';
 import { AppSettings } from './../app-settings';
 import { LoginModel, tokenrespone } from './../models/login';
@@ -51,10 +51,15 @@ else{
 }
 
  ​let responobject:any=this.loginresponse.json();
+let responobject:any=this.loginresponse.json();
  localStorage.setItem(AppSettings.localtokenkey, responobject.AccessToken);
 localStorage.setItem('username',responobject.UserName );
-this.erroremitter.unauthorizedError(false);
+localStorage.setItem('HubId',responobject.HubID);
 
+
+this._router.navigate(['LtcUsd']);
+
+this.erroremitter.unauthorizedError(false);
  }
 
   },

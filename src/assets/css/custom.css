@@ -54,6 +54,12 @@ section.content{
   margin-bottom: 10px; 
 }
 
+
+/* Toster ================================== */
+.erorr-msg{ display: none;}
+.toster-erorr-msg{ position: fixed;bottom:20px;margin: 0 auto;display: inline-block!important;right: 20px;color: #fff;padding: 15px 30px 15px 20px ;background:#f44336; z-index:99999}
+.toster-erorr-msg i.material-icons{position: absolute;right: 8px;top:8px; font-size: 14px;font-weight: bold; cursor: pointer;}
+
 /* Loader ================================== */
 .page-loader-wrapper{
 	background:rgba(238,238,238,.9);

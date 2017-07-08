@@ -1,3 +1,4 @@
+import { MatchEmitterService } from './service/Emitters/match-emitter.service';
 import { MatchOrderService } from './service/OrderServices/match-order.service';
 import { ActiveOrderService } from './service/OrderServices/active-order.service';
 import { ErrorMessagePopupComponent } from './components/SingletonComponent/error-message-popup/error-message-popup.component';
@@ -53,6 +54,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import {DataTableModule} from "angular2-datatable";
 import { LoginRouteComponent } from './login-route/login-route.component';
+import { ToasterComponent } from './components/SingletonComponent/toaster/toaster.component';
 //import { DataTableModule } from 'angular-2-data-table';
 //import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
@@ -107,8 +109,10 @@ const routes: Routes = [
    UserProfileComponent,
 
    ForgotPasswordComponent,
-
+  
    LoginRouteComponent,
+  
+   ToasterComponent,
   
    //,
    //ReverseArrayPipe
@@ -116,6 +120,7 @@ const routes: Routes = [
   imports: [
    
     RouterModule.forRoot(routes),
+    
     BrowserModule,
     FormsModule,
    
@@ -131,9 +136,8 @@ const routes: Routes = [
    //,
   // ReverseArrayPipe
   ],
-   entryComponents: [OrderLisRowComponent],
- exports: [OrderComponentComponent],
-  providers: [AuthGuard,DynamicOrderRowService,ActiveOrderService,MatchOrderService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
+
+  providers: [AuthGuard,MatchEmitterService,DynamicOrderRowService,ActiveOrderService,MatchOrderService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
 
    {
       provide: Http,
