@@ -1,6 +1,7 @@
 export class LoginModel {
 UserName: string;
 Password: string;
+HubID: string;
 //rememberme:string;
 }
 

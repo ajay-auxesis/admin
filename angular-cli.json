@@ -30,7 +30,8 @@
       ],
       "scripts": [
        
-       
+          
+
         "./assets/plugins/bootstrap/js/bootstrap.js",
         "./assets/plugins/bootstrap-select/js/bootstrap-select.js",
         "./assets/plugins/jquery-slimscroll/jquery.slimscroll.js",

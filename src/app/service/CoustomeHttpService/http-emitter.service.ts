@@ -26,7 +26,7 @@ public unauthorizedError(status:boolean): void{
   }
 public paymentRequiredError(status:boolean): void{
 
-            console.log("paymentRequiredError status "+status);
+         
    
             
     // if(status)

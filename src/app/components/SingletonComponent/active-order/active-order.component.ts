@@ -30,7 +30,7 @@ this.loaderService.displayLoader(false);
 //result.
   if (result.status==200) {
   this._activeOrders =result.json(); 
-  console.log(this._activeOrders);
+ 
 }
 } ,
 error => {

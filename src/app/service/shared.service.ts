@@ -33,9 +33,7 @@ export class SharedService {
      
     this.loaderservice.displayLoader(true);
     
-   this.Disconecthub().debounceTime(1200).subscribe(result =>{
-//  self.loaderService.displayLoader(false);
-//    console.log(result);
+
 
   localStorage.removeItem(AppSettings.localtokenkey);
     localStorage.removeItem('username');
@@ -43,12 +41,7 @@ export class SharedService {
      this.loaderservice.displayLoader(false);
      this._router.navigate(['']);
 
-},
-error => {
-   this.loaderservice.displayLoader(false);
-}
-); 
-    
+
   
 
 
@@ -56,6 +49,8 @@ error => {
     }
  Login(login:LoginModel): Observable<Response> {
        
+
+     let bodyString = JSON.stringify(login); 
         return this.http.post(`${AppSettings.API_ENDPOINT}token`,login);
             
     }

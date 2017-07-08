@@ -44,10 +44,14 @@ this.loginresponse=result;
  {
   this.loaderService.displayLoader(false);
 
-this._router.navigate(['LtcUsd']);
- ​let responobject:any=this.loginresponse.json();
- localStorage.setItem(AppSettings.localtokenkey, responobject.AccessToken);
+let responobject:any=this.loginresponse.json();
+localStorage.setItem(AppSettings.localtokenkey, responobject.AccessToken);
 localStorage.setItem('username',responobject.UserName );
+localStorage.setItem('HubId',responobject.HubID);
+
+
+this._router.navigate(['LtcUsd']);
+
 this.erroremitter.unauthorizedError(false);
  }
 
@@ -65,11 +69,7 @@ return false;
     }
 
     ngOnInit(){
-      //  console.log("this._IsAuthenticated");
-      // console.log(this._IsAuthenticated);
-      // if(this._IsAuthenticated){
-      //   this._router.navigate(['LTCUSD']);
-      // }
+     
 
     }
 }
