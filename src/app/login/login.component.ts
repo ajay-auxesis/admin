@@ -42,13 +42,16 @@ this.loginresponse=result;
 
  if(this.loginresponse.status=Responsecode.OK)
  {
-  this.loaderService.displayLoader(false);
+  
+if(location.pathname=='/LtcUsd'){location.reload();}
 
-this._router.navigate(['LtcUsd']);
+else{this._router.navigate(['LtcUsd']);this.loaderService.displayLoader(false);}
+
  ​let responobject:any=this.loginresponse.json();
  localStorage.setItem(AppSettings.localtokenkey, responobject.AccessToken);
 localStorage.setItem('username',responobject.UserName );
 this.erroremitter.unauthorizedError(false);
+
  }
 
   },

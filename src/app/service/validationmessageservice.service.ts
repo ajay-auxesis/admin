@@ -1,3 +1,5 @@
+import { AppSettings } from './../components/SingletonComponent/lowest-ask-price/app-settings';
+import { Observable } from 'rxjs/Observable';
 import { CurrencyService } from './CurrencyServices/currency.service';
 import { Http } from '@angular/http';
 import { OrderMode } from 'app/enums/order-mode.enum';
@@ -13,7 +15,7 @@ export class ValidationmessageserviceService {
 
   formgroupparents: FormGroup;
 
-constructor(private _http : Http,private _currencyService:CurrencyService){}
+constructor(private _http : Http,private  _currencyService:CurrencyService){}
    
      static getValidatorErrorMessage(validatorName: string, validatorValue?: any,confirmpassword?:string,controlname?:string,currencytype?:string) {
         if(currencytype==undefined){ currencytype=''; }
@@ -89,27 +91,7 @@ catch(error)
 }
    
 }
-// static  Check(control){
-// try
-// {
-//      let currencyService: CurrencyService;
-//       let Currency:CurrencyType=CurrencyType.LTC;
-     
-//         currencyService.getbalance(Currency).debounceTime(1200).subscribe( result =>{ 
-//          const myvalue = result.json().Balance;
-//       if (control.value < myvalue) {
-//             return null;
-//         } else {
-//             return { 'Check': true };
-//         }
-// });
 
-// }
-// catch(error)
-// {
-//  return null;
-// }
-// }
 
 
  static ConfirmpasswordValidator(control:FormControl) {
@@ -137,39 +119,42 @@ if(password!==control.value)
        
     }
 
-//    static  maxValue(order,Currency){
-//   return (control: AbstractControl): {[key: string]: any} => {
-//       let _http:Http;
-//       let currencyService: CurrencyService = new CurrencyService(_http);
-    
-//    // const max = 0;
-//     currencyService.getbalance(Currency).debounceTime(1200).subscribe( result =>{ 
-//          const max = result.json().Balance;
-// //    console.log(myvalue);
-// const input = control.value,
-//         isValid = input > max ;
-     
-//          if(isValid && order=='Sell') 
-//         return { 'maxValue': true }
-//     else 
-//         return null;
-// });
-// return 
- 
-// };    
-  
-//  }
-//  static  balanceCheck(max:number,order,total){
-//   return (control: AbstractControl): {[key: string]: any} => {
-//     const input = control.value,
-//           isValid = max < total ;
-// //console.log(total);
-//     if(isValid && order=='Buy') 
-//         return { 'balanceCheck': true }
-//     else 
-//         return null;
-//   };
-// }
+
+
+ static Check(control){
+
+     var self=this;
+    try
+ {      let _http:Http;
+   
+      let Currency:CurrencyType=CurrencyType.LTC;
+//let url= _http.get(`$AppSettings.API_ENDPOINT}getbalance?currencyType=${'LTC'}`);
+
+            return new Promise((resolve, reject) => {
+                
+                  self._currencyService.getbalance(Currency).debounceTime(1200).subscribe(
+                  response => {
+                        const myvalue =response.json().Balance;
+                    if (control.value < myvalue) {
+                            return resolve(null) ;
+                        } else {
+                            return resolve({ 'Check': true });
+                        }
+                           },
+                error => {
+                     console.log(error); 
+                    })
+        });
+
+ }
+ catch(error)
+{
+    console.log(error);
+
+}
+
+}
+
 
 
 }

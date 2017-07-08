@@ -36,6 +36,7 @@ this.emitterService.paymentrequiredemiter.subscribe(json => {
    let timer = Observable.interval(1000);
         this.IsUserunauthorizedObserver = timer.subscribe(() =>{
            this.IsUserunauthorized
+           
        });
  this.IspaymentrequiredObserver = timer.subscribe(() =>{
            this.Ispaymentrequired
