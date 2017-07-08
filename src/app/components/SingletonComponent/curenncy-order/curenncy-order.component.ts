@@ -58,7 +58,7 @@ ngOnInit() {
 
 this.OrderFormModel =this._fb.group({
  
-Amount: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber,ValidationmessageserviceService.CheckBalance]),
+Amount: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),
 Rate: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),
 });
 
