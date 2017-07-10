@@ -73,6 +73,19 @@ var self=this;
          
          });
 
+
+           cryptohubproxy.on('whenRateChange', function (RateChange) {
+
+        //self._matchEmitterService.whenMatchedHappend(matchorder);
+         console.log(RateChange);
+            console.log("whenRateChange");
+         
+         });
+
+
+
+         
+
 this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;
         });
