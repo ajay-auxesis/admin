@@ -1,3 +1,4 @@
+import { RateEmitterService } from './service/Emitters/rate-emitter.service';
 import { MatchEmitterService } from './service/Emitters/match-emitter.service';
 import { MatchOrderService } from './service/OrderServices/match-order.service';
 import { ActiveOrderService } from './service/OrderServices/active-order.service';
@@ -137,7 +138,7 @@ const routes: Routes = [
   // ReverseArrayPipe
   ],
 
-  providers: [AuthGuard,MatchEmitterService,DynamicOrderRowService,ActiveOrderService,MatchOrderService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
+  providers: [AuthGuard,MatchEmitterService,DynamicOrderRowService,ActiveOrderService,MatchOrderService,RateEmitterService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
 
    {
       provide: Http,

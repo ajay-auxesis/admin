@@ -1,3 +1,4 @@
+import { RateEmitterService } from './service/Emitters/rate-emitter.service';
 import { MatchEmitterService } from './service/Emitters/match-emitter.service';
 import { Responsecode } from 'app/enums/responsecode.enum';
 import { HuBConectionRequestModel } from './models/login';
@@ -29,7 +30,7 @@ location:string;
 previousUrl:any;
 public canSendMessage: Boolean;
   constructor(private _matchEmitterService:MatchEmitterService,private _ngZone: NgZone,private _signalRService:SignalRService,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ,private _location: Location, private platform: PlatformLocation ,private activatedRoute: ActivatedRoute,
-    private titleService: Title) { 
+    private titleService: Title,private _rateEmitterService:RateEmitterService) { 
    
    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
@@ -76,7 +77,8 @@ var self=this;
 
            cryptohubproxy.on('whenRateChange', function (RateChange) {
 
-        //self._matchEmitterService.whenMatchedHappend(matchorder);
+      self._rateEmitterService.whenRateChanged(RateChange);
+
          console.log(RateChange);
             console.log("whenRateChange");
          

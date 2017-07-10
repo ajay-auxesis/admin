@@ -27,3 +27,11 @@ Date:Date;
 IsHigestVolume:boolean;
 IsNewOrder:boolean;
 }
+
+export class newRateModel {
+constructor(){
+}
+BuyRate: number;
+ SellRate: number;
+  Currency: number;
+}
