@@ -143,7 +143,7 @@ const routes: Routes = [
    {
       provide: Http,
             useFactory: httpFactory,
-            deps: [XHRBackend, RequestOptions,LoaderService,HttpEmitterService]
+            deps: [XHRBackend, RequestOptions,LoaderService]
     },
     // {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],

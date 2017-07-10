@@ -94,6 +94,7 @@ this.loaderService.loaderStatus.subscribe((val: boolean) => {
 if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path()=='') {
    this._router.navigate(['LtcUsd']);
   }
+  if(localStorage.getItem(AppSettings.localtokenkey)==null){this._router.navigate(['/']);}
   this.platform.onPopState(()=>{
     
        this._router.events.filter(event => event instanceof NavigationEnd).pairwise()

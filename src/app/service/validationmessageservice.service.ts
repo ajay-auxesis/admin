@@ -127,7 +127,7 @@ if(password!==control.value)
  static CheckBalance(control ){
 
 
- return //checkmybalance(control , 'Amounnt');
+ return checkmybalance(control , 'Amounnt');
 
 }
 
@@ -135,35 +135,37 @@ if(password!==control.value)
 
 }
 
+interface mybalanceValidator {
+}
 
-// function checkmybalance(control,source: string) : Observable <any> {
+function checkmybalance(control,source: string) : Observable <mybalanceValidator> {
     
-// let injector = ReflectiveInjector.resolveAndCreate([Http]);
-// let http = injector.get(Http);
+let injector = ReflectiveInjector.resolveAndCreate([Http]);
+let http = injector.get(Http);
 
-//   return new Observable((obs: any) => {
-//     control
-//       .valueChanges
-//       .debounceTime(400)
-//       .flatMap(value => http.get(`${AppSettings.API_ENDPOINT}getbalance?currencyType=${'LTC'}`))
-//       .subscribe(
-//         data => {
-//             if(source < data.json().Balance){
-//           obs.next(null);
-//           obs.complete();
-//           console.log(data);
-//         }
-//         else
-//         {let reason='Not enough LTC balance';
-//           obs.next({ [reason]: true });
-//           obs.complete();   
-//         }
-//     },
-//     error=>{
-//         console.log(error);
-//     }
-//         );
-//     });
+  return new Observable((obs: any) => {
+    control
+      .valueChanges
+      .debounceTime(400)
+      .flatMap(http.get(`${AppSettings.API_ENDPOINT}getbalance?currencyType=${'LTC'}`))
+      .subscribe(
+        data => {
+            if(source < data.json().Balance){
+          obs.next(null);
+          obs.complete();
+          console.log(data);
+        }
+        else
+        {let reason='maxValue';
+          obs.next({ [reason]: true });
+          obs.complete();   
+        }
+    },
+    error=>{
+        console.log(error);
+    }
+        );
+    });
 
 
-// }
+}
