@@ -1,3 +1,4 @@
+import { orderListModel } from './../../../models/LTCUSDOrderModel';
 import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
 import { OrderMode } from 'app/enums/order-mode.enum';
 import { DepositModel } from './../../../models/DepositModel';
@@ -42,5 +43,22 @@ this.erroremitter.unauthorizedError(true);
 ); 
 
   }
+  newVolumeTotal(orderListModelnew : orderListModel){
+     var curname:CurrencyType=this.CurrencyType;
+ var  ordername:OrderMode=this.OrderMode;
+
+
+           if(orderListModelnew.OrderMode == OrderMode.Sell)
+           {
+           
+              this._volume+=orderListModelnew.Amount;
+          }
+           if(orderListModelnew.OrderMode == OrderMode.Buy)
+           {
+           
+              this._volume+=(orderListModelnew.Amount*orderListModelnew.Rate);
+          }
+
+   }
 
 }

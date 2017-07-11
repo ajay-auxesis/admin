@@ -23,7 +23,8 @@ private timerObserver: Subscription;
  @ViewChild('total') updateVolume: any;
  @ViewChild('orderlistparent', {read: ViewContainerRef})
   orderlistparent: ViewContainerRef;
-public _orderlist: Array<orderListModel>;private orderListModelObject: orderListModel;
+public _orderlist: Array<orderListModel>;
+private orderListModelObject: orderListModel;
 constructor(private _SignalRService: SignalRService,private dynamicOrderRowService: DynamicOrderRowService,private componentFactoryResolver: ComponentFactoryResolver,private cdRef: ChangeDetectorRef,private _http: Http,private _signalRService :SignalRService,private _currencyRateService:CurrencyRateService,private loaderService:LoaderService) {
 
 this._orderlist = new Array<orderListModel>();
@@ -34,17 +35,16 @@ private AddNewOrder(orderListModelnew:orderListModel) {
 
 var neworderlist= new  Array<orderListModel>();
 neworderlist=this._orderlist;
-// orderListModelnew.IsNewOrder=true;
-// orderListModelnew.IsHigestVolume=false;
+
+
 if(neworderlist!=null){
 
 neworderlist.push(orderListModelnew);
 }
 
-
 this._orderlist=this._SignalRService.sortArry(neworderlist,orderListModelnew,this._orderMode);
 
-this.updateVolume.ngOnInit();
+this.updateVolume.newVolumeTotal(orderListModelnew);
 
       }
 getRecentListorder(): void {

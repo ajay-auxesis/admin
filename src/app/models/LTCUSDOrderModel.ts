@@ -35,3 +35,23 @@ BuyRate: number;
  SellRate: number;
   Currency: number;
 }
+
+export class matchorderModel {
+constructor(){
+}
+OrderId:any;
+
+	Type:number;
+  Rate: number;
+  	Amount:number;
+    	FilledAmount:number;
+      	RemainigAmount:number;
+        	OrderStatus:number;	
+  CreationDateTime:Date;       
+owner:boolean;
+CurrencyType:CurrencyType;
+OrderMode:OrderMode ;
+Date:Date;
+IsHigestVolume:boolean;
+IsNewOrder:boolean;
+}

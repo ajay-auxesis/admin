@@ -5,7 +5,7 @@
   <div class="header">
     <div class="row clearfix">
       <div class="col-xs-12 col-sm-6">
-        <h2>Match Order</h2>
+        <h2>Active Order</h2>
       </div>
       <div class="col-xs-12 col-sm-6 align-right">
      </div>
@@ -32,12 +32,10 @@
         <th th width="16%">
             <mfDefaultSorter by="RemainigAmount">Remainig Amount</mfDefaultSorter>
         </th>
-        <!--<th width="16%"> 
-          <mfDefaultSorter by="OrderStatus">Order Status</mfDefaultSorter>
-          </th>-->
             <th  width="16%"> 
               <mfDefaultSorter by="Date">Date</mfDefaultSorter>
               </th>
+              <th> Action</th>
     </tr>
     </thead>
     <tbody>
@@ -49,8 +47,8 @@
           <td *ngIf="order.currencyType==4">LTC</td>
             <td>{{order.RemainingAmount}}</td>
          
-            <td>{{order.CreationDateTime | date:'yyyy-MM-dd'}}</td>
-            
+            <td>{{order.CreationDateTime | date:'dd MMMM yyyy'}}</td>
+            <td><Button>Cancel</Button></td>
         </tr>
     </tbody>
     <tfoot>
