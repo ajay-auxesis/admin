@@ -47,7 +47,7 @@ public canSendMessage: Boolean;
 var self=this;
  var connection = $.hubConnection(AppSettings.HubUrl);
          var cryptohubproxy = connection.createHubProxy('myHub');
-          connection.start().done(function () {
+          connection.start({ transport: ['websockets', 'longPolling'], jsonp: true}).done(function () {
 
     var hubidstring=localStorage.getItem('HubId');
 

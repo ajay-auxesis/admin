@@ -19,7 +19,7 @@ export class InterceptedHttp extends Http {
     }
 
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        if(url.indexOf("volume")== -1)this.loaderService.displayLoader(true);
+        if(url.indexOf("volume")== -1 && url.indexOf("getbalance")== -1  )this.loaderService.displayLoader(true);
         url = this.updateUrl(url);
      
     return super.get(url, this.getRequestOptionArgs(options)).catch(this.handleError);
