@@ -1,3 +1,4 @@
+import { DynamicMatchOrderService } from './components/SingletonComponent/match-order/dynamic-match-order.service';
 import { RateEmitterService } from './service/Emitters/rate-emitter.service';
 import { MatchEmitterService } from './service/Emitters/match-emitter.service';
 import { MatchOrderService } from './service/OrderServices/match-order.service';
@@ -56,6 +57,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import {DataTableModule} from "angular2-datatable";
 import { LoginRouteComponent } from './login-route/login-route.component';
 import { ToasterComponent } from './components/SingletonComponent/toaster/toaster.component';
+import { MatchListComponent } from './components/SingletonComponent/match-list/match-list.component';
 //import { DataTableModule } from 'angular-2-data-table';
 //import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
@@ -115,6 +117,8 @@ const routes: Routes = [
   
    ToasterComponent,
   
+   MatchListComponent,
+  
    //,
    //ReverseArrayPipe
 ],
@@ -137,8 +141,8 @@ const routes: Routes = [
    //,
   // ReverseArrayPipe
   ],
-
-  providers: [AuthGuard,MatchEmitterService,DynamicOrderRowService,ActiveOrderService,MatchOrderService,RateEmitterService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
+entryComponents: [ToasterComponent],
+  providers: [AuthGuard,MatchEmitterService,DynamicMatchOrderService,DynamicOrderRowService,ActiveOrderService,MatchOrderService,RateEmitterService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
 
    {
       provide: Http,

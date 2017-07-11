@@ -47,12 +47,13 @@ private ratechange:newRateModel;
 this._rateChangeEmitter.whenRateChangeEvent.subscribe(json =>{
 
   this.ratechange=json;
+ 
    var  ordername:OrderMode=this.OrderMode;
-   if(ordername.toString()=='Buy'){
+   if(OrderMode[this.OrderMode]==OrderMode.Buy.toString()){
 this.removeclass();
             this._lowestPrice=this.ratechange.BuyRate;
    }
-if(ordername.toString()=='Sell'){
+if(OrderMode[this.OrderMode]==OrderMode.Sell.toString()){
 this.removeclass();
             this._lowestPrice=this.ratechange.SellRate;
    }

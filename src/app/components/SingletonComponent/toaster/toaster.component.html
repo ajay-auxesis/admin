@@ -2,10 +2,11 @@
 
 
 
-<p [class.toster-erorr-msg]="IstosterOn" class="erorr-msg fadeInDown animated" >
+<p *ngIf="_IsAuthenticated==true" [class.toster-erorr-msg]="IstosterOn" class="erorr-msg fadeInDown animated" id="">
   <i  class="material-icons" (click)="closenotifaction($event)">clear</i>
-  toaster works!
-  {{matchdto|json}}
+{{message|json}}
+  
+  <!--{{matchdto|json}}-->
 </p>
 <!--<script>
   clicked(event) {

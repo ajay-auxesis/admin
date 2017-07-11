@@ -1,3 +1,5 @@
+import { DynamicMatchOrderService } from './dynamic-match-order.service';
+import { matchorderModel } from './../../../models/LTCUSDOrderModel';
 import { Observable } from 'rxjs/Rx';
 import { MatchEmitterService } from './../../../service/Emitters/match-emitter.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -8,7 +10,7 @@ import { CurrencyType } from 'app/enums/currency-type.enum';
 import { Responsecode } from 'app/enums/responsecode.enum';
 import { LoaderService } from './../../../service/loader-service.service';
 
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, ViewContainerRef, ComponentFactoryResolver, ChangeDetectorRef } from '@angular/core';
 import {DataTableModule} from "angular2-datatable";
 
 @Component({
@@ -18,35 +20,89 @@ import {DataTableModule} from "angular2-datatable";
 })
 export class MatchOrderComponent implements OnInit {
 
-_matchOrders:any;
+//_matchOrders:any;
 //  @ViewChild('someVar') el:ElementRef;
 @Input()  _currencyType:CurrencyType;
 @Input()  _orderMode: OrderMode;
 _Count:any=0;
+today=new Date();
 private timerObserver: Subscription;
 public matchdto: any;
-  constructor(private _matchEmitterService:MatchEmitterService,private _matchorderservice : MatchOrderService,private loaderService : LoaderService , private erroremitter : HttpEmitterService) { 
+ @ViewChild('matchorderlistparent', {read: ViewContainerRef})
+  matchorderlistparent: ViewContainerRef;
+public _matchOrders: Array<matchorderModel>;
+private matchorderListModelObject: matchorderModel;
+previd:any;
+prevamount:any;
+  constructor(private _matchEmitterService:MatchEmitterService,private _matchorderservice : MatchOrderService,private loaderService : LoaderService , private erroremitter : HttpEmitterService, private _dynamicmatchorderService : DynamicMatchOrderService,private componentFactoryResolver:ComponentFactoryResolver,private cdRef: ChangeDetectorRef,) { 
+
+this._matchOrders = new Array<matchorderModel>();
 
       this._matchEmitterService.whenMatchedHappendEvent.subscribe(json => { 
    this.matchdto=json;
-       console.log("from whenMatchedHappendEvent");
-       console.log(json);
+
+   this.AddNewMatchOrder(this.matchdto);
+  
   });
    
-  }
- 
+}
+
+
+private AddNewMatchOrder(matchorderListModelnew:matchorderModel) {
+matchorderListModelnew.CreationDateTime= new Date();
+
+console.log(matchorderListModelnew);
+var newmatchorderlist= new  Array<matchorderModel>();
+newmatchorderlist=this._matchOrders;
+
+if(newmatchorderlist!=null){
+//console.log("newmatchorderlist");
+//console.log(newmatchorderlist);
+newmatchorderlist.push(matchorderListModelnew);
+}
+
+
+}
   ngOnInit() {
        let timer = Observable.interval(100);
         this.timerObserver = timer.subscribe(() =>{ 
+
  });
+
    this._matchorderservice.getallmatchorder(this._currencyType,this._orderMode).debounceTime(1200).subscribe( result =>{
 this.loaderService.displayLoader(false);
-//result.
-  if (result.status==200) {
+  if (result.status==200 && result!=null) {
+
   this._matchOrders = result.json(); 
- 
- console.log("this._matchOrders");
- console.log(this._matchOrders);
+
+
+
+  console.log( this._matchOrders);
+
+
+
+
+
+//   this._matchOrders.forEach(element => {if(element.OrderId==this.previd){
+//    element.FilledAmount=element.FilledAmount+this.prevamount;
+//   }this.previd=element.OrderId;this.prevamount=element.FilledAmount;
+
+// });
+
+// var unique =new matchorderModel();
+// var distinct = [];
+//     for( var i in this._matchOrders){
+//      if( typeof(unique[this._matchOrders[i].OrderId])=='undefined' ){
+//       distinct.push(this._matchOrders[i]);
+//      }
+//      unique[this._matchOrders[i].OrderId]=0;
+//     }
+
+
+// console.log(distinct);
+// this._matchOrders=distinct;
+
+
 
 }
 } ,
