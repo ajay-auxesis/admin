@@ -92,6 +92,10 @@ var self=this;
 
          
 
+
+
+
+
 this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;
         });

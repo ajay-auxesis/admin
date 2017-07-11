@@ -75,24 +75,33 @@ this.loaderService.displayLoader(false);
 
   this._matchOrders = result.json(); 
 
-  this._matchOrders.forEach(element => {if(element.OrderId==this.previd){
-    let  a=element.FilledAmount+this.prevamount;
-//console.log(element.OrderId,element.FilledAmount,this.previd,this.prevamount,a);
-  }this.previd=element.OrderId;this.prevamount=element.FilledAmount;element.FilledAmount=element.FilledAmount+this.prevamount;
 
-});
 
-// var unique :matchorderModel;
+  console.log( this._matchOrders);
+
+
+
+
+
+//   this._matchOrders.forEach(element => {if(element.OrderId==this.previd){
+//    element.FilledAmount=element.FilledAmount+this.prevamount;
+//   }this.previd=element.OrderId;this.prevamount=element.FilledAmount;
+
+// });
+
+// var unique =new matchorderModel();
 // var distinct = [];
 //     for( var i in this._matchOrders){
-//      if( typeof(unique[this._matchOrders[i].OrderId]) == "undefined"){
+//      if( typeof(unique[this._matchOrders[i].OrderId])=='undefined' ){
 //       distinct.push(this._matchOrders[i]);
 //      }
 //      unique[this._matchOrders[i].OrderId]=0;
 //     }
 
 
-// console.log(unique);
+// console.log(distinct);
+// this._matchOrders=distinct;
+
 
 
 }

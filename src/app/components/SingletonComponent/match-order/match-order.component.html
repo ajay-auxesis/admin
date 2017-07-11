@@ -50,8 +50,8 @@
             <td>{{order.Amount}}</td>
             <td>{{order.FilledAmount}}</td>
             <td>{{order.RemainigAmount}}</td>
-            <td *ngIf="order.OrdeStatus==1">Close</td>
-            <td *ngIf="order.OrdeStatus==2">Open</td>
+            <td *ngIf="order.OrderStatus==1">Close</td>
+            <td *ngIf="order.OrderStatus==2">Open</td>
             <td>{{order.CreationDateTime | date:'dd MMMM yyyy'}}</td>
             <td><button>Detail</button></td>
         </tr>
