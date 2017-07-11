@@ -57,8 +57,8 @@ var self=this;
 
          });
          cryptohubproxy.on('whennewOrderAdded', function (newOrder) {
-
-             
+   console.log("whennewOrderAdded");
+             // console.log(newOrder);
            let orderListModelobj:orderListModel=newOrder as orderListModel;
 
           
@@ -67,7 +67,8 @@ var self=this;
 
 
     cryptohubproxy.on('whenMatchHappend', function (matchorder) {
-
+ console.log("whenMatchHappend");
+        console.log(matchorder);
         self._matchEmitterService.whenMatchedHappend(matchorder);
 
             console.log("whenMatchHappend");
