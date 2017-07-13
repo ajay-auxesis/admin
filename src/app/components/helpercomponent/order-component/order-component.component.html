@@ -25,9 +25,9 @@
           <!--; let i = index  | orderBy : ['Date', 'age']-->
           <tr  *ngFor="let order of _orderlist ; let i = index"  [class.Higherate]="order.IsHigestVolume" [class.IsNewOrder]="order.IsNewOrder">
             <th scope="row">{{i+1}}</th>
-            <td>{{order.Rate}}</td>
-            <td>{{order.Amount}}</td>
-            <td>{{order.Amount*order.Rate}}</td>
+            <td>{{order.Rate | number : '1.0-8'}}</td>
+            <td>{{order.Amount | number : '1.0-8'}}</td>
+            <td>{{order.Amount*order.Rate | number : '1.0-8'}}</td>
           </tr>
         </tbody>
       </table>

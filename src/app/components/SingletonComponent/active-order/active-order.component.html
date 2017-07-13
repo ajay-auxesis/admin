@@ -47,7 +47,7 @@
           <td *ngIf="order.currencyType==4">LTC</td>
             <td>{{order.RemainingAmount}}</td>
          
-            <td>{{order.CreationDateTime | date:'dd MMMM yyyy'}}</td>
+            <td>{{order.CreationDateTime | date:'medium'}}</td>
             <td><Button>Cancel</Button></td>
         </tr>
     </tbody>

@@ -12,7 +12,7 @@
   </div>
   <div class="body">
     <div class="table-responsive ">
-    <table class="table table-striped " [mfData]="_matchOrders" #mf="mfDataTable" [mfRowsOnPage]="10" >
+    <table class="table table-striped " [mfData]="_matchOrders" #mf="mfDataTable" [mfRowsOnPage]="100" >
     <thead>
     <tr>
       <th width="4%">
@@ -47,12 +47,12 @@
             <th scope="row">{{i+1}}</th>
             <td *ngIf="order.OrderMode==1">Sell</td>
             <td *ngIf="order.OrderMode==2">Buy</td>
-            <td>{{order.Amount}}</td>
-            <td>{{order.FilledAmount}}</td>
-            <td>{{order.RemainigAmount}}</td>
-            <td *ngIf="order.OrderStatus==1">Close</td>
-            <td *ngIf="order.OrderStatus==2">Open</td>
-            <td>{{order.CreationDateTime | date:'dd MMMM yyyy'}}</td>
+            <td>{{order.Amount | number : '1.0-8'}}</td>
+            <td>{{order.FilledAmount | number : '1.0-8'}}</td>
+            <td>{{order.RemainigAmount | number : '1.0-8'}}</td>
+            <td *ngIf="order.OrderStatus==1">Open</td>
+            <td *ngIf="order.OrderStatus==2">Close</td>
+            <td>{{order.CreationDateTime | date:'medium'}}</td>
             <td><button>Detail</button></td>
         </tr>
     </tbody>

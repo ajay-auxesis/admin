@@ -40,13 +40,15 @@ neworderlist=this._orderlist;
 if(neworderlist!=null){
 
 neworderlist.push(orderListModelnew);
+
 }
 
 this._orderlist=this._SignalRService.sortArry(neworderlist,orderListModelnew,this._orderMode);
-
+// 
 this.updateVolume.newVolumeTotal(orderListModelnew);
 
       }
+
 getRecentListorder(): void {
         this._currencyRateService.GetCurrencyOrderList(this._currencyType,this._orderMode)
             .subscribe(result => { 
@@ -59,6 +61,7 @@ getRecentListorder(): void {
     
    let timer = Observable.interval(100);
         this.timerObserver = timer.subscribe(() =>{ this._orderlist
+       //   console.log(this._orderlist);
         });
 this.getRecentListorder();
 

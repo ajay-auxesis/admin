@@ -32,8 +32,8 @@ public matchdto: any;
   matchorderlistparent: ViewContainerRef;
 public _matchOrders: Array<matchorderModel>;
 private matchorderListModelObject: matchorderModel;
-previd:any;
-prevamount:any;
+previd:any=0;
+prevamount:any=0;
   constructor(private _matchEmitterService:MatchEmitterService,private _matchorderservice : MatchOrderService,private loaderService : LoaderService , private erroremitter : HttpEmitterService, private _dynamicmatchorderService : DynamicMatchOrderService,private componentFactoryResolver:ComponentFactoryResolver,private cdRef: ChangeDetectorRef,) { 
 
 this._matchOrders = new Array<matchorderModel>();
@@ -51,14 +51,14 @@ this._matchOrders = new Array<matchorderModel>();
 private AddNewMatchOrder(matchorderListModelnew:matchorderModel) {
 matchorderListModelnew.CreationDateTime= new Date();
 
-console.log(matchorderListModelnew);
+
 var newmatchorderlist= new  Array<matchorderModel>();
 newmatchorderlist=this._matchOrders;
 
 if(newmatchorderlist!=null){
-//console.log("newmatchorderlist");
-//console.log(newmatchorderlist);
+
 newmatchorderlist.push(matchorderListModelnew);
+//this.distinctmatchorder(newmatchorderlist);
 }
 
 
@@ -74,36 +74,8 @@ this.loaderService.displayLoader(false);
   if (result.status==200 && result!=null) {
 
   this._matchOrders = result.json(); 
-
-
-
-  console.log( this._matchOrders);
-
-
-
-
-
-//   this._matchOrders.forEach(element => {if(element.OrderId==this.previd){
-//    element.FilledAmount=element.FilledAmount+this.prevamount;
-//   }this.previd=element.OrderId;this.prevamount=element.FilledAmount;
-
-// });
-
-// var unique =new matchorderModel();
-// var distinct = [];
-//     for( var i in this._matchOrders){
-//      if( typeof(unique[this._matchOrders[i].OrderId])=='undefined' ){
-//       distinct.push(this._matchOrders[i]);
-//      }
-//      unique[this._matchOrders[i].OrderId]=0;
-//     }
-
-
-// console.log(distinct);
-// this._matchOrders=distinct;
-
-
-
+  if( this._matchOrders !=null)
+{this.distinctmatchorder(this._matchOrders);}
 }
 } ,
 error => {
@@ -117,6 +89,31 @@ this.erroremitter.unauthorizedError(true);
 
 }
 ); 
+
+  }
+
+  distinctmatchorder(distinctmatchorder){
+  
+ this._matchOrders .forEach(element => {
+    if(element.OrderId==this.previd)
+    { element.FilledAmount=element.FilledAmount+this.prevamount;}
+  this.previd=element.OrderId;
+  this.prevamount=element.FilledAmount; 
+});
+
+distinctmatchorder.reverse();
+
+var unique =new matchorderModel();
+var distinct = [];
+    for( var i in distinctmatchorder){
+     if( typeof(unique[distinctmatchorder[i].OrderId])=='undefined' ){
+      distinct.push(distinctmatchorder[i]);
+     }
+     unique[distinctmatchorder[i].OrderId]=0;
+    }
+distinctmatchorder=distinct;
+distinctmatchorder.reverse(); 
+this._matchOrders=distinctmatchorder;
 
   }
 }

@@ -49,12 +49,12 @@
 
 						<label class="control-label col-xs-3 " for="Total:">Total:</label>
 						<div class="col-xs-3">
-							<label id="total" >{{ _total}}</label>  
+							<label id="total" >{{ _total | number : '1.0-8'}} USD</label>  
 						</div>
 
 						<label class="control-label col-xs-3" for="Fee:">Fee:</label>
 						<div class="col-xs-3">
-							<label id="fee" >{{_totalfee}}</label>
+							<label id="fee" >{{_totalfee | number : '1.0-8'}}</label>
 						</div>
 
 					</div>	

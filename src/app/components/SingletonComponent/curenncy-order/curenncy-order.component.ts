@@ -44,7 +44,7 @@ export class CurenncyOrderComponent implements OnInit {
 @ViewChild('f') child: any;
 
 OrderFormModel: FormGroup;
-_total:number=0;
+_total:any=0;
 fee : GetFeeModel;
 _totalfee:number;
 
@@ -68,8 +68,9 @@ submitOrder({ value, valid }: { value: orderModel, valid: boolean }) {
 value.OrderMode=this._orderMode;
 
 this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
-  //console.log(result);
+  
 this.loaderService.displayLoader(false);
+console.log(result);
 this.child.ngOnInit();
 
 }
@@ -84,9 +85,9 @@ this.erroremitter.unauthorizedError(true);
  }
  if(error.status==Responsecode.PaymentRequired)
   {
-  
-this.erroremitter.paymentRequiredError(true);
 
+console.log(error);
+this.erroremitter.paymentRequiredError(true);
    
  }
 
@@ -100,7 +101,12 @@ this._totalfee=0;
 getTotal(){
  let _amount = this.OrderFormModel.controls['Amount'].value;
  let _rate = this.OrderFormModel.controls['Rate'].value;
-  this._total = _amount*_rate;   
+let total = _amount*_rate;   
+this._total=total;
+
+
+
+ 
 }
 
 getFee(){

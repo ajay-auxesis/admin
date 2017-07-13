@@ -1,9 +1,11 @@
+import { ConnectionBackend, XSRFStrategy } from '@angular/http';
+import { XHRBackend } from '@angular/http';
 
 
 import { AppSettings } from './../components/SingletonComponent/lowest-ask-price/app-settings';
 import { Observable } from 'rxjs/Observable';
 import { CurrencyService } from './CurrencyServices/currency.service';
-import { Http, HttpModule, RequestOptions } from '@angular/http';
+import { Http, HttpModule, RequestOptions, CookieXSRFStrategy, BrowserXhr, ResponseOptions, BaseRequestOptions, BaseResponseOptions,Headers } from '@angular/http';
 import { OrderMode } from 'app/enums/order-mode.enum';
 import 'rxjs/Rx';
 import { CurrencyType } from 'app/enums/currency-type.enum';
@@ -34,6 +36,7 @@ constructor(private _http : Http,private  _currencyService:CurrencyService){}
             'maxValue' : `Not enough ${currencytype} balance`,
             'CheckBalance' : `Not enough ${currencytype} balance`,
             'balanceCheck' : `Not enough USD balance`,
+            'Fiatprecision' : `${controlname} precise upto 8 decimal`
         };
 
         return config[validatorName];
@@ -122,12 +125,29 @@ if(password!==control.value)
        
     }
 
+  static FiatprecisionValidation(control) {
+
+try
+{
+if (control.value.match(/^[0-9]+(\.[0-9]{1,8})?$/)) {
+            return null;
+        } else {
+            return { 'Fiatprecision': true };
+        }
+}
+catch(error)
+{
+ return null;
+}
+
+    }
+
 
 
  static CheckBalance(control ){
 
 
- return checkmybalance(control , 'Amounnt');
+ return checkmybalance(control);
 
 }
 
@@ -138,34 +158,40 @@ if(password!==control.value)
 interface mybalanceValidator {
 }
 
-function checkmybalance(control,source: string) : Observable <mybalanceValidator> {
+function checkmybalance(control) : any {
     
-let injector = ReflectiveInjector.resolveAndCreate([Http]);
-let http = injector.get(Http);
+ let injector = ReflectiveInjector.resolveAndCreate([
+    Http,
+   BrowserXhr,
+    {provide: RequestOptions, useClass: BaseRequestOptions},
+    {provide: ResponseOptions, useClass: BaseResponseOptions},
+    {provide: ConnectionBackend, useClass: XHRBackend},
+    {provide: XSRFStrategy, useFactory: () => new CookieXSRFStrategy()},
+  ]);
+  let http = injector.get(Http);
+let currencyType = 'LTC';
 
-  return new Observable((obs: any) => {
-    control
-      .valueChanges
-      .debounceTime(400)
-      .flatMap(http.get(`${AppSettings.API_ENDPOINT}getbalance?currencyType=${'LTC'}`))
+    let headers = new Headers();
+     let token:string= localStorage.getItem("_cashaacryptoAcessToken");
+headers.append('Authorization', `Basic ${token}`);
+
+let options = new RequestOptions({ headers: headers });
+     
+   http.get(`${AppSettings.API_ENDPOINT}getbalance?currencyType=${currencyType}`,options)
       .subscribe(
         data => {
-            if(source < data.json().Balance){
-          obs.next(null);
-          obs.complete();
-          console.log(data);
+            if(control.value < data.json().Balance){
+                return null;
         }
         else
-        {let reason='maxValue';
-          obs.next({ [reason]: true });
-          obs.complete();   
+        {
+            let reason='maxValue';
+          return { [reason]: true }
+     
         }
-    },
-    error=>{
-        console.log(error);
-    }
-        );
     });
+        
+
 
 
 }

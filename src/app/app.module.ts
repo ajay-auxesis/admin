@@ -1,3 +1,4 @@
+import { CurrencyDisplayServiceService } from './service/CurrencyDisplayService/currency-display-service.service';
 import { DynamicMatchOrderService } from './components/SingletonComponent/match-order/dynamic-match-order.service';
 import { RateEmitterService } from './service/Emitters/rate-emitter.service';
 import { MatchEmitterService } from './service/Emitters/match-emitter.service';
@@ -34,7 +35,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { XHRBackend, RequestOptions, Http, ConnectionBackend, HttpModule, JsonpModule } from '@angular/http';
+import { XHRBackend, RequestOptions, Http, ConnectionBackend, HttpModule, JsonpModule, } from '@angular/http';
 import { ValidationMessageComponent } from './shared/validation-message/validation-message.component';
 import { LeftsidebarComponent } from './leftsidebar/leftsidebar.component';
 import {Ng2Webstorage} from 'ngx-webstorage';
@@ -58,8 +59,7 @@ import {DataTableModule} from "angular2-datatable";
 import { LoginRouteComponent } from './login-route/login-route.component';
 import { ToasterComponent } from './components/SingletonComponent/toaster/toaster.component';
 import { MatchListComponent } from './components/SingletonComponent/match-list/match-list.component';
-//import { DataTableModule } from 'angular-2-data-table';
-//import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 
 
 const routes: Routes = [
@@ -142,13 +142,15 @@ const routes: Routes = [
   // ReverseArrayPipe
   ],
 entryComponents: [ToasterComponent],
-  providers: [AuthGuard,MatchEmitterService,DynamicMatchOrderService,DynamicOrderRowService,ActiveOrderService,MatchOrderService,RateEmitterService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
+  providers: [AuthGuard,MatchEmitterService,CurrencyDisplayServiceService,DynamicMatchOrderService,DynamicOrderRowService,ActiveOrderService,MatchOrderService,RateEmitterService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
 
    {
       provide: Http,
             useFactory: httpFactory,
-            deps: [XHRBackend, RequestOptions,LoaderService]
+            deps: [XHRBackend, RequestOptions,LoaderService,]
     },
+
+
     // {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]

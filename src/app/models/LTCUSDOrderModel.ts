@@ -42,11 +42,11 @@ constructor(){
 OrderId:any;
 
 	Type:number;
-  Rate: number;
+  	Rate: number;
   	Amount:number;
-    	FilledAmount:number;
-      	RemainigAmount:number;
-        	OrderStatus:number;	
+    FilledAmount:number;
+    RemainigAmount:number;
+    OrderStatus:number;	
   CreationDateTime:Date;       
 owner:boolean;
 CurrencyType:CurrencyType;

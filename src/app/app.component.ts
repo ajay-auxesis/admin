@@ -136,12 +136,12 @@ if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path
 
 }
 
-showtoaster(){
+// showtoaster(){
   
-       const factory = this.componentFactoryResolver.resolveComponentFactory(ToasterComponent);
-        const ref =this.viewContainerRef.createComponent(factory).instance;    
-        ref.message = Math.floor(Math.random() * (212232 - 23232 + 1)) + 3232323;
-}
+//        const factory = this.componentFactoryResolver.resolveComponentFactory(ToasterComponent);
+//         const ref =this.viewContainerRef.createComponent(factory).instance;    
+//         ref.message = Math.floor(Math.random() * (212232 - 23232 + 1)) + 3232323;
+// }
 
     ngAfterViewChecked() {
     document.body.classList.remove(document.body.classList.item(1));

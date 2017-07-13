@@ -1,7 +1,7 @@
 
  export enum OrderStatus
     {
-        Close=1,
-        Open=2
+        Open = 1,
+        Close =2
        
     }
