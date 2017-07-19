@@ -14,7 +14,6 @@ import { SharedService } from './service/shared.service';
 import { Component, NgZone, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
 import { LoaderService } from "./service/loader-service.service";
 import { Title } from '@angular/platform-browser';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -34,77 +33,55 @@ public canSendMessage: Boolean;
   constructor(private _matchEmitterService:MatchEmitterService,private _ngZone: NgZone,private _signalRService:SignalRService,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ,private _location: Location, private platform: PlatformLocation ,private activatedRoute: ActivatedRoute,
     private titleService: Title,private _rateEmitterService:RateEmitterService , private componentFactoryResolver: ComponentFactoryResolver,
                 ) { 
-   
    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
-  }
-
-
-
-
+}
 
  ngOnInit() {
 var self=this;
  var connection = $.hubConnection(AppSettings.HubUrl);
          var cryptohubproxy = connection.createHubProxy('myHub');
-          connection.start({ transport: ['websockets', 'longPolling'], jsonp: true}).done(function () {
-
+         //{ transport: ['websockets', 'longPolling'], jsonp: true}
+         
+          connection.start().done(function () {
     var hubidstring=localStorage.getItem('HubId');
-
     cryptohubproxy.invoke("Subscribe",hubidstring);
-
              console.log('Now connected, connection ID=' + connection.id);
              let humconection=new HuBConectionRequestModel();
              humconection.ConectionId=connection.id;
-      
-
          });
+
          cryptohubproxy.on('whennewOrderAdded', function (newOrder) {
-   console.log("whennewOrderAdded");
+           // console.log("whennewOrderAdded");
              // console.log(newOrder);
            let orderListModelobj:orderListModel=newOrder as orderListModel;
-
-          
            self._signalRService.startConnection(orderListModelobj);
          });
 
-
     cryptohubproxy.on('whenMatchHappend', function (matchorder) {
- console.log("whenMatchHappend");
-        console.log(matchorder);
-        self._matchEmitterService.whenMatchedHappend(matchorder);
-           // console.log(matchorder);
-          //  console.log("whenMatchHappend");
-         
+       
+                self._matchEmitterService.whenMatchedHappend(matchorder);
+                //console.log(matchorder);
+                 //console.log("whenMatchHappend");
          });
 
-
-           cryptohubproxy.on('whenRateChange', function (RateChange) {
-
-      self._rateEmitterService.whenRateChanged(RateChange);
-
-       //  console.log(RateChange);
-          //  console.log("whenRateChange");
-         
+     cryptohubproxy.on('whenRateChange', function (RateChange) {
+              self._rateEmitterService.whenRateChanged(RateChange);
+             // console.log("whenRateChange");
+           // console.log(RateChange);
          });
-
-
-
-         
-
-
-
 
 
 this.loaderService.loaderStatus.subscribe((val: boolean) => {
             this.objLoaderStatus = val;
         });
+
+
 if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path()=='') {
    this._router.navigate(['LtcUsd']);
   }
   if(localStorage.getItem(AppSettings.localtokenkey)==null){this._router.navigate(['/']);}
   this.platform.onPopState(()=>{
-    
        this._router.events.filter(event => event instanceof NavigationEnd).pairwise()
         .subscribe(e => {
           this.previousUrl= e[1].url;
@@ -113,6 +90,7 @@ if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path
            }
         });
       });
+
     this._router.events
       .filter(event => event instanceof NavigationEnd)
       .map(() => this.activatedRoute)
@@ -124,24 +102,20 @@ if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path
       .mergeMap(route => route.data)
       .subscribe((event) => this.titleService.setTitle("Crypto Trading | " +event['title']));
 
-
        this._matchEmitterService.whenMatchedHappendEvent.subscribe(json => { 
-//console.log(json);
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ToasterComponent);
+       const factory = this.componentFactoryResolver.resolveComponentFactory(ToasterComponent);
         const ref =this.viewContainerRef.createComponent(factory).instance;    
-        ref.message =json; 
-     
+        ref.message =json;
+         
   });
-
 
 }
 
-// showtoaster(){
-  
-//        const factory = this.componentFactoryResolver.resolveComponentFactory(ToasterComponent);
-//         const ref =this.viewContainerRef.createComponent(factory).instance;    
-//         ref.message = Math.floor(Math.random() * (212232 - 23232 + 1)) + 3232323;
-// }
+showtoaster(){
+       const factory = this.componentFactoryResolver.resolveComponentFactory(ToasterComponent);
+        const ref =this.viewContainerRef.createComponent(factory).instance;    
+        ref.message = Math.floor(Math.random() * (212232 - 23232 + 1)) + 3232323;
+}
 
     ngAfterViewChecked() {
     document.body.classList.remove(document.body.classList.item(1));
@@ -150,5 +124,4 @@ if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path
     document.body.classList.add(this.location);
     // 
   }
-
 }

@@ -39,7 +39,7 @@
               </th>
               <th  width="16%"> 
               <mfDefaultSorter >Action</mfDefaultSorter>
-              </th>
+              </th><th>Rate</th>
     </tr>
     </thead>
     <tbody #matchorderlistparent>
@@ -53,6 +53,7 @@
             <td *ngIf="order.OrderStatus==1">Open</td>
             <td *ngIf="order.OrderStatus==2">Close</td>
             <td>{{order.CreationDateTime | date:'medium'}}</td>
+            <td>{{order.Rate}}</td>
             <td><button>Detail</button></td>
         </tr>
     </tbody>

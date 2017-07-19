@@ -36,9 +36,10 @@ Type:PaymentOperationMode;
 
 export class GetFeeModel {
 
-Amount:number;
-OrderMode:OrderMode;
-fromCurrency:CurrencyType;
-ToCurrency:CurrencyType;
+//Amount:number;
+
+currencyType:CurrencyType;
+orderMode:OrderMode;
+//ToCurrency:CurrencyType;
 
 }

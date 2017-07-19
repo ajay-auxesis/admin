@@ -58,7 +58,7 @@ ngOnInit() {
 
 this.OrderFormModel =this._fb.group({
  
-Amount: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),
+Amount: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber,]),
 Rate: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),
 });
 
@@ -70,7 +70,7 @@ value.OrderMode=this._orderMode;
 this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
   
 this.loaderService.displayLoader(false);
-console.log(result);
+//console.log(result);
 this.child.ngOnInit();
 
 }
@@ -86,7 +86,7 @@ this.erroremitter.unauthorizedError(true);
  if(error.status==Responsecode.PaymentRequired)
   {
 
-console.log(error);
+//console.log(error);
 this.erroremitter.paymentRequiredError(true);
    
  }
@@ -113,15 +113,17 @@ getFee(){
   
 this.fee=new GetFeeModel();
   
-this.fee.Amount = this.OrderFormModel.controls['Amount'].value;
-this.fee.OrderMode = this._orderMode;
-this.fee.fromCurrency=this._currencyType;
-this.fee.ToCurrency=CurrencyType.USD;
+this.fee.orderMode = this._orderMode;
+this.fee.currencyType=this._currencyType;
+
 
 this._buyselldealservice.PostFeeCalculation(this.fee).debounceTime(1200).subscribe(res =>{
 this.loaderService.displayLoader(false);
 
-this._totalfee=res.json().Fee;
+let ratefee=res.json().FeeRate;
+//console.log(res);
+this._totalfee=this.getpercent(ratefee,this._total);
+
  }
  ,
 error => {
@@ -137,5 +139,9 @@ this.erroremitter.unauthorizedError(true);
 );
 
 }
+getpercent(fee,totalamount):any{
+  let totalfeerate=(fee/100)*totalamount;
 
+  return totalfeerate;
+}
 }

@@ -19,7 +19,7 @@ export class ValidationmessageserviceService {
 
 
   formgroupparents: FormGroup;
-
+ public message:any=0;
 constructor(private _http : Http,private  _currencyService:CurrencyService){}
    
      static getValidatorErrorMessage(validatorName: string, validatorValue?: any,confirmpassword?:string,controlname?:string,currencytype?:string) {
@@ -143,12 +143,18 @@ catch(error)
     }
 
 
+static CheckBalance(control ){
 
- static CheckBalance(control ){
+try{
 
+checkmybalance(control).subscribe(res=>{console.log(res);; });
 
- return checkmybalance(control);
-
+}
+catch(error)
+{
+    
+    return null;
+}
 }
 
 
@@ -177,8 +183,8 @@ headers.append('Authorization', `Basic ${token}`);
 
 let options = new RequestOptions({ headers: headers });
      
-   http.get(`${AppSettings.API_ENDPOINT}getbalance?currencyType=${currencyType}`,options)
-      .subscribe(
+ return  http.get(`${AppSettings.API_ENDPOINT}getbalance?currencyType=${currencyType}`,options)
+      .map(
         data => {
             if(control.value < data.json().Balance){
                 return null;

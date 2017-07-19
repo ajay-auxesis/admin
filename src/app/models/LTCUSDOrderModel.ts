@@ -31,9 +31,14 @@ IsNewOrder:boolean;
 export class newRateModel {
 constructor(){
 }
+OrderMode:OrderMode ;
 BuyRate: number;
  SellRate: number;
-  Currency: number;
+  Currency: number; 
+   BuyVolume: number;
+    SellVolume:number;
+     OrderStatus:number;
+      AlterRateList: any;
 }
 
 export class matchorderModel {
@@ -54,4 +59,11 @@ OrderMode:OrderMode ;
 Date:Date;
 IsHigestVolume:boolean;
 IsNewOrder:boolean;
+}
+
+export class removematchorderModel {
+
+OrderMode:number;
+Rate:number;
+RemainingAmount:number;
 }

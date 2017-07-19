@@ -71,6 +71,7 @@ newmatchorderlist.push(matchorderListModelnew);
 
    this._matchorderservice.getallmatchorder(this._currencyType,this._orderMode).debounceTime(1200).subscribe( result =>{
 this.loaderService.displayLoader(false);
+
   if (result.status==200 && result!=null) {
 
 

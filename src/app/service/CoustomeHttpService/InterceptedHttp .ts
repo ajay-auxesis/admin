@@ -26,7 +26,7 @@ export class InterceptedHttp extends Http {
     }
 
     post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-     if(url.indexOf("conectuser")== -1)this.loaderService.displayLoader(true);
+     if(url.indexOf("conectuser")== -1 && url.indexOf("orderfee")== -1)this.loaderService.displayLoader(true);
         url = this.updateUrl(url);
         return super.post(url, body, this.getRequestOptionArgs(options)).catch(this.handleError);
     }
