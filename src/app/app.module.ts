@@ -1,3 +1,4 @@
+//import { ChartModule } from 'angular2-highcharts';
 import { CurrencyDisplayServiceService } from './service/CurrencyDisplayService/currency-display-service.service';
 import { DynamicMatchOrderService } from './components/SingletonComponent/match-order/dynamic-match-order.service';
 import { RateEmitterService } from './service/Emitters/rate-emitter.service';
@@ -53,7 +54,7 @@ import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my
 import { StocChartComponent } from './components/SingletonComponent/stoc-chart/stoc-chart.component';
 import { StocMarketComponent } from './components/SingletonComponent/stoc-market/stoc-market.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-
+import { AmChartsModule } from "@amcharts/amcharts3-angular";
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import {DataTableModule} from "angular2-datatable";
 import { LoginRouteComponent } from './login-route/login-route.component';
@@ -128,7 +129,6 @@ const routes: Routes = [
     
     BrowserModule,
     FormsModule,
-   
     HttpModule,
     ReactiveFormsModule,
     Ng2Webstorage,
@@ -136,8 +136,11 @@ const routes: Routes = [
     InfiniteScrollModule,
    SpinnerComponentModule,
    JsonpModule,
-   DataTableModule,
-    
+   DataTableModule,AmChartsModule
+   // ChartModule.forRoot(
+    //  require('highcharts/highstock'),
+     //   require('highcharts/modules/exporting')
+  //  ),
    //,
   // ReverseArrayPipe
   ],

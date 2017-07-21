@@ -12,34 +12,36 @@
   </div>
   <div class="body">
     <div class="table-responsive ">
-    <table class="table table-striped " [mfData]="_matchOrders" #mf="mfDataTable" [mfRowsOnPage]="100" >
+    <table class="table table-striped " [mfData]="_matchOrders" #mf="mfDataTable" [mfRowsOnPage]="10" >
     <thead>
     <tr>
       <th width="4%">
         <mfDefaultSorter >Sn</mfDefaultSorter>
         </th>
-        <th width="16%">
+        <th width="10%">
           <mfDefaultSorter by="Type">Type</mfDefaultSorter>
           </th>
-        <th th width="16%">
+        <th  width="10%">
             <mfDefaultSorter by="Amount">Amount</mfDefaultSorter>
         </th>
-       
-        <th th width="16%">
+        <!--<th width="10%"><mfDefaultSorter by="Rate">Rate</mfDefaultSorter></th>
+        <th width="10%"><mfDefaultSorter by="Total">Total</mfDefaultSorter></th>-->
+        <th width="10%">
             <mfDefaultSorter by="FilledAmount">Filled Amount</mfDefaultSorter>
         </th>
-        <th th width="16%">
+        <th width="10%">
             <mfDefaultSorter by="RemainigAmount">Remainig Amount</mfDefaultSorter>
         </th>
-        <th width="16%"> 
+        <th width="10%"> 
           <mfDefaultSorter by="OrderStatus">Order Status</mfDefaultSorter>
           </th>
-            <th  width="16%"> 
+            <th  width="10%"> 
               <mfDefaultSorter by="Date">Date</mfDefaultSorter>
               </th>
-              <th  width="16%"> 
-              <mfDefaultSorter >Action</mfDefaultSorter>
-              </th><th>Rate</th>
+             
+              <th width="10%"> 
+              Action
+              </th>
     </tr>
     </thead>
     <tbody #matchorderlistparent>
@@ -48,18 +50,20 @@
             <td *ngIf="order.OrderMode==1">Sell</td>
             <td *ngIf="order.OrderMode==2">Buy</td>
             <td>{{order.Amount | number : '1.0-8'}}</td>
+            <!--<td>{{order.Rate | number : '1.0-8'}}</td>
+            <td>{{order.Rate*order.Amount | number : '1.0-8'}}</td>-->
             <td>{{order.FilledAmount | number : '1.0-8'}}</td>
             <td>{{order.RemainigAmount | number : '1.0-8'}}</td>
             <td *ngIf="order.OrderStatus==1">Open</td>
             <td *ngIf="order.OrderStatus==2">Close</td>
             <td>{{order.CreationDateTime | date:'medium'}}</td>
-            <td>{{order.Rate}}</td>
+            <td>0.1</td>
             <td><button>Detail</button></td>
         </tr>
     </tbody>
     <tfoot>
     <tr>
-        <td colspan="7">
+        <td colspan="9">
             <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
         </td>
     </tr>

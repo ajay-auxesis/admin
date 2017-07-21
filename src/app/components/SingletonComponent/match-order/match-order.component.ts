@@ -74,10 +74,12 @@ this.loaderService.displayLoader(false);
 
   if (result.status==200 && result!=null) {
 
-
+//console.log(result.json());
   this._matchOrders = result.json(); 
   if( this._matchOrders !=null)
-{this.distinctmatchorder(this._matchOrders);}
+{
+  this.distinctmatchorder(this._matchOrders);
+}
 }
 } ,
 error => {
@@ -86,7 +88,7 @@ error => {
   {
   
 this.erroremitter.unauthorizedError(true);
-   
+
  }
 
 }
@@ -95,12 +97,26 @@ this.erroremitter.unauthorizedError(true);
   }
 
   distinctmatchorder(distinctmatchorder){
-  
+
+
+    // var matcharray =new matchorderModel();
+    // var newmatch = [];
+    // for( var x in distinctmatchorder){
+    //  if( typeof(matcharray[distinctmatchorder[x].OrderId])=='undefined' ){
+    //   newmatch.push(distinctmatchorder[x].OrderId);
+    //  }
+    //  matcharray[distinctmatchorder[x].OrderId]=0;
+    // }
+
+    // console.log(newmatch);
+
+
  this._matchOrders .forEach(element => {
     if(element.OrderId==this.previd)
     { element.FilledAmount=element.FilledAmount+this.prevamount;}
   this.previd=element.OrderId;
-  this.prevamount=element.FilledAmount; 
+  this.prevamount=element.FilledAmount;
+
 });
 
 distinctmatchorder.reverse();

@@ -19,22 +19,25 @@
       <th width="4%">
         <mfDefaultSorter >Sn</mfDefaultSorter>
         </th>
-        <!--<th width="16%">
+        <th width="14%">
           <mfDefaultSorter by="Type">Type</mfDefaultSorter>
-          </th>-->
-        <th th width="16%">
+          </th>
+        <th width="14%">
             <mfDefaultSorter by="Amount">Amount</mfDefaultSorter>
         </th>
-       
-        <th th width="16%">
-            <mfDefaultSorter by="currencyType">currencyType</mfDefaultSorter>
-        </th>
-        <th th width="16%">
+       <!--<th width="14%">
+         <mfDefaultSorter by="Rate">Rate</mfDefaultSorter>
+         </th>
+        <th width="14%">
+          <mfDefaultSorter by="Total">Total</mfDefaultSorter>
+          </th>-->
+        <th width="14%">
             <mfDefaultSorter by="RemainigAmount">Remainig Amount</mfDefaultSorter>
         </th>
-            <th  width="16%"> 
+            <th  width="14%"> 
               <mfDefaultSorter by="Date">Date</mfDefaultSorter>
               </th>
+             
               <th> Action</th>
     </tr>
     </thead>
@@ -42,12 +45,15 @@
     <tr  *ngFor="let order of mf.data ; let i = index"  >
             <th scope="row">{{i+1}}</th>
             
-           
+           <td *ngIf="order.currencyType==4">LTC</td>
             <td>{{order.Amount}}</td>
-          <td *ngIf="order.currencyType==4">LTC</td>
+          
+           <!--<td>{{order.Rate | number : '1.0-8'}}</td>
+            <td>{{order.Rate*order.Amount | number : '1.0-8'}}</td>-->
             <td>{{order.RemainingAmount}}</td>
          
             <td>{{order.CreationDateTime | date:'medium'}}</td>
+           
             <td><Button>Cancel</Button></td>
         </tr>
     </tbody>

@@ -34,7 +34,6 @@ constructor(private _SignalRService: SignalRService,private dynamicOrderRowServi
 
 this._orderlist = new Array<orderListModel>();
 
-
  
 }
 
