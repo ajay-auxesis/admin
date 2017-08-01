@@ -54,6 +54,7 @@ OrderId:any;
     OrderStatus:number;	
   CreationDateTime:Date;       
 owner:boolean;
+currencyType:CurrencyType;
 CurrencyType:CurrencyType;
 OrderMode:OrderMode ;
 Date:Date;

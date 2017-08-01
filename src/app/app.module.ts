@@ -1,3 +1,5 @@
+import { ExcelExportService } from './service/tableExportService/excel-export.service';
+import { TableExportServiceService } from './service/tableExportService/table-export-service.service';
 //import { ChartModule } from 'angular2-highcharts';
 import { CurrencyDisplayServiceService } from './service/CurrencyDisplayService/currency-display-service.service';
 import { DynamicMatchOrderService } from './components/SingletonComponent/match-order/dynamic-match-order.service';
@@ -60,6 +62,10 @@ import {DataTableModule} from "angular2-datatable";
 import { LoginRouteComponent } from './login-route/login-route.component';
 import { ToasterComponent } from './components/SingletonComponent/toaster/toaster.component';
 import { MatchListComponent } from './components/SingletonComponent/match-list/match-list.component';
+import { BtcInrRouteComponent } from './components/RouteComponent/btc-inr-route/btc-inr-route.component';
+import { EthInrRouteComponent } from './components/RouteComponent/eth-inr-route/eth-inr-route.component';
+
+
 
 
 
@@ -70,7 +76,8 @@ const routes: Routes = [
  { path: 'Forgotpassword', component: ForgotPasswordComponent , data: {title: 'Password Reset' } },
  { path: 'deposit', component: DepositeBalanceRouteComponent,canActivate:[AuthGuard],data: {title: 'Deposit Form' } },
  { path: 'LtcUsd', component: LtcUsdRouteComponent,canActivate:[AuthGuard], data: {title: 'LTC/USD' } },
-
+ { path: 'Btc_Inr', component: BtcInrRouteComponent,canActivate:[AuthGuard], data: {title: 'BTC/INR' } },
+ { path: 'Eth_Inr', component: EthInrRouteComponent,canActivate:[AuthGuard], data: {title: 'ETH/INR' } },
  { path: 'MatchOrder', component: MatchOrderRouteComponent,canActivate:[AuthGuard] , data: {title: 'Match Order' } },
  { path: 'ActiveOrder', component: ActiveOrderRouteComponent,canActivate:[AuthGuard] , data: {title: 'Active Order' } }
 
@@ -97,7 +104,7 @@ const routes: Routes = [
     DepositeBalanceRouteComponent,
    CurenncyOrderComponent,
    LtcUsdRouteComponent,
-   LtcUsdRouteComponent,
+ 
    DepositeBalanceRouteComponent,
    DepositeBalanceComponent,
    MyCurrencyBalanceComponent,
@@ -119,6 +126,14 @@ const routes: Routes = [
    ToasterComponent,
   
    MatchListComponent,
+  
+   BtcInrRouteComponent,
+  
+   EthInrRouteComponent,
+  
+
+  
+ 
   
    //,
    //ReverseArrayPipe
@@ -145,7 +160,7 @@ const routes: Routes = [
   // ReverseArrayPipe
   ],
 entryComponents: [ToasterComponent],
-  providers: [AuthGuard,MatchEmitterService,CurrencyDisplayServiceService,DynamicMatchOrderService,DynamicOrderRowService,ActiveOrderService,MatchOrderService,RateEmitterService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
+  providers: [AuthGuard,MatchEmitterService,ExcelExportService,TableExportServiceService,CurrencyDisplayServiceService,DynamicMatchOrderService,DynamicOrderRowService,ActiveOrderService,MatchOrderService,RateEmitterService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
 
    {
       provide: Http,

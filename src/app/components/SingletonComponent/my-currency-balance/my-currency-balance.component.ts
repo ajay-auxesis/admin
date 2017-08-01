@@ -29,7 +29,7 @@ _debitsum:number=0;
 _total:number=0;
 value:number=0;
 private timerObserver: Subscription;
-private balancechange:matchorderModel;
+private balancechange:any;
   constructor(private _currencyService:CurrencyService,private loaderService: LoaderService,private erroremitter: HttpEmitterService,private _matchOrderEmitter:MatchEmitterService) {
 
 
@@ -38,16 +38,18 @@ this._matchOrderEmitter.whenMatchedHappendEvent.subscribe(json =>{
   this.balancechange=json;
  
    var  ordername:OrderMode=this._orderMode;
-   if(OrderMode[this.balancechange.OrderMode] !=ordername.toString() && this.balancechange.OrderMode==OrderMode.Sell){
+   var currencyname:CurrencyType=this._currencyType;
+//console.log(CurrencyType[this.balancechange.currencyType]);console.log(this._currencyType);
+   if( OrderMode[this.balancechange.OrderMode] !=ordername.toString()  && this.balancechange.OrderMode==OrderMode.Sell ){
      
             this._mybalance+=this.balancechange.FilledAmount*this.balancechange.Rate;
-            
+            this._mybalance=this._mybalance.tofixedDown(2);
    }
-     if(OrderMode[this.balancechange.OrderMode] !=ordername.toString() && this.balancechange.OrderMode==OrderMode.Buy){
+     if( OrderMode[this.balancechange.OrderMode] !=ordername.toString()   && this.balancechange.OrderMode==OrderMode.Buy){
      
             this._mybalance+=this.balancechange.FilledAmount;
-            
-   }
+ this._mybalance=this._mybalance.tofixedDown(2);
+  }
 //this.ngOnInit();
 });
 
@@ -64,15 +66,25 @@ this._matchOrderEmitter.whenMatchedHappendEvent.subscribe(json =>{
       });
 
 
-this._currencyService.getbalance(this._currencyType).debounceTime(1200).subscribe( result =>{
-this.loaderService.displayLoader(false);
+  this._currencyService.getAllrawleadger(this._currencyType).debounceTime(1200).subscribe( result =>{
+    this.loaderService.displayLoader(false);
+let data = result.json().RawLeadgerList;
+    data.forEach(element => {
+      //console.log(element);
+    if(element.Type==PaymentOperationMode.Credit && CurrencyType[element.Currency]==this._currencyType.toString())
+   { 
+     this._creditsum+=element.Amount;
+   }
+   if( element.Type==PaymentOperationMode.Debit && CurrencyType[element.Currency]==this._currencyType.toString())
+    {
+      this._debitsum+=element.Amount;
+    }
+  });
+  
+this._mybalance=this._creditsum-this._debitsum;
+this._mybalance=this._mybalance.tofixedDown(2);
 
-  if (result.status==200) {
-   this._mybalance=result.json().Balance;
-//console.log(result);
-
-}
-
+this._creditsum=this._debitsum=0;
 
 } ,
 error => {
@@ -86,6 +98,8 @@ this.erroremitter.unauthorizedError(true);
 
 }
 ); 
+
+
 
 }
 
@@ -108,7 +122,27 @@ this.erroremitter.unauthorizedError(true);
 //   return this._total;
 
 // }
+getBalance(){
+  this._currencyService.getAllrawleadger(this._currencyType).debounceTime(1200).subscribe( result =>{
+    this.loaderService.displayLoader(false);
+let data = result.json().RawLeadgerList;
+    data.forEach(element => {
+      //console.log(element);
+    if(element.Type==PaymentOperationMode.Credit && CurrencyType[element.Currency]==this._currencyType.toString())
+   { 
+     this._creditsum+=element.Amount;
+   }
+   if( element.Type==PaymentOperationMode.Debit && CurrencyType[element.Currency]==this._currencyType.toString())
+    {
+      this._debitsum+=element.Amount;
+    }
+  });
+ 
+this._total=this._creditsum-this._debitsum;
 
+this._total=this._creditsum=this._debitsum=0;
+  });
+}
 
 
 

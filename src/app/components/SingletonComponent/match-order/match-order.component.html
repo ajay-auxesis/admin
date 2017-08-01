@@ -1,31 +1,121 @@
+<!--<div>
+    <div class="dropdown">
+        <button class="btn btn-lg btn-export dropdown-toggle" margin-right=46px type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Export <span class="caret"></span>
+        </button>
+
+        <ul class="table-export dropdown-menu"
+        table-selector="'matchtable'"
+        export-options="{type: 'csv', escape: true,  tableName: 'matchlist' }"
+        aria-labelledby="dropdownMenu1">
+            <li te-option te-value="'pdf'" te-param="'type'">
+                <a href="">PDF</a>
+            </li>
+
+            <li te-option te-value="'excel'" te-param="'type'">
+                <a (click)="exportExcel()">Excel</a>
+            </li>
+
+            <li te-option te-value="'csv'" te-param="'type'">
+                <a (click)="exportCSV()">CSV</a>
+            </li>
+        </ul>
+    </div>
+</div>-->
 
 
+
+<br>
 <div class="card">
+
+  <div class="body">
+    <div class="table-responsive ">
+    <table  class="table table-striped " id="{{id}}">
+    <thead>
+    <tr>
+      <th width="4%">
+        Sn
+        </th>
+        <th width="10%">
+          Type
+          </th>
+        <th  width="10%">
+           Amount
+        </th>
+        <th width="10%">Rate</th>
+        <!--<th width="10%">Total</th>-->
+        <th width="10%">
+            Filled Amount
+        </th>
+        <th width="10%">
+            Remainig Amount
+        </th>
+        <th width="10%">
+           Filled %
+        </th>
+        <th width="10%"> 
+          Order Status
+          </th>
+            <th  width="10%"> 
+             Date
+              </th>
+             
+              <th width="10%"> 
+              Action
+              </th>
+    </tr>
+    </thead>
+    <tbody >
+    <tr  *ngFor="let order of _matchOrders ; let i = index"  >
+            <td scope="row">{{i+1}}</td>
+            <td *ngIf="order.OrderMode==1">Sell</td>
+            <td *ngIf="order.OrderMode==2">Buy</td>
+            <td>{{order.Amount | number : '1.0-8'}}</td>
+            <td>{{order.Rate | number : '1.0-8'}}</td>
+            <!--<td>{{order.Rate*order.Amount | number : '1.0-8'}}</td>-->
+            <td>{{order.FilledAmount | number : '1.0-8'}}</td>
+            <td>{{order.RemainigAmount | number : '1.0-8'}}</td>
+            <td>{{(order.Amount-order.RemainigAmount)/order.Amount*100}} %</td>
+            <td *ngIf="order.OrderStatus==1">Open</td>
+            <td *ngIf="order.OrderStatus==2">Close</td>
+            <td>{{order.CreationDateTime | date:'medium'}}</td>
+          
+            <td><button (click)="showDetail(order.OrderId)">Detail</button></td>
+        </tr>
+    </tbody>
+   
+</table>
+ </div>
+  </div>
+</div>
+
+
+
+      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 card" *ngIf="Isauthorized">
+        <div class="">
   <div class="header">
     <div class="row clearfix">
       <div class="col-xs-12 col-sm-6">
-        <h2>Match Order {{matchdto|json}}</h2>
+        <h2>Match Order</h2>
       </div>
-      <div class="col-xs-12 col-sm-6 align-right">
-     </div>
     </div>
   </div>
   <div class="body">
     <div class="table-responsive ">
-    <table class="table table-striped " [mfData]="_matchOrders" #mf="mfDataTable" [mfRowsOnPage]="10" >
+    <table class="table table-striped " [mfData]="newdetail" #mf="mfDataTable" [mfRowsOnPage]="200" >
     <thead>
     <tr>
       <th width="4%">
         <mfDefaultSorter >Sn</mfDefaultSorter>
         </th>
         <th width="10%">
-          <mfDefaultSorter by="Type">Type</mfDefaultSorter>
+          <mfDefaultSorter by="OrderMode">Type</mfDefaultSorter>
           </th>
         <th  width="10%">
             <mfDefaultSorter by="Amount">Amount</mfDefaultSorter>
         </th>
-        <!--<th width="10%"><mfDefaultSorter by="Rate">Rate</mfDefaultSorter></th>
-        <th width="10%"><mfDefaultSorter by="Total">Total</mfDefaultSorter></th>-->
+        <th width="10%"><mfDefaultSorter by="Rate">Rate</mfDefaultSorter></th>
+        <!--<th width="10%"><mfDefaultSorter by="Total">Total</mfDefaultSorter></th>-->
         <th width="10%">
             <mfDefaultSorter by="FilledAmount">Filled Amount</mfDefaultSorter>
         </th>
@@ -36,29 +126,27 @@
           <mfDefaultSorter by="OrderStatus">Order Status</mfDefaultSorter>
           </th>
             <th  width="10%"> 
-              <mfDefaultSorter by="Date">Date</mfDefaultSorter>
+              <mfDefaultSorter by="CreationDateTime">Date</mfDefaultSorter>
               </th>
              
-              <th width="10%"> 
-              Action
-              </th>
+            
     </tr>
     </thead>
-    <tbody #matchorderlistparent>
+    <tbody>
     <tr  *ngFor="let order of mf.data ; let i = index"  >
             <th scope="row">{{i+1}}</th>
             <td *ngIf="order.OrderMode==1">Sell</td>
             <td *ngIf="order.OrderMode==2">Buy</td>
             <td>{{order.Amount | number : '1.0-8'}}</td>
-            <!--<td>{{order.Rate | number : '1.0-8'}}</td>
-            <td>{{order.Rate*order.Amount | number : '1.0-8'}}</td>-->
+            <td>{{order.Rate | number : '1.0-8'}}</td>
+            <!--<td>{{order.Rate*order.Amount | number : '1.0-8'}}</td>-->
             <td>{{order.FilledAmount | number : '1.0-8'}}</td>
             <td>{{order.RemainigAmount | number : '1.0-8'}}</td>
             <td *ngIf="order.OrderStatus==1">Open</td>
             <td *ngIf="order.OrderStatus==2">Close</td>
             <td>{{order.CreationDateTime | date:'medium'}}</td>
-            <td>0.1</td>
-            <td><button>Detail</button></td>
+          
+            
         </tr>
     </tbody>
     <tfoot>
@@ -67,9 +155,14 @@
             <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
         </td>
     </tr>
-    
+    <tr>
+        <td colspan="9">
+            <button (click)="hideDetail()">Ok</button>
+        </td>
+    </tr>
     </tfoot>
 </table>
  </div>
   </div>
 </div>
+    </div>

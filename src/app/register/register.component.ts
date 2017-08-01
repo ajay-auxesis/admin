@@ -73,7 +73,7 @@ if(this.loginresponse.status=Responsecode.OK)
 localStorage.setItem(AppSettings.localtokenkey, responobject.AccessToken);
 localStorage.setItem('username',responobject.UserName);
 this.loaderService.displayLoader(false);
-this._router.navigate(['LtcUsd']);
+this._router.navigate(['Btc_Inr']);
 }
 });
 

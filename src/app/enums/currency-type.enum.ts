@@ -1,8 +1,8 @@
 
 export enum CurrencyType
     {
-        USD=1,
+       INR=1,
         BTC=2,
-        ETH=3,
-        LTC=4
+        ETH=3
+        
     }

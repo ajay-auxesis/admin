@@ -31,7 +31,7 @@ import { SafeHtml } from "@angular/platform-browser";
 import { UserType } from "../../../enums/user-type.enum";
 import { OrderMode } from "../../../enums/order-mode.enum";
 import { NgFor } from "@angular/common";
-
+import './../../../service/currency-display.ts';
 @Component({
   selector: 'app-curenncy-order',
   templateUrl: './curenncy-order.component.html',
@@ -42,12 +42,12 @@ export class CurenncyOrderComponent implements OnInit {
 @Input()  _orderMode: OrderMode;
 
 @ViewChild('f') child: any;
-
+//unauthoriza:string='';
 OrderFormModel: FormGroup;
 _total:any=0;
 fee : GetFeeModel;
-_totalfee:number;
-
+_totalfee:number=0;
+//_class:any ='';
 
 constructor(myElement: ElementRef, private _sharedservice: SharedService, private _http: Http,private _fb: FormBuilder,private _registerservice: RegisterService,private _router: Router, private _buyselldealservice : BuyselldealserviceService,private loaderService: LoaderService,public erroremitter: HttpEmitterService) {
 
@@ -58,14 +58,15 @@ ngOnInit() {
 
 this.OrderFormModel =this._fb.group({
  
-Amount: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber,]),
-Rate: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber]),
+Amount: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber,ValidationmessageserviceService.CheckBalance(this._orderMode,this._currencyType),ValidationmessageserviceService.valueCheck,ValidationmessageserviceService.FiatprecisionValidation]),
+Rate: new FormControl('', [Validators.required, ValidationmessageserviceService.onlynumber,ValidationmessageserviceService.CheckBalanceINR(this._orderMode,this._currencyType),ValidationmessageserviceService.valueCheck,ValidationmessageserviceService.FiatprecisionValidation]),
 });
 
 }
 submitOrder({ value, valid }: { value: orderModel, valid: boolean }) {
 
 value.OrderMode=this._orderMode;
+//console.log(value);
 
 this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
   
@@ -86,26 +87,27 @@ this.erroremitter.unauthorizedError(true);
  if(error.status==Responsecode.PaymentRequired)
   {
 
+
 //console.log(error);
 this.erroremitter.paymentRequiredError(true);
-   
+  // 
  }
 
 }
 ); 
+
 this.OrderFormModel.reset();
-this._total=0.00;
+this._total=0;
 this._totalfee=0;
+
+
 }
 
 getTotal(){
  let _amount = this.OrderFormModel.controls['Amount'].value;
  let _rate = this.OrderFormModel.controls['Rate'].value;
 let total = _amount*_rate;   
-this._total=total;
-
-
-
+this._total=(total).tofixedDown(2);
  
 }
 
@@ -140,7 +142,7 @@ this.erroremitter.unauthorizedError(true);
 
 }
 getpercent(fee,totalamount):any{
-  let totalfeerate=(fee/100)*totalamount;
+  let totalfeerate=((fee/100)*totalamount).tofixedDown(8);
 
   return totalfeerate;
 }

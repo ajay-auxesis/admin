@@ -43,10 +43,10 @@ this.loginresponse=result;
  if(this.loginresponse.status=Responsecode.OK)
  {
   
-if(location.pathname=='/LtcUsd'){location.reload();}
+if(location.pathname=='/Btc_Inr'){location.reload();}
 
 else{
-  this._router.navigate(['LtcUsd']);
+  this._router.navigate(['Btc_Inr']);
   this.loaderService.displayLoader(false);
 }
 
@@ -57,7 +57,7 @@ localStorage.setItem('username',responobject.UserName );
 localStorage.setItem('HubId',responobject.HubID);
 
 
-this._router.navigate(['LtcUsd']);
+this._router.navigate(['Btc_Inr']);
 
 this.erroremitter.unauthorizedError(false);
  }

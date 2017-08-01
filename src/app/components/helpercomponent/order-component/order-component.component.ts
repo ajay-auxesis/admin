@@ -98,7 +98,8 @@ this._rateChangeEmitter.whenRateChangeEvent.subscribe(result =>{
 //console.log(this.ratechange);
 var  ordername:OrderMode=this._orderMode;
 
-
+if(this.ratechange!=null)
+{
 this.ratechange.forEach(element => {
    if(element.OrderMode==OrderMode.Buy)
   { 
@@ -113,7 +114,10 @@ this.ratechange.forEach(element => {
   }
 
 }); 
+}
 
+if(this._orderlist!=null)
+{
   this._orderlist.forEach(element => {
   if(element.OrderMode==OrderMode.Sell && element.Rate== this.SellRate)
   { if(this.SellAmount>0)
@@ -136,10 +140,10 @@ this.ratechange.forEach(element => {
         }
        
   }
-console.log(this._orderlist);
+//console.log(this._orderlist);
 });
 
-
+}
 
 this.updateVolume.ngOnInit();
 });

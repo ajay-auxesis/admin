@@ -15,7 +15,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
   styleUrls: ['./active-order.component.css']
 })
 export class ActiveOrderComponent implements OnInit {
- _activeOrders:any;
+ _activeOrders:any[]=[];
  
 @Input()  _currencyType:CurrencyType;
 @Input()  _orderMode: OrderMode;
@@ -29,8 +29,16 @@ export class ActiveOrderComponent implements OnInit {
 this.loaderService.displayLoader(false);
 //result.
   if (result.status==200) {
-  this._activeOrders =result.json(); 
- console.log(this._activeOrders);
+    let activeOrders =result.json(); 
+  //this._activeOrders =result.json(); 
+  activeOrders.forEach(element => {
+    if(CurrencyType[element.currencyType]==this._currencyType.toString()){
+        this._activeOrders.push(element);
+    }
+    // console.log(CurrencyType[element.currencyType],this._currencyType.toString());
+  });
+
+ //console.log(activeOrders);
 }
 } ,
 error => {

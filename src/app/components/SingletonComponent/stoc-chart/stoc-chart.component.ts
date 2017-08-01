@@ -8,50 +8,14 @@ import { AmChartsService } from "@amcharts/amcharts3-angular";
 export class StocChartComponent implements OnInit {
  private timer: any;
   private chart: any;
+private DataProvider:any=0;
 
-  constructor(private AmCharts : AmChartsService) {}
+ yr:any=2012;
+  mn:any="02";
+   da:any=13;
 
-
-
-  ngOnInit() {
-    this.chart  = this.AmCharts.makeChart( "chartdiv", {
-  "type": "serial",
-  "theme": "light",
-  "dataDateFormat":"YYYY-MM-DD",
-  "valueAxes": [ {
-    "position": "left"
-  } ],
-  "graphs": [ {
-    "id": "g1",
-    "balloonText": "Open:<b>[[open]]</b><br>Low:<b>[[low]]</b><br>High:<b>[[high]]</b><br>Close:<b>[[close]]</b><br>",
-    "closeField": "close",
-    "fillColors": "#7f8da9",
-    "highField": "high",
-    "lineColor": "#7f8da9",
-    "lineAlpha": 1,
-    "lowField": "low",
-    "fillAlphas": 0.9,
-    "negativeFillColors": "#db4c3c",
-    "negativeLineColor": "#db4c3c",
-    "openField": "open",
-    "title": "Price:",
-    "type": "candlestick",
-    "valueField": "close"
-  } ],
-  "chartScrollbar": {
-    "graph": "g1",
-    "graphType": "line",
-    "scrollbarHeight": 30
-  },
-  "chartCursor": {
-    "valueLineEnabled": true,
-    "valueLineBalloonEnabled": true
-  },
-  "categoryField": "date",
-  "categoryAxis": {
-    "parseDates": true
-  },
-  "dataProvider": [
+  constructor(private AmCharts : AmChartsService) {
+this.DataProvider=[
      {
     "date": "2011-08-01",
     "open": "136.65",
@@ -862,18 +826,123 @@ export class StocChartComponent implements OnInit {
     "high": "129.78",
     "low": "125.63",
     "close": "129.40"
+  } ];
+  }
+
+
+
+
+
+
+
+  ngOnInit() {
+    this.chart  = this.AmCharts.makeChart( "chartdiv", {
+  "type": "serial",
+  "theme": "light",
+  "autoResize":true,
+  "dataDateFormat":"YYYY-MM-DD",
+  "valueAxes": [ {
+    "position": "left"
   } ],
+  "graphs": [ {
+    "id": "g1",
+    "balloonText": "Open:<b>[[open]]</b><br>Low:<b>[[low]]</b><br>High:<b>[[high]]</b><br>Close:<b>[[close]]</b><br>",
+    "closeField": "close",
+    "fillColors": "#7f8da9",
+    "highField": "high",
+    "lineColor": "#7f8da9",
+    "lineAlpha": 1,
+    "lowField": "low",
+    "fillAlphas": 0.9,
+    "negativeFillColors": "#db4c3c",
+    "negativeLineColor": "#db4c3c",
+    "openField": "open",
+    "title": "Price:",
+    "type": "candlestick",
+    "valueField": "close"
+  } ],
+  "chartScrollbar": {
+    "graph": "g1",
+    "graphType": "line",
+    "scrollbarHeight": 30,
+    
+  },
+  "chartCursor": {
+    "valueLineEnabled": true,
+    "valueLineBalloonEnabled": true
+  },
+  "categoryField": "date",
+  "categoryAxis": {
+    "parseDates": true
+  },
+  "dataProvider":this.DataProvider,
 
   "export": {
     "enabled": true,
-    "position": "bottom-right"
-  }
+    "position": "bottom-left"
+  },
+   "periodSelector": {
+    "position": "bottom",
+    "periods": [ {
+      "period": "MM",
+      "selected": true,
+      "count": 1,
+      "label": "1 month"
+    }, {
+      "period": "YYYY",
+      "count": 1,
+      "label": "1 year"
+    }, {
+      "period": "YTD",
+      "label": "YTD"
+    }, {
+      "period": "MAX",
+      "label": "MAX"
+    } ]
+
+ }
 } );
+
+
+// this.timer = setInterval(() => {
+//       // This must be called when making any changes to the chart
+//       this.AmCharts.updateChart(this.chart, () => {
+//         this.chart.DataProvider = this.makeRandomDataProvider();
+//       });
+//     }, 10);
+  
+
 
 // this.chart.addListener( "rendered", this.zoomChart );
 // this.zoomChart();
  }
+makeRandomDataProvider() {
+    
 
+    // Generate random data
+   
+  this.chart.dataProvider.push({
+        date:this.yr+'-'+this.mn+'-'+this.da,
+        open: Math.floor(Math.random()*12)-3,
+        high: Math.floor(Math.random()*8)-4,
+        low: Math.floor(Math.random() *12)-4,
+        close: Math.floor(Math.random()*3)-15,
+      });
+      this.da++;
+//    if(this.da==28 && this.mn==2){ this.da=1;this.mn=3;}  
+// if(this.da==30){  this.da=1; } else{ this.da++; }
+// if(this.da==1){if(this.mn==12){this.mn=1;}else {this.mn++;} }
+
+// if(this.mn==1){  this.yr++; }
+
+// console.log('date='+this.da);
+// console.log('mnth='+this.mn);
+// console.log('yr='+this.yr);
+    return this.chart.dataProvider;
+   
+  }
+
+  
 //  zoomChart() {
   
 //   this.chart.zoomToIndexes( this.chart.dataProvider.length - 10, this.chart.dataProvider.length - 1 );

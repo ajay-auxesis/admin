@@ -39,7 +39,7 @@ private ratechange:newRateModel;
            if(CurrencyType[this.neworder.CurrencyType]==curname.toString()  && OrderMode[this.neworder.OrderMode] !=ordername.toString())
            {
              this.removeclass();
-            this._lowestPrice=this.neworder.Rate;
+            this._lowestPrice=(this.neworder.Rate).tofixedDown(2);
            
            }
  });
@@ -51,11 +51,11 @@ this._rateChangeEmitter.whenRateChangeEvent.subscribe(json =>{
    var  ordername:OrderMode=this.OrderMode;
    if(OrderMode[this.OrderMode]==OrderMode.Buy.toString()){
 this.removeclass();
-            this._lowestPrice=this.ratechange.BuyRate;
+            this._lowestPrice=(this.ratechange.BuyRate).tofixedDown(2);
    }
 if(OrderMode[this.OrderMode]==OrderMode.Sell.toString()){
 this.removeclass();
-            this._lowestPrice=this.ratechange.SellRate;
+            this._lowestPrice=(this.ratechange.SellRate).tofixedDown(2);
    }
 });
 
@@ -80,7 +80,6 @@ this.removeclass();
         this.ratechangetimerObserver = ratechangetimer.subscribe(() =>{
         
          if(this._changevalue!=this._lowestPrice){
-         
           this.addclass();
           this._changevalue=this._lowestPrice;
         }
@@ -93,7 +92,7 @@ this.removeclass();
     this.loaderService.displayLoader(false);
 
   if (result.status==200) {
-   this._lowestPrice=result.json().lowestAsk;
+   this._lowestPrice=(result.json().lowestAsk).tofixedDown(2);
     }
     } ,
 error => {

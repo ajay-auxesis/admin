@@ -7,10 +7,22 @@
                     <li class="header"><i class="material-icons">apps</i><span>{{_title}}</span></li>
                 
             
-                     <li [routerLinkActive]="['active']">
+                     <!--<li [routerLinkActive]="['active']">
                         <a [routerLink]="['LtcUsd']">
                             <i class="material-icons">text_fields</i>
-                            <span>LTC/USD</span>
+                            <span>LTC/INR</span>
+                        </a>
+                    </li>-->
+                     <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['Btc_Inr']">
+                            <i class="material-icons">text_fields</i>
+                            <span>BTC/INR</span>
+                        </a>
+                    </li>
+                     <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['Eth_Inr']">
+                            <i class="material-icons">text_fields</i>
+                            <span>ETH/INR</span>
                         </a>
                     </li>
                     <li [routerLinkActive]="['active']">

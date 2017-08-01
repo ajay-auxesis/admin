@@ -24,10 +24,10 @@ _volume:number=0;
 
  this._currencyService.getcurrencyvolume(this.CurrencyType,this.OrderMode).debounceTime(1200).subscribe( result =>{
  this.loaderService.displayLoader(false);
-
+//console.log(this.CurrencyType,this.OrderMode,result.json());
   if (result.status==200) {
    this._volume=result.json().volume;
-
+this._volume=this._volume.tofixedDown(2);
 }
 } ,
 error => {
@@ -43,20 +43,24 @@ this.erroremitter.unauthorizedError(true);
 ); 
 
   }
+
   newVolumeTotal(orderListModelnew : orderListModel){
+   
      var curname:CurrencyType=this.CurrencyType;
  var  ordername:OrderMode=this.OrderMode;
 
 
-           if(orderListModelnew.OrderMode == OrderMode.Sell)
+           if(orderListModelnew.OrderMode == OrderMode.Sell && CurrencyType[orderListModelnew.CurrencyType]==curname.toString())
            {
            
               this._volume+=orderListModelnew.Amount;
+             this._volume=this._volume.tofixedDown(2);
           }
-           if(orderListModelnew.OrderMode == OrderMode.Buy)
+           if(orderListModelnew.OrderMode == OrderMode.Buy && CurrencyType[orderListModelnew.CurrencyType]==curname.toString())
            {
            
               this._volume+=(orderListModelnew.Amount*orderListModelnew.Rate);
+              this._volume=this._volume.tofixedDown(2);
           }
 
    }

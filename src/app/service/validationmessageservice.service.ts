@@ -16,10 +16,10 @@ import { Validator,  NG_VALIDATORS } from '@angular/forms';
 
 @Injectable()
 export class ValidationmessageserviceService {
-
-
+static messages;
+static newval;
   formgroupparents: FormGroup;
- public message:any=0;
+ //public static message:any=0;
 constructor(private _http : Http,private  _currencyService:CurrencyService){}
    
      static getValidatorErrorMessage(validatorName: string, validatorValue?: any,confirmpassword?:string,controlname?:string,currencytype?:string) {
@@ -35,8 +35,9 @@ constructor(private _http : Http,private  _currencyService:CurrencyService){}
             'onlynumber' : `${controlname} must be a number .`,
             'maxValue' : `Not enough ${currencytype} balance`,
             'CheckBalance' : `Not enough ${currencytype} balance`,
-            'balanceCheck' : `Not enough USD balance`,
-            'Fiatprecision' : `${controlname} precise upto 8 decimal`
+            'balanceCheck' : `Not enough INR balance`,
+            'Fiatprecision' : `${controlname} precise upto 8 decimal only`,
+            'valueCheck' : `${controlname} must be greater than zero`
         };
 
         return config[validatorName];
@@ -98,6 +99,22 @@ catch(error)
    
 }
 
+static valueCheck(control){
+
+try
+{
+      if (control.value>0) {
+            return null;
+        } else {
+            return { 'valueCheck': true };
+        }
+}
+catch(error)
+{
+ return null;
+}
+   
+}
 
 
  static ConfirmpasswordValidator(control:FormControl) {
@@ -115,18 +132,14 @@ if(password!==control.value)
 
      return { 'passwordnotmatch': true };
  }
-
-
-
 }
-
  return null;
-       
-       
-    }
+      }
+
+
+
 
   static FiatprecisionValidation(control) {
-
 try
 {
 if (control.value.match(/^[0-9]+(\.[0-9]{1,8})?$/)) {
@@ -139,33 +152,74 @@ catch(error)
 {
  return null;
 }
+  }
 
-    }
 
+static CheckBalance(order,currency){
+return (control: AbstractControl): {[key: string]: any} => {
 
-static CheckBalance(control ){
+checkmybalance(control,order,currency).subscribe(res=>{
+ ValidationmessageserviceService.messages=res;
+});
 
-try{
-
-checkmybalance(control).subscribe(res=>{console.log(res);; });
-
-}
-catch(error)
+if(control.value > ValidationmessageserviceService.messages && order=='Sell'){
+      
+      let reason='maxValue';
+return { [reason]: true }
+ }
+else
 {
+return null;
+ }
+}
+}
+
+
+static CheckBalanceINR(order,currency){
+let amount:number=0;
+return (control: FormControl): {[key: string]: any} => {
     
-    return null;
+ if(control.valueChanges)
+{   
+let formgroup:FormGroup=control._parent;
+amount=formgroup.controls["Amount"].value;
+
+}
+checkmybalance(control,order,currency).subscribe(res=>{
+ ValidationmessageserviceService.newval=res;
+});
+console.log( ValidationmessageserviceService.newval);
+let total=0;
+if(amount!=null)
+{total=amount*control.value;}
+
+if((control.value > ValidationmessageserviceService.newval && order=='Buy') || (total > ValidationmessageserviceService.newval && order=='Buy')){
+   let reason='balanceCheck';
+return { [reason]: true }
+ }
+ ValidationmessageserviceService.newval=0;
+return null;
 }
 }
 
 
-
 }
+
 
 interface mybalanceValidator {
 }
 
-function checkmybalance(control) : any {
-    
+function checkmybalance(control,order,currency) : any {
+   let currencyType; 
+   if(order=='Buy')
+   {
+       currencyType='INR';
+   }
+   else
+   {
+        currencyType=currency;
+   }
+
  let injector = ReflectiveInjector.resolveAndCreate([
     Http,
    BrowserXhr,
@@ -175,7 +229,7 @@ function checkmybalance(control) : any {
     {provide: XSRFStrategy, useFactory: () => new CookieXSRFStrategy()},
   ]);
   let http = injector.get(Http);
-let currencyType = 'LTC';
+
 
     let headers = new Headers();
      let token:string= localStorage.getItem("_cashaacryptoAcessToken");
@@ -186,18 +240,32 @@ let options = new RequestOptions({ headers: headers });
  return  http.get(`${AppSettings.API_ENDPOINT}getbalance?currencyType=${currencyType}`,options)
       .map(
         data => {
-            if(control.value < data.json().Balance){
-                return null;
-        }
-        else
-        {
-            let reason='maxValue';
-          return { [reason]: true }
-     
-        }
+      return  data.json().Balance;
     });
-        
-
-
-
 }
+
+// function checkmybalanceUSD(control,order,currency) : any {
+//    let currencyType='INR'; 
+//  let injector = ReflectiveInjector.resolveAndCreate([
+//     Http,
+//    BrowserXhr,
+//     {provide: RequestOptions, useClass: BaseRequestOptions},
+//     {provide: ResponseOptions, useClass: BaseResponseOptions},
+//     {provide: ConnectionBackend, useClass: XHRBackend},
+//     {provide: XSRFStrategy, useFactory: () => new CookieXSRFStrategy()},
+//   ]);
+//   let http = injector.get(Http);
+
+
+//     let headers = new Headers();
+//      let token:string= localStorage.getItem("_cashaacryptoAcessToken");
+// headers.append('Authorization', `Basic ${token}`);
+
+// let options = new RequestOptions({ headers: headers });
+     
+//  return  http.get(`${AppSettings.API_ENDPOINT}getbalance?currencyType=${currencyType}`,options)
+//       .map(
+//         data => {
+//       return  data.json().Balance;
+//     });
+// }

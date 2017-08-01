@@ -30,8 +30,6 @@
       ],
       "scripts": [
        
-          
-
         "./assets/plugins/bootstrap/js/bootstrap.js",
         "./assets/plugins/bootstrap-select/js/bootstrap-select.js",
         "./assets/plugins/jquery-slimscroll/jquery.slimscroll.js",
@@ -48,8 +46,8 @@
         "./assets/plugins/jquery-sparkline/jquery.sparkline.js",
         "./assets/js/admin.js",
         "./assets/js/helpers.js",
-        "./assets/js/script.js"
-  
+        "./assets/js/script.js",
+        "./assets/js/amchart.js"
        
       ],
       "environments": {

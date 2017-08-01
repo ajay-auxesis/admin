@@ -23,9 +23,6 @@
         <th width="14%">
             <mfDefaultSorter by="RemainigAmount">Remainig Amount</mfDefaultSorter>
         </th>
-        <th width="14%">
-         <mfDefaultSorter by="filled">Filled %</mfDefaultSorter>
-         </th>
             <th  width="14%"> 
               <mfDefaultSorter by="Date">Date</mfDefaultSorter>
               </th>
@@ -37,14 +34,14 @@
     <tr  *ngFor="let order of mf.data ; let i = index"  >
             <th scope="row">{{i+1}}</th>
             
-           <td *ngIf="order.currencyType==3">ETH</td>
-            <td *ngIf="order.currencyType==2">BTC</td>       
+           <td *ngIf="order.currencyType==4">LTC</td>
+                   
             <td>{{order.Amount}}</td>
           
            <td>{{order.Rate | number : '1.0-8'}}</td>
             <!--<td>{{order.Rate*order.Amount | number : '1.0-8'}}</td>-->
             <td>{{order.RemainingAmount}}</td>
-            <td>{{((order.Amount-order.RemainingAmount)/order.Amount*100)}} %</td>
+         
             <td>{{order.CreationDateTime | date:'medium'}}</td>
            
             <td><Button>Cancel</Button></td>

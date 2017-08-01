@@ -18,10 +18,10 @@ export class BuyselldealserviceService {
     }
   PostsellbuyDeal(orderModel: orderModel): Observable<any> {
    
-     
+     console.log(orderModel);
       let bodyString = JSON.stringify(orderModel); 
-return this.http.post(`${AppSettings.API_ENDPOINT}LtcUsdoder`, bodyString);
-    
+//return this.http.post(`${AppSettings.API_ENDPOINT}LtcUsdoder`, bodyString);
+   return this.http.post(`${AppSettings.API_ENDPOINT}BtcInrorder`, bodyString);  
   }
 
   PostFeeCalculation(feeModel: GetFeeModel): Observable<any> {

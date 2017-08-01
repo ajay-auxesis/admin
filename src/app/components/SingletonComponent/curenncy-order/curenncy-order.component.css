@@ -1,4 +1,6 @@
-
+.errormsg{
+    color:red;
+}
 .position{
     float: right;
 }
