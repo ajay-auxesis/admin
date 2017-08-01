@@ -1,66 +1,38 @@
-<!--<div>
-    <div class="dropdown">
-        <button class="btn btn-lg btn-export dropdown-toggle" margin-right=46px type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Export <span class="caret"></span>
-        </button>
 
-        <ul class="table-export dropdown-menu"
-        table-selector="'matchtable'"
-        export-options="{type: 'csv', escape: true,  tableName: 'matchlist' }"
-        aria-labelledby="dropdownMenu1">
-            <li te-option te-value="'pdf'" te-param="'type'">
-                <a href="">PDF</a>
-            </li>
-
-            <li te-option te-value="'excel'" te-param="'type'">
-                <a (click)="exportExcel()">Excel</a>
-            </li>
-
-            <li te-option te-value="'csv'" te-param="'type'">
-                <a (click)="exportCSV()">CSV</a>
-            </li>
-        </ul>
-    </div>
-</div>-->
-
-
-
-<br>
 <div class="card">
 
   <div class="body">
-    <div class="table-responsive ">
+    <!--<div class="table-responsive ">-->
     <table  class="table table-striped " id="{{id}}">
     <thead>
     <tr>
-      <th width="4%">
+      <th >
         Sn
         </th>
-        <th width="10%">
+        <th >
           Type
           </th>
-        <th  width="10%">
+        <th>
            Amount
         </th>
-        <th width="10%">Rate</th>
+        <th>Rate</th>
         <!--<th width="10%">Total</th>-->
-        <th width="10%">
+        <th>
             Filled Amount
         </th>
-        <th width="10%">
+        <th>
             Remainig Amount
         </th>
-        <th width="10%">
+        <th>
            Filled %
         </th>
-        <th width="10%"> 
+        <th> 
           Order Status
           </th>
-            <th  width="10%"> 
+            <th> 
              Date
-              </th>
-             
-              <th width="10%"> 
+              </th>             
+              <th> 
               Action
               </th>
     </tr>
@@ -86,7 +58,7 @@
    
 </table>
  </div>
-  </div>
+  <!--</div>-->
 </div>
 
 

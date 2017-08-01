@@ -1,5 +1,3 @@
-import { ExcelExportService } from './service/tableExportService/excel-export.service';
-import { TableExportServiceService } from './service/tableExportService/table-export-service.service';
 //import { ChartModule } from 'angular2-highcharts';
 import { CurrencyDisplayServiceService } from './service/CurrencyDisplayService/currency-display-service.service';
 import { DynamicMatchOrderService } from './components/SingletonComponent/match-order/dynamic-match-order.service';
@@ -160,7 +158,7 @@ const routes: Routes = [
   // ReverseArrayPipe
   ],
 entryComponents: [ToasterComponent],
-  providers: [AuthGuard,MatchEmitterService,ExcelExportService,TableExportServiceService,CurrencyDisplayServiceService,DynamicMatchOrderService,DynamicOrderRowService,ActiveOrderService,MatchOrderService,RateEmitterService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
+  providers: [AuthGuard,MatchEmitterService,CurrencyDisplayServiceService,DynamicMatchOrderService,DynamicOrderRowService,ActiveOrderService,MatchOrderService,RateEmitterService,HttpEmitterService,CurrencyRateService,SignalRService,CurrencyService,SlimLoadingBarModule,BuyselldealserviceService,ValidationmessageserviceService, SharedService, RegisterService,LoaderService,DepositServiceService,
 
    {
       provide: Http,

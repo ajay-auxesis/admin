@@ -1,40 +1,40 @@
 <div class="card">
   
   <div class="body">
-    <div class="table-responsive ">
-    <table class="table table-striped " [mfData]="_activeOrders" #mf="mfDataTable" [mfRowsOnPage]="10" >
+    <!--<div class="table-responsive ">-->
+    <table class="table table-striped " id="{{id}}" >
     <thead>
     <tr>
-      <th width="4%">
-        <mfDefaultSorter >Sn</mfDefaultSorter>
+      <th >
+        Sn
         </th>
-        <th width="14%">
-          <mfDefaultSorter by="Type">Type</mfDefaultSorter>
+        <th>
+          Type
           </th>
-        <th width="14%">
-            <mfDefaultSorter by="Amount">Amount</mfDefaultSorter>
+        <th >
+            Amount
         </th>
-       <th width="14%">
-         <mfDefaultSorter by="Rate">Rate</mfDefaultSorter>
+       <th>
+        Rate
          </th>
-        <!--<th width="14%">
-          <mfDefaultSorter by="Total">Total</mfDefaultSorter>
+        <!--<th>
+         Total
           </th>-->
-        <th width="14%">
-            <mfDefaultSorter by="RemainigAmount">Remainig Amount</mfDefaultSorter>
+        <th>
+            Remainig Amount
         </th>
-        <th width="14%">
-         <mfDefaultSorter by="filled">Filled %</mfDefaultSorter>
+        <th>
+        Filled %
          </th>
-            <th  width="14%"> 
-              <mfDefaultSorter by="Date">Date</mfDefaultSorter>
+            <th> 
+              Date
               </th>
              
               <th> Action</th>
     </tr>
     </thead>
     <tbody>
-    <tr  *ngFor="let order of mf.data ; let i = index"  >
+    <tr  *ngFor="let order of _activeOrders ; let i = index"  >
             <th scope="row">{{i+1}}</th>
             
            <td *ngIf="order.currencyType==3">ETH</td>
@@ -50,15 +50,8 @@
             <td><Button>Cancel</Button></td>
         </tr>
     </tbody>
-    <tfoot>
-    <tr>
-        <td colspan="7">
-            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-        </td>
-    </tr>
     
-    </tfoot>
 </table>
  </div>
-  </div>
+  <!--</div>-->
 </div>

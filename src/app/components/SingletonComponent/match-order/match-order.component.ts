@@ -1,5 +1,4 @@
-import { ExcelExportService } from './../../../service/tableExportService/excel-export.service';
-import { TableExportServiceService } from './../../../service/tableExportService/table-export-service.service';
+
 import { DynamicMatchOrderService } from './dynamic-match-order.service';
 import { matchorderModel } from './../../../models/LTCUSDOrderModel';
 import { Observable } from 'rxjs/Rx';
@@ -49,11 +48,11 @@ private matchorderListModelObject: matchorderModel;
 previd:any=0;
 prevamount:any=0;
 Isauthorized:boolean=false;
- newdetail:any=[]; list:Array<mModel>;
+ newdetail:any=[]; 
 id:any;
 
-  constructor(private _rootNode: ElementRef,private _exportExcel : ExcelExportService ,private _exportCsvTable : TableExportServiceService, private _matchEmitterService:MatchEmitterService,private _matchorderservice : MatchOrderService,private loaderService : LoaderService , private erroremitter : HttpEmitterService, private _dynamicmatchorderService : DynamicMatchOrderService,private componentFactoryResolver:ComponentFactoryResolver,private cdRef: ChangeDetectorRef,) { 
-this.rootNode=_rootNode;
+  constructor(  private _matchEmitterService:MatchEmitterService,private _matchorderservice : MatchOrderService,private loaderService : LoaderService , private erroremitter : HttpEmitterService, private _dynamicmatchorderService : DynamicMatchOrderService,private componentFactoryResolver:ComponentFactoryResolver,private cdRef: ChangeDetectorRef,) { 
+
 this._matchOrders = new Array<matchorderModel>();
 
       this._matchEmitterService.whenMatchedHappendEvent.subscribe(json => { 
@@ -96,9 +95,12 @@ var newid='#'+this.id;
 
 setTimeout(function () {
 $(newid).DataTable({
-  
+   dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
      } );
-},3000);
+},1000);
 
        let timer = Observable.interval(100);
         this.timerObserver = timer.subscribe(() =>{ 
@@ -162,26 +164,14 @@ this.prevamount=0;
 })
 
 distinctmatchorder.reverse();
-var ll=new mModel();
+
 var unique =new matchorderModel();
 var distinct = [];
-this.list= new Array<mModel>();
+
     for( var i in distinctmatchorder){ var num=0;
      if( typeof(unique[distinctmatchorder[i].OrderId])=='undefined' ){
       distinct.push(distinctmatchorder[i]);
 
-   //this.list.push(distinctmatchorder[i]);
-     //ll.Sn=i;
-    ll.Type=distinctmatchorder[i].OrderMode;
-   ll.Amount=distinctmatchorder[i].Amount;
-    ll.Rate=distinctmatchorder[i].Rate;
-    ll.Price=distinctmatchorder[i].Amount*distinctmatchorder[i].Rate;
-    ll.FilledAmount=distinctmatchorder[i].FilledAmount;
-    ll.RemainigAmount=distinctmatchorder[i].RemainigAmount;
-    ll.OrderStatus=distinctmatchorder[i].OrderStatus;
-    ll.Date=distinctmatchorder[i].CreationDateTime;
-this.list.push(ll);
-//this.list.push(ll[i]);
      }
      unique[distinctmatchorder[i].OrderId]=0;
     }
@@ -212,33 +202,8 @@ this.Isauthorized=false;
 this.newdetail=[];
 }
 
-
-exportCSV(){
-  
- this._exportCsvTable.exportTableToCSV(this.list);
-
-
-}
-exportExcel(){
-
-}
- exportPdf(){
-
-}
 }
 
-export class mModel {
-
-Sn: number;
-Type:OrderMode ;
-Amount: number;
-Rate: number; 
-Price: number;
-FilledAmount:number;
-RemainigAmount:number;
-OrderStatus: any;
-Date:Date;
-}
 						 	
 
 
