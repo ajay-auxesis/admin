@@ -43,7 +43,22 @@ setTimeout(function () {
 $(newid).DataTable({
    dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+            'copy',{
+           extend: 'pdf',
+           exportOptions: {
+           columns: [1,2,3,4,5,6]
+            }
+       },{
+           extend: 'csv',
+           exportOptions: {
+           columns: [1,2,3,4,5,6]
+            }
+       },{
+           extend: 'excel',
+            exportOptions: {
+           columns: [1,2,3,4,5,6]
+            }
+       }   
         ]
      } );
 },1000);

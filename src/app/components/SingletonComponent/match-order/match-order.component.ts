@@ -96,8 +96,23 @@ var newid='#'+this.id;
 setTimeout(function () {
 $(newid).DataTable({
    dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+       buttons: [
+            'copy',{
+           extend: 'pdf',
+           exportOptions: {
+           columns: [1,2,3,4,5,6,7,8]
+            }
+       },{
+           extend: 'csv',
+           exportOptions: {
+           columns: [1,2,3,4,5,6,7,8]
+            }
+       },{
+           extend: 'excel',
+            exportOptions: {
+           columns: [1,2,3,4,5,6,7,8]
+            }
+       }   
         ]
      } );
 },1000);

@@ -100,7 +100,7 @@ if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path
       })
       .filter(route => route.outlet === 'primary')
       .mergeMap(route => route.data)
-      .subscribe((event) => this.titleService.setTitle("Crypto Trading | " +event['title']));
+      .subscribe((event) => this.titleService.setTitle("Auxce | " +event['title']));
 
        this._matchEmitterService.whenMatchedHappendEvent.subscribe(json => { 
        const factory = this.componentFactoryResolver.resolveComponentFactory(ToasterComponent);
