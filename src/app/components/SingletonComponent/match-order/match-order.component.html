@@ -42,6 +42,7 @@
             <td scope="row">{{i+1}}</td>
             <td *ngIf="order.OrderMode==1">Sell</td>
             <td *ngIf="order.OrderMode==2">Buy</td>
+            <td *ngIf="order.OrderMode==0">0</td>
             <td>{{order.Amount | number : '1.0-8'}}</td>
             <td>{{order.Rate | number : '1.0-8'}}</td>
             <!--<td>{{order.Rate*order.Amount | number : '1.0-8'}}</td>-->
@@ -50,6 +51,7 @@
             <td>{{(order.Amount-order.RemainigAmount)/order.Amount*100}} %</td>
             <td *ngIf="order.OrderStatus==1">Open</td>
             <td *ngIf="order.OrderStatus==2">Close</td>
+            <td *ngIf="order.OrderStatus==0">0</td>
             <td>{{order.CreationDateTime | date:'medium'}}</td>
           
             <td><button (click)="showDetail(order.OrderId)">Detail</button></td>

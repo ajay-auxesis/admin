@@ -127,7 +127,7 @@ this.loaderService.displayLoader(false);
 
   if (result.status==200 && result!=null) {
 
-//console.log(result.json());
+console.log(result.json());
   this._matchOrders = result.json(); 
   this._orderDetail=this._matchOrders;
   if( this._matchOrders !=null)
@@ -158,7 +158,7 @@ this.erroremitter.unauthorizedError(true);
     var newmatch = [];
     for( var x in distinctmatchorder){
      
-     if( typeof(matcharray[distinctmatchorder[x].OrderId])=='undefined'  && /*distinctmatchorder[x].CurrencyType ==*/ this._currencyType.toString()=="LTC" ){
+     if( typeof(matcharray[distinctmatchorder[x].OrderId])=='undefined'  /* &&distinctmatchorder[x].CurrencyType == this._currencyType.toString()=="LTC" */){
        
       newmatch.push(distinctmatchorder[x].OrderId);
      }

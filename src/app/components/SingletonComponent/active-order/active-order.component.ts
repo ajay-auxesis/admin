@@ -70,13 +70,14 @@ this.loaderService.displayLoader(false);
   if (result.status==200) {
     let activeOrders =result.json(); 
   //this._activeOrders =result.json(); 
+  if(activeOrders!=null){
   activeOrders.forEach(element => {
     if(CurrencyType[element.currencyType]==this._currencyType.toString()){
         this._activeOrders.push(element);
     }
     // console.log(CurrencyType[element.currencyType],this._currencyType.toString());
   });
-
+  }
  //console.log(activeOrders);
 }
 } ,
