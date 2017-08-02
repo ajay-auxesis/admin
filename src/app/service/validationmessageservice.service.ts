@@ -1,8 +1,9 @@
+import { AppSettings } from 'app/app-settings';
 import { ConnectionBackend, XSRFStrategy } from '@angular/http';
 import { XHRBackend } from '@angular/http';
 
 
-import { AppSettings } from './../components/SingletonComponent/lowest-ask-price/app-settings';
+//import { AppSettings } from './../components/SingletonComponent/lowest-ask-price/app-settings';
 import { Observable } from 'rxjs/Observable';
 import { CurrencyService } from './CurrencyServices/currency.service';
 import { Http, HttpModule, RequestOptions, CookieXSRFStrategy, BrowserXhr, ResponseOptions, BaseRequestOptions, BaseResponseOptions,Headers } from '@angular/http';
@@ -188,7 +189,7 @@ amount=formgroup.controls["Amount"].value;
 checkmybalance(control,order,currency).subscribe(res=>{
  ValidationmessageserviceService.newval=res;
 });
-//console.log( ValidationmessageserviceService.newval);
+console.log( ValidationmessageserviceService.newval);
 let total=0;
 if(amount!=null)
 {total=amount*control.value;}

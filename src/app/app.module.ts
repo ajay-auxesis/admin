@@ -6,7 +6,7 @@ import { MatchEmitterService } from './service/Emitters/match-emitter.service';
 import { MatchOrderService } from './service/OrderServices/match-order.service';
 import { ActiveOrderService } from './service/OrderServices/active-order.service';
 import { ErrorMessagePopupComponent } from './components/SingletonComponent/error-message-popup/error-message-popup.component';
-import { HttpEmitterService } from 'app/service/CoustomeHttpService/http-emitter.service';
+import { HttpEmitterService } from './service/CoustomeHttpService/http-emitter.service';
 import { CurrencyVolumeComponent } from './components/SingletonComponent/currency-volume/currency-volume.component';
 import { OrderLisRowComponent } from './components/helpercomponent/order-lis-row/order-lis-row.component';
 import { MatchOrderComponent } from './components/SingletonComponent/match-order/match-order.component';
@@ -50,7 +50,7 @@ import { OrderComponentComponent } from './components/helpercomponent/order-comp
 import { LtcUsdRouteComponent } from './components/RouteComponent/ltc-usd-route/ltc-usd-route.component';
 import { DepositeBalanceRouteComponent } from './components/RouteComponent/deposite-balance-route/deposite-balance-route.component';
 import { DepositeBalanceComponent } from './components/SingletonComponent/deposite-balance/deposite-balance.component';
-import { MyCurrencyBalanceComponent } from "app/components/SingletonComponent/my-currency-balance/my-currency-balance.component";
+import { MyCurrencyBalanceComponent } from "./components/SingletonComponent/my-currency-balance/my-currency-balance.component";
 import { StocChartComponent } from './components/SingletonComponent/stoc-chart/stoc-chart.component';
 import { StocMarketComponent } from './components/SingletonComponent/stoc-market/stoc-market.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
