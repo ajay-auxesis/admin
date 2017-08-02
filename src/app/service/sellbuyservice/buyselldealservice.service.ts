@@ -1,3 +1,4 @@
+import { CurrencyType } from 'app/enums/currency-type.enum';
 import { GetFeeModel } from './../../models/DepositModel';
 import { orderModel } from './../../models/LTCUSDOrderModel';
 import { AppSettings } from './../../app-settings';
@@ -16,12 +17,19 @@ export class BuyselldealserviceService {
       public _IsAuthenticated:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     constructor(private http: Http,private _router: Router) {
     }
-  PostsellbuyDeal(orderModel: orderModel): Observable<any> {
-   
-     console.log(orderModel);
+  PostsellbuyDeal(orderModel: orderModel,currencyType: CurrencyType): Observable<any> {
+
       let bodyString = JSON.stringify(orderModel); 
 //return this.http.post(`${AppSettings.API_ENDPOINT}LtcUsdoder`, bodyString);
-   return this.http.post(`${AppSettings.API_ENDPOINT}BtcInrorder`, bodyString);  
+console.log
+
+if(CurrencyType[currencyType]==CurrencyType.BTC.toString())
+   {return this.http.post(`${AppSettings.API_ENDPOINT}BtcInrorder`, bodyString);} 
+   
+   if(CurrencyType[currencyType]==CurrencyType.ETH.toString()) {
+     return this.http.post(`${AppSettings.API_ENDPOINT}EthInrorder`, bodyString);
+   }
+
   }
 
   PostFeeCalculation(feeModel: GetFeeModel): Observable<any> {

@@ -67,34 +67,25 @@ submitOrder({ value, valid }: { value: orderModel, valid: boolean }) {
 
 value.OrderMode=this._orderMode;
 //console.log(value);
-
-this._buyselldealservice.PostsellbuyDeal(value).debounceTime(1200).subscribe(result =>{
-  
+// if(this._currencyType.toString()=="BTC"){
+this._buyselldealservice.PostsellbuyDeal(value,this._currencyType).debounceTime(1200).subscribe(result =>{ 
 this.loaderService.displayLoader(false);
 //console.log(result);
 this.child.ngOnInit();
-
-}
- ,
+},
 error => {
    this.loaderService.displayLoader(false);
       if(error.status==Responsecode.Unauthorized)
-  {
-  
-this.erroremitter.unauthorizedError(true);
-   
+  { 
+this.erroremitter.unauthorizedError(true);  
  }
  if(error.status==Responsecode.PaymentRequired)
   {
-
-
-//console.log(error);
 this.erroremitter.paymentRequiredError(true);
-  // 
  }
-
 }
 ); 
+// }
 
 this.OrderFormModel.reset();
 this._total=0;

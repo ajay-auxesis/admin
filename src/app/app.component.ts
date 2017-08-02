@@ -52,8 +52,8 @@ var self=this;
          });
 
          cryptohubproxy.on('whennewOrderAdded', function (newOrder) {
-           // console.log("whennewOrderAdded");
-             // console.log(newOrder);
+        console.log("whennewOrderAdded");
+            console.log(newOrder);
            let orderListModelobj:orderListModel=newOrder as orderListModel;
            self._signalRService.startConnection(orderListModelobj);
          });
@@ -61,14 +61,15 @@ var self=this;
     cryptohubproxy.on('whenMatchHappend', function (matchorder) {
        
                 self._matchEmitterService.whenMatchedHappend(matchorder);
-                //console.log(matchorder);
-                 //console.log("whenMatchHappend");
+                console.log("whenMatchHappend");
+                console.log(matchorder);
+                 
          });
 
      cryptohubproxy.on('whenRateChange', function (RateChange) {
               self._rateEmitterService.whenRateChanged(RateChange);
-             // console.log("whenRateChange");
-           // console.log(RateChange);
+            console.log("whenRateChange");
+          console.log(RateChange);
          });
 
 

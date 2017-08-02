@@ -76,7 +76,7 @@ if(newmatchorderlist!=null && CurrencyType[matchorderListModelnew.currencyType]=
 
 newmatchorderlist.push(matchorderListModelnew);
 //this.distinctmatchorder(newmatchorderlist);
-//console.log(matchorderListModelnew);
+console.log(matchorderListModelnew);
 
 }
 

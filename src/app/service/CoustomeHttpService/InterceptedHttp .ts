@@ -19,15 +19,17 @@ export class InterceptedHttp extends Http {
     }
 
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        if(url.indexOf("volume")== -1 && url.indexOf("getbalance")== -1  )this.loaderService.displayLoader(true);
+        if(url.indexOf("volume")== -1 && url.indexOf("getrawleadger")== -1  )this.loaderService.displayLoader(true);
         url = this.updateUrl(url);
-     
+  
     return super.get(url, this.getRequestOptionArgs(options)).catch(this.handleError);
     }
 
     post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-     if(url.indexOf("conectuser")== -1 && url.indexOf("orderfee")== -1)this.loaderService.displayLoader(true);
+     if(url.indexOf("conectuser")== -1 )this.loaderService.displayLoader(true);
+
         url = this.updateUrl(url);
+        //this.loaderService.displayLoader(false);
         return super.post(url, body, this.getRequestOptionArgs(options)).catch(this.handleError);
     }
 

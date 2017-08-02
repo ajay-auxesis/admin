@@ -17,9 +17,9 @@
        <th>
         Rate
          </th>
-        <!--<th>
+        <th>
          Total
-          </th>-->
+          </th>
         <th>
             Remainig Amount
         </th>
@@ -37,12 +37,12 @@
     <tr  *ngFor="let order of _activeOrders ; let i = index"  >
             <th scope="row">{{i+1}}</th>
             
-           <td *ngIf="order.currencyType==3">ETH</td>
-            <td *ngIf="order.currencyType==2">BTC</td>       
+             <td *ngIf="order.orderMode==1">Sell</td>
+            <td *ngIf="order.orderMode==2">Buy</td>      
             <td>{{order.Amount}}</td>
           
            <td>{{order.Rate | number : '1.0-8'}}</td>
-            <!--<td>{{order.Rate*order.Amount | number : '1.0-8'}}</td>-->
+           <td>{{order.Rate*order.Amount | number : '1.0-8'}}</td>
             <td>{{order.RemainingAmount}}</td>
             <td>{{((order.Amount-order.RemainingAmount)/order.Amount*100)}} %</td>
             <td>{{order.CreationDateTime | date:'medium'}}</td>

@@ -189,7 +189,7 @@ amount=formgroup.controls["Amount"].value;
 checkmybalance(control,order,currency).subscribe(res=>{
  ValidationmessageserviceService.newval=res;
 });
-console.log( ValidationmessageserviceService.newval);
+//console.log( ValidationmessageserviceService.newval);
 let total=0;
 if(amount!=null)
 {total=amount*control.value;}
