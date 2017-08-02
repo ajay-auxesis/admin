@@ -1,4 +1,4 @@
-//import { ChartModule } from 'angular2-highcharts';
+
 import { CurrencyDisplayServiceService } from './service/CurrencyDisplayService/currency-display-service.service';
 import { DynamicMatchOrderService } from './components/SingletonComponent/match-order/dynamic-match-order.service';
 import { RateEmitterService } from './service/Emitters/rate-emitter.service';
