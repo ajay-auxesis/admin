@@ -1,0 +1,342 @@
+<div class="white-box">
+    <div class="white-box-title">
+        <h3 class="box-title">Users Details</h3>
+    </div>   
+    <div class="white-box-cont">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="sub-box-title">
+                    <label for="">Personal Details</label>
+                </div>                
+                <table class="table table-striped user_profile_table">
+                    <tbody>
+                        <tr>
+                            <th>Name:</th>
+                            <td>John Doe</td>
+                        </tr>
+                        <tr>
+                            <th>Email:</th>
+                            <td>John.Doe@abc.com</td>
+                        </tr>
+                        <tr>
+                            <th>User Id:</th>
+                            <td>AUX1234</td>
+                        </tr>
+                        <tr>
+                            <th>Contact:</th>
+                            <td>+91-123456789</td>
+                        </tr>
+                        <tr>
+                            <th>Date of Birth:</th>
+                            <td>27 May, 1988</td>
+                        </tr>
+                    </tbody>                  
+                </table>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-5">                
+                <div class="sub-box-title">
+                    <label for="">Address Details</label>
+                </div>  
+                <table class="table table-striped user_profile_table">
+                    <tbody>
+                        <tr>
+                            <th>Street Address 1:</th>
+                            <td>P.O. Box 627</td>
+                        </tr>
+                        <tr>
+                            <th>Street Address 2:</th>
+                            <td>3406 Tellus Ave</td>
+                        </tr>
+                        <tr>
+                            <th>City:</th>
+                            <td>Tuticorin</td>
+                        </tr>
+                        <tr>
+                            <th>Postal Code:</th>
+                            <td>396316</td>
+                        </tr>
+                        <tr>
+                            <th>State:</th>
+                            <td>Tamilnadu</td>
+                        </tr>
+                        <tr>
+                            <th>Country:</th>
+                            <td>India</td>
+                        </tr>
+                    </tbody>                  
+                </table>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="sub-box-title">
+                    <label for="">KYC Details</label>
+                    <a class="generate_btn pull-right">Generate Ticket</a>
+                </div> 
+                <table class="table table-striped user_profile_table">
+                    <tbody>
+                        <tr>
+                            <th style="width:200px">Nationality:</th>
+                            <td>Indian</td>
+                        </tr>
+                        <tr>
+                            <th>ID Proof:</th>
+                            <td>
+                                <div class="col-md-6">
+                                    <div class="sub-box-title">
+                                        <label for="">ID Proof - 1</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="doc_cont" style="background:url(assets/images/pancard.jpg) no-repeat center center/100%">
+                                                <div class="action-buttons">
+                                                    <p><a><i class="fas fa-search"></i> View</a></p>
+                                                    <p><a><i class="fas fa-download"></i> Download</a></p>
+                                                </div>
+                                                <i class="status_check tick fas fa-check-circle"></i>
+                                            </div>
+                                            <ul class="poll_options">
+                                                <li>
+                                                    <input type="radio" id="a-option" name="userpoll" value="1" onchange="handleChange(this);">
+                                                    <p class="text-left"><label for="a-option">Approve</label></p>
+                                                    <div class="check"></div>
+                                                </li>
+                                                <li>
+                                                    <input type="radio" id="b-option" name="userpoll" value="2" onchange="handleChange(this);">
+                                                    <p class="text-left"><label for="b-option">Reject</label></p>
+                                                    <div class="check"></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="doc_cont" style="background:url(assets/images/pancard.jpg) no-repeat center center/100%">
+                                                <div class="action-buttons">
+                                                    <p><a><i class="fas fa-search"></i> View</a></p>
+                                                    <p><a><i class="fas fa-download"></i> Download</a></p>
+                                                </div>
+                                                <i class="status_check cross fas fa-times-circle"></i>
+                                            </div>
+                                            <ul class="poll_options">
+                                                <li>
+                                                    <input type="radio" id="c-option" name="userpoll" value="1" onchange="handleChange(this);">
+                                                    <p class="text-left"><label for="c-option">Approve</label></p>
+                                                    <div class="check"></div>
+                                                </li>
+                                                <li>
+                                                    <input type="radio" id="d-option" name="userpoll" value="2" onchange="handleChange(this);">
+                                                    <p class="text-left"><label for="d-option">Reject</label></p>
+                                                    <div class="check"></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="sub-box-title">
+                                        <label for="">ID Proof - 2</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="doc_cont" style="background:url(assets/images/pancard.jpg) no-repeat center center/100%">
+                                                <div class="action-buttons">
+                                                    <p><a><i class="fas fa-search"></i> View</a></p>
+                                                    <p><a><i class="fas fa-download"></i> Download</a></p>
+                                                </div>
+                                                <i class="status_check tick fas fa-check-circle"></i>
+                                            </div>
+                                            <ul class="poll_options">
+                                                <li>
+                                                    <input type="radio" id="e-option" name="userpoll" value="1" onchange="handleChange(this);">
+                                                    <p class="text-left"><label for="e-option">Approve</label></p>
+                                                    <div class="check"></div>
+                                                </li>
+                                                <li>
+                                                    <input type="radio" id="f-option" name="userpoll" value="2" onchange="handleChange(this);">
+                                                    <p class="text-left"><label for="f-option">Reject</label></p>
+                                                    <div class="check"></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="doc_cont" style="background:url(assets/images/pancard.jpg) no-repeat center center/100%">
+                                                <div class="action-buttons">
+                                                    <p><a><i class="fas fa-search"></i> View</a></p>
+                                                    <p><a><i class="fas fa-download"></i> Download</a></p>
+                                                </div>
+                                                <i class="status_check cross fas fa-times-circle"></i>
+                                            </div>
+                                            <ul class="poll_options">
+                                                <li>
+                                                    <input type="radio" id="g-option" name="userpoll" value="1" onchange="handleChange(this);">
+                                                    <p class="text-left"><label for="g-option">Approve</label></p>
+                                                    <div class="check"></div>
+                                                </li>
+                                                <li>
+                                                    <input type="radio" id="h-option" name="userpoll" value="2" onchange="handleChange(this);">
+                                                    <p class="text-left"><label for="h-option">Reject</label></p>
+                                                    <div class="check"></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Address Proof:</th>
+                            <td>
+                                    <div class="col-md-6">
+                                        <div class="sub-box-title">
+                                            <label for="">ID Proof - 1</label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="doc_cont" style="background:url(assets/images/pancard.jpg) no-repeat center center/100%">
+                                                    <div class="action-buttons">
+                                                        <p><a><i class="fas fa-search"></i> View</a></p>
+                                                        <p><a><i class="fas fa-download"></i> Download</a></p>
+                                                    </div>
+                                                    <i class="status_check tick fas fa-check-circle"></i>
+                                                </div>
+                                                <ul class="poll_options">
+                                                    <li>
+                                                        <input type="radio" id="i-option" name="userpoll" value="1" onchange="handleChange(this);">
+                                                        <p class="text-left"><label for="i-option">Approve</label></p>
+                                                        <div class="check"></div>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="j-option" name="userpoll" value="2" onchange="handleChange(this);">
+                                                        <p class="text-left"><label for="j-option">Reject</label></p>
+                                                        <div class="check"></div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="doc_cont" style="background:url(assets/images/pancard.jpg) no-repeat center center/100%">
+                                                    <div class="action-buttons">
+                                                        <p><a><i class="fas fa-search"></i> View</a></p>
+                                                        <p><a><i class="fas fa-download"></i> Download</a></p>
+                                                    </div>
+                                                    <i class="status_check cross fas fa-times-circle"></i>
+                                                </div>
+                                                <ul class="poll_options">
+                                                    <li>
+                                                        <input type="radio" id="k-option" name="userpoll" value="1" onchange="handleChange(this);">
+                                                        <p class="text-left"><label for="k-option">Approve</label></p>
+                                                        <div class="check"></div>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="l-option" name="userpoll" value="2" onchange="handleChange(this);">
+                                                        <p class="text-left"><label for="l-option">Reject</label></p>
+                                                        <div class="check"></div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="sub-box-title">
+                                            <label for="">ID Proof - 2</label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="doc_cont" style="background:url(assets/images/pancard.jpg) no-repeat center center/100%">
+                                                    <div class="action-buttons">
+                                                        <p><a><i class="fas fa-search"></i> View</a></p>
+                                                        <p><a><i class="fas fa-download"></i> Download</a></p>
+                                                    </div>
+                                                    <i class="status_check tick fas fa-check-circle"></i>
+                                                </div>
+                                                <ul class="poll_options">
+                                                    <li>
+                                                        <input type="radio" id="m-option" name="userpoll" value="1" onchange="handleChange(this);">
+                                                        <p class="text-left"><label for="m-option">Approve</label></p>
+                                                        <div class="check"></div>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="n-option" name="userpoll" value="2" onchange="handleChange(this);">
+                                                        <p class="text-left"><label for="n-option">Reject</label></p>
+                                                        <div class="check"></div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="doc_cont" style="background:url(assets/images/pancard.jpg) no-repeat center center/100%">
+                                                    <div class="action-buttons">
+                                                        <p><a><i class="fas fa-search"></i> View</a></p>
+                                                        <p><a><i class="fas fa-download"></i> Download</a></p>
+                                                    </div>
+                                                    <i class="status_check cross fas fa-times-circle"></i>
+                                                </div>
+                                                <ul class="poll_options">
+                                                    <li>
+                                                        <input type="radio" id="o-option" name="userpoll" value="1" onchange="handleChange(this);">
+                                                        <p class="text-left"><label for="o-option">Approve</label></p>
+                                                        <div class="check"></div>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="p-option" name="userpoll" value="2" onchange="handleChange(this);">
+                                                        <p class="text-left"><label for="p-option">Reject</label></p>
+                                                        <div class="check"></div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                        </tr>                        
+                    </tbody>                  
+                </table>       
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="sub-box-title">
+                    <label for="">Bank Details</label>
+                    <a class="generate_btn pull-right">Generate Ticket</a>
+                </div>
+                <table class="table table-striped user_profile_table">
+                    <tbody>
+                        <tr>
+                            <th style="width:200px">Account No:</th>
+                            <td>123456789</td>
+                        </tr>
+                        <tr>
+                            <th>Bank Ifsc:</th>
+                            <td>BANK123456</td>
+                        </tr>
+                        <tr>
+                            <th>Account Type:</th>
+                            <td>SAVING</td>
+                        </tr>
+                        <tr>
+                            <th>Your Name:</th>
+                            <td>JOHN DOE</td>
+                        </tr>
+                        <tr>
+                            <th>Bank Document:</th>
+                            <td>
+                                <div class="doc_cont" style="background:#ccc;">
+                                    <div class="action-buttons">
+                                        <p style="color:#fff;">No Image</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>                  
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<a [routerLink]="['create_user']" style="float:right;">Create User</a>
+
+
+
+
+    

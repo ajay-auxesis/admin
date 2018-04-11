@@ -1,0 +1,94 @@
+<div class="card">
+  
+  <div class="body">
+    <!--<div class="table-responsive ">-->
+    <table class="table table-striped " id="currencydetail" >
+    <thead>
+    <tr>
+              <th> Sn </th>
+              <th> Currency Symbol </th>
+              <th>  Withdrawal fee </th>
+              <th>Deposit Fee </th>
+              <th>Min. Deposit limit per transaction </th>
+              <th>Max Deposit Limit per day </th>
+              <th>Min. Withdraw LIMIT per transaction </th>
+              <th>  Max. Withdraw limit per day </th>
+              <th>Min. Buy amount</th>
+              <th> Min. Sell amount</th>
+              <th>Buy Order bid limit </th>
+              <th> Sell Order bid limit</th>
+              <th>Currency logo </th>
+              <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- <tr  *ngFor="let order of _activeOrders ; let i = index"  >
+            <th scope="row">{{i+1}}</th>
+            
+             <td *ngIf="order.orderMode==1">Sell</td>
+            <td *ngIf="order.orderMode==2">Buy</td>      
+            <td>{{order.Amount}}</td>
+          
+           <td>{{order.Rate | number : '1.0-8'}}</td>
+           <td>{{order.Rate*order.Amount | number : '1.0-8'}}</td>
+            <td>{{order.RemainingAmount}}</td>
+            <td>{{((order.Amount-order.RemainingAmount)/order.Amount*100)}} %</td>
+            <td>{{order.CreationDateTime | date:'medium'}}</td>
+           
+            <td><Button>Cancel</Button></td>
+        </tr> -->
+        <tr>
+          <td>1</td>
+          <td>BTC</td>
+          <td>0.023</td>
+          <td>0.02</td>
+          <td>10</td>
+          <td>50</td>
+          <td>10</td>
+          <td>40</td>
+          <td>0.001</td>
+          <td>0.001</td>
+          <td>1</td>
+          <td>1</td>
+          <td><img src="assets/images/btc.png" style="width:100px;height:100px"></td>
+          <td><button>EDIT</button></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>ETH</td>
+          <td>0.012</td>
+          <td>0.01</td>
+          <td>10</td>
+          <td>50</td>
+          <td>10</td>
+          <td>40</td>
+          <td>0.001</td>
+          <td>0.001</td>
+          <td>1</td>
+          <td>1</td>
+          <td><img src="assets/images/eth.png" style="width:100px;height:100px" ></td>
+          <td><button>EDIT</button></td>
+        </tr>
+        <!-- <tr>
+          <td>3</td>
+          <td>USD</td>
+            <td>0.02</td>
+            <td>0.01</td>
+            <td>100</td>
+            <td>1000</td>
+            <td>100</td>
+            <td>70</td>
+            <td>10</td>
+            <td>10</td>
+          <td>34</td>
+          <td>32</td>
+          <td><img src="assets/images/usd.jpeg" style="width:100px;height:100px" ></td>
+          <td><button>EDIT</button></td>
+        </tr> -->
+       
+      </tbody>
+    
+</table>
+ </div>
+  <!--</div>-->
+</div>

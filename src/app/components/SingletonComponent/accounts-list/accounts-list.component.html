@@ -1,0 +1,42 @@
+<div class="clearfix"></div>
+<div class="white-box">
+    <div class="white-box-title">
+        <h3 class="box-title pull-left">Users Bank Detail</h3>
+        
+        <div class="clearfix"></div>
+    </div>
+    
+    <div class="white-box-cont">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Account Type</th>
+                <th>Account Number</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of uesrlist;let rowIndex = index">
+                  <td>{{rowIndex+1}}</td>
+                  <td>{{user.AccountHolderName}}</td>
+                  <td>{{user.Email}}</td>
+                  <td>{{getAccountType(user.AccountType)}}</td>
+                  <td>{{user.AccountNumber}}</td>
+                  
+                  <td><a routerLink="/account-detail/{{user.Email}}" class="table_btn view-btn">View </a> </td>
+              </tr> 
+          </tbody>
+          </table>
+        </div>
+  </div>
+
+
+
+
+
+
+
+    

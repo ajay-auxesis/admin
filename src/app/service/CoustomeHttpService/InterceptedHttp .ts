@@ -19,9 +19,9 @@ export class InterceptedHttp extends Http {
     }
 
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        if(url.indexOf("volume")== -1 && url.indexOf("getrawleadger")== -1  )this.loaderService.displayLoader(true);
-        url = this.updateUrl(url);
-  
+        // if(url.indexOf("volume")== -1 && url.indexOf("getrawleadger")== -1  )this.loaderService.displayLoader(true);
+        // url = this.updateUrl(url);
+  this.loaderService.displayLoader(true);
     return super.get(url, this.getRequestOptionArgs(options)).catch(this.handleError);
     }
 
@@ -29,7 +29,7 @@ export class InterceptedHttp extends Http {
      if(url.indexOf("conectuser")== -1 )this.loaderService.displayLoader(true);
 
         url = this.updateUrl(url);
-        //this.loaderService.displayLoader(false);
+      this.loaderService.displayLoader(true);
         return super.post(url, body, this.getRequestOptionArgs(options)).catch(this.handleError);
     }
 
@@ -68,12 +68,8 @@ private handleError (error: Response):Observable<Response> {
         } 
         
        if(error.status==402){
-         
-            
-  }
-
-
-         
+                
+        }
         return Observable.throw(error);
     }
 

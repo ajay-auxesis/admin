@@ -1,0 +1,108 @@
+<div class="card">
+  <div class="header">
+    
+			<h2> Fee Table
+      <a (click)="update()" style="float:right;"><i class="material-icons">update</i></a></h2> 
+	
+  </div>
+  <div class="body">
+    <!--<div class="table-responsive ">-->
+    <table class="table table-striped " id="feeshow" >
+    <thead>
+    <tr>
+      <th >
+        Sn
+        </th>
+        <th>
+         Currency
+          </th>
+          <th>
+         Mode
+          </th>
+        <th >
+           Fee
+        </th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of _feelist ; let i = index">
+       <th scope="row">{{i+1}}</th>
+      <td *ngIf="order.currencyType==1">INR</td>
+      <td *ngIf="order.currencyType==2">BTC</td>
+      <td *ngIf="order.currencyType==3">ETH</td>
+      <td *ngIf="order.orderMode==1">Sell</td>
+      <td *ngIf="order.orderMode==2">Buy</td>  
+      <td>{{order.rate}}</td>
+      <td><button  class="btn btn-primary waves-effect position" (click)="updateValue()">Update</button></td>
+    </tr>
+    </tbody>
+    
+</table>
+ </div>
+  <!--</div>-->
+</div>
+
+
+<div class="popup-login" *ngIf="ifEdit">
+    <div class="home">
+
+
+ <div class="login-page" >
+	<div class="row">
+		<div class="col s12 m6 l4 ">
+			<div class="card">
+				<div class="header">
+					<h2>
+					   Update Fee
+					</h2>
+				</div>
+				<div class="body">
+							<form  class="rahul"	 (ngSubmit)="submitOrder(OrderFormModel)" [formGroup]="OrderFormModel" >
+				<div class="form-group m-b-15">
+					<div class="form-line">
+            <p><b>Select Currency</b></p>
+              <select class="form-control show-tick" formControlName="CurrencyType">
+              <option value="BTC" >BTC</option>
+              <option value="ETH">ETH</option>
+             
+              </select>
+					</div>
+				</div>  
+			
+				<div class="form-group m-b-15">
+					<div class="form-line">
+						 <p><b>Select Mode</b></p>
+              <select class="form-control show-tick" formControlName="OrderMode">
+              <option value="Buy">Buy</option>
+              <option value="Sell">Sell</option>
+              </select>
+					</div>
+					</div>
+				
+		<div class="form-group m-b-15">
+					<div class="form-line">
+					   <input type="text"  formControlName="Rate"  class="form-control " placeholder="Rate">
+					   
+					</div>
+					<div>
+						<app-validation-message  controlname="Rate"  [control]="OrderFormModel.controls.Rate"></app-validation-message>
+					</div>
+				</div>	
+				
+			
+				
+			
+				<div class="group-btn-wrap clearfix">
+				
+					<button [disabled]="OrderFormModel.invalid" type="submit" class="btn btn-primary waves-effect position" >Submit</button>
+				</div>
+			</form>  
+				</div>
+			</div>
+		</div>
+	</div>
+ </div>
+
+    </div>
+</div>

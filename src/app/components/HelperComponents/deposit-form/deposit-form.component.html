@@ -1,0 +1,88 @@
+
+<div class="tab-content">
+	<div class="card">          
+		<div class="header">
+			<h2>Deposite Money</h2>
+		</div>		
+		<div class="body">
+			
+			<form  class="rahul"	 (ngSubmit)="submitOrder(DepositFormModel)" [formGroup]="DepositFormModel" >
+			
+				<div class="form-group m-b-15">
+					<div class="form-line">
+					   <input type="text"  formControlName="Name"  class="form-control " placeholder="User Name" >
+					   
+					</div>
+					<div>
+						<app-validation-message  controlname="Name"  [control]="DepositFormModel.controls.Name"></app-validation-message>
+					</div>
+				</div>  
+			
+				<div class="form-group m-b-15">
+					<div class="form-line">
+						<input type="text"  formControlName="Account" class="form-control " placeholder="Account Number"  >
+					</div>
+					<div>
+						<app-validation-message  controlname="Account"  [control]="DepositFormModel.controls.Account"></app-validation-message>
+					
+					</div>
+				</div> 
+
+        <div class="form-group m-b-15">
+					<div class="form-line">
+						<textarea rows="3" class="form-control no-resize"  formControlName="Description"  placeholder="Description"  ></textarea>
+					</div>
+					<div>
+						<app-validation-message  controlname="Description"  [control]="DepositFormModel.controls.Description"></app-validation-message>
+					
+					</div>
+				</div> 
+
+        <div class="form-group m-b-15">
+					<div class="form-line">
+						<input type="text"  formControlName="UTR_number" class="form-control " placeholder="UTR Number/Reference Number"  >
+					</div>
+					<div>
+						<app-validation-message  controlname="UTR_number"  [control]="DepositFormModel.controls.UTR_number"></app-validation-message>
+					
+					</div>
+				</div>  
+				
+				<div class="form-group clearfix m-b-10">
+					<div class="row">
+
+					
+						<div class="col-xs-6">
+              <div class="form-line">
+						<input type="text"  formControlName="Amount" class="form-control " placeholder="Deposit Amount"  >
+              </div>
+            <div>
+						<app-validation-message  controlname="Amount"  [control]="DepositFormModel.controls.Amount"></app-validation-message>
+					
+					</div>
+						</div>
+
+				
+						<div class="col-xs-6">
+              <div class="form-line">
+              <select class="form-control show-tick" formControlName="CurrencyType">
+                <option value="" selected>Select Currency</option>
+              <option value="BTC" >BTC</option>
+              <option value="ETH">ETH</option>
+              <option value="INR">INR</option>
+              </select>
+              </div>
+						</div>
+
+					</div>	
+					
+				</div>	
+					
+				<div class="group-btn-wrap clearfix">
+				
+					<button [disabled]="DepositFormModel.invalid" type="submit" class="btn btn-primary waves-effect position" >Deposit</button>
+				</div>
+			</form>  
+		</div>
+	</div>
+</div>

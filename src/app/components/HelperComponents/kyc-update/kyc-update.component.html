@@ -1,0 +1,104 @@
+
+<div class="tab-content">
+	<div class="card">          
+		<div class="header">
+			<h2>Deposite Money</h2>
+		</div>		
+		<div class="body">
+			
+			<form  class="rahul"	 (ngSubmit)="submitOrder(KYCFormModel)" [formGroup]="KYCFormModel" >
+			
+				<div class="form-group m-b-15">
+					<div class="form-line">
+					   <input type="text"  formControlName="Name"  class="form-control " placeholder="Name(As per Bank statement)" >
+					   
+					</div>
+					<div>
+						<app-validation-message  controlname="Name"  [control]="KYCFormModel.controls.Name"></app-validation-message>
+					</div>
+				</div>  
+			
+				<div class="form-group m-b-15">
+					<div class="form-line">
+						<input type="number"  formControlName="Account" class="form-control " placeholder="Account Number"  >
+					</div>
+					<div>
+						<app-validation-message  controlname="Account"  [control]="KYCFormModel.controls.Account"></app-validation-message>
+					</div>
+				</div> 
+
+        <div class="form-group m-b-15">
+					<div class="form-line">
+						<input type="text"  formControlName="IFSC" class="form-control " placeholder="IFSC Code"  >
+					</div>
+					<div>
+						<app-validation-message  controlname="IFSC"  [control]="KYCFormModel.controls.Account"></app-validation-message>
+					</div>
+				</div> 
+
+       <div class="form-group m-b-15">
+					<div class="form-line">
+						<input type="text"  formControlName="Phone" class="form-control " placeholder="Phone Number"  >
+					</div>
+					<div>
+						<app-validation-message  controlname="Phone"  [control]="KYCFormModel.controls.Phone"></app-validation-message>
+					</div>
+				</div>   
+				
+		<div class="form-group m-b-15">
+					<div class="form-line">
+						<input type="text"  formControlName="Pancard" class="form-control " placeholder="Pancard Number"  >
+					</div>
+					<div>
+						<app-validation-message  controlname="Pancard"  [control]="KYCFormModel.controls.Pancard"></app-validation-message>
+					</div>
+				</div> 
+
+        <div class="form-group m-b-15">
+					<div class="form-line">
+           
+						<input type="text"  formControlName="Address" class="form-control " placeholder="Full residential Address (should match your address proof document) "  >
+					</div>
+					<div>
+						<app-validation-message  controlname="Address"  [control]="KYCFormModel.controls.Address"></app-validation-message>
+					</div>
+				</div> 
+      <div class="form-group m-b-15">
+					<div class="form-line">
+             <label>Upload Pancard Document</label>
+						<input type="file"   (change)="onFileChange($event)" class="form-control "  >
+           <!--<input type="file"    class="form-control "  >-->
+					</div>
+					<!--<div>
+						<app-validation-message  controlname="Pancard Document"  [control]="KYCFormModel.controls.PancardDocument"></app-validation-message>
+					</div>-->
+				</div>
+       
+       <div class="form-group m-b-15">
+					<div class="form-line">
+            <label>Upload Address Document</label>
+						<input type="file"  (change)="onFileChangeaddress($event)"  class="form-control " placeholder=""  >
+					</div>
+					<!--<div>
+						<app-validation-message  controlname="Address Document"  [control]="KYCFormModel.controls.AddressDocument"></app-validation-message>
+					</div>-->
+				</div>
+					<div class="form-group m-b-15">
+					<div class="form-line">
+						 <select class="form-control show-tick" formControlName="Status">
+							<option value="" >Select Currency</option>
+							<option value="Approve"  >Approve</option>
+							<option value="Reject">Reject</option>
+							<option value="Pending">Pending</option>
+						</select>
+					</div>
+					
+				</div>
+				<div class="group-btn-wrap clearfix">
+				
+					<button [disabled]="KYCFormModel.invalid" type="submit" class="btn btn-primary waves-effect position" >Deposit</button>
+				</div>
+			</form>  
+		</div>
+	</div>
+</div>

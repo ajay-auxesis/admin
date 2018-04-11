@@ -3,12 +3,9 @@ import {CurrencyType } from 'app/enums/currency-type.enum';
 
 export class orderModel {
 
-Amount:number;
-Rate: number;
-OrderMode:OrderMode;
-Total: number;
-Fee:number;
 CurrencyType:CurrencyType;
+OrderMode:OrderMode;
+Rate:number;
 
 }
 
@@ -67,4 +64,35 @@ export class removematchorderModel {
 OrderMode:number;
 Rate:number;
 RemainingAmount:number;
+}
+
+export class createorderModel {
+
+CurrencyType:CurrencyType;
+OrderMode:OrderMode;
+MinAmountrange:number;
+MaxAmountrange:number;
+MinRaterange:number;
+MaxRaterange:number;
+MaxRcord:number;
+
+}
+
+export class testorderModel {
+
+CurrencyType:CurrencyType;
+OrderMode:OrderMode;
+Amount:number;
+Rate:number;
+MaxRcord:number;
+
+}
+
+export class postorderModel {
+
+CurrencyType:CurrencyType;
+OrderMode:OrderMode;
+Amount:number;
+Rate:number;
+
 }

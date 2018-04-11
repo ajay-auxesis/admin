@@ -11,6 +11,42 @@ Type:PaymentOperationMode;
 
 }
 
+export class DepositAmountModel {
+
+Name:string;
+ Account:number;
+ Description:string;
+ UTR_number:any;
+CurrencyType:CurrencyType;
+Amount: number;
+
+}
+
+export class ManualDepositModel {
+
+Amount: number;
+Reason:string;
+}
+
+export class CompanyLogoModel {
+
+Title: string;
+File:any;
+}
+
+export class KYCModel {
+
+Name:string;
+ Account:number;
+ IFSC:any;
+ Phone:number;
+Pancard:any;
+Address: string;
+PancardDocument:any;
+AddressDocument:any;
+Status:string;
+}
+
 export class RawleadgerDto {
 
 RawLeadgerList:Array<RawLeadgerListdto>;
@@ -42,4 +78,26 @@ currencyType:CurrencyType;
 orderMode:OrderMode;
 //ToCurrency:CurrencyType;
 
+}
+
+export class CompanyModel {
+
+Name: string;
+ID:string;
+Director:string;
+Pancard:any;
+}
+
+export class UserModel {
+
+Firstname: string;
+Lastname:string;
+Userimage:any;
+}
+
+export class ChangePasswordModel {
+
+Currentpassword: string;
+Password:string;
+Confirmpassword:string;
 }

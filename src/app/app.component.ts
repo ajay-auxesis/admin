@@ -1,6 +1,3 @@
-import { ToasterComponent } from './components/SingletonComponent/toaster/toaster.component';
-import { RateEmitterService } from './service/Emitters/rate-emitter.service';
-import { MatchEmitterService } from './service/Emitters/match-emitter.service';
 import { Responsecode } from 'app/enums/responsecode.enum';
 import { HuBConectionRequestModel } from './models/login';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
@@ -30,67 +27,32 @@ location:string;
 previousUrl:any;
 public canSendMessage: Boolean;
  @ViewChild('toaster', {read: ViewContainerRef}) viewContainerRef;
-  constructor(private _matchEmitterService:MatchEmitterService,private _ngZone: NgZone,private _signalRService:SignalRService,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ,private _location: Location, private platform: PlatformLocation ,private activatedRoute: ActivatedRoute,
-    private titleService: Title,private _rateEmitterService:RateEmitterService , private componentFactoryResolver: ComponentFactoryResolver,
+  constructor(private _ngZone: NgZone,private _signalRService:SignalRService,private _sharedservice: SharedService, private loaderService: LoaderService, private _router : Router ,private _location: Location, private platform: PlatformLocation ,private activatedRoute: ActivatedRoute,
+    private titleService: Title,private componentFactoryResolver: ComponentFactoryResolver,
                 ) { 
    this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
   this.objLoaderStatus=false; 
 }
 
  ngOnInit() {
-var self=this;
- var connection = $.hubConnection(AppSettings.HubUrl);
-         var cryptohubproxy = connection.createHubProxy('myHub');
-         //{ transport: ['websockets', 'longPolling'], jsonp: true}
-         
-          connection.start().done(function () {
-    var hubidstring=localStorage.getItem('HubId');
-    cryptohubproxy.invoke("Subscribe",hubidstring);
-             console.log('Now connected, connection ID=' + connection.id);
-             let humconection=new HuBConectionRequestModel();
-             humconection.ConectionId=connection.id;
-         });
-
-         cryptohubproxy.on('whennewOrderAdded', function (newOrder) {
-        console.log("whennewOrderAdded");
-            console.log(newOrder);
-           let orderListModelobj:orderListModel=newOrder as orderListModel;
-           self._signalRService.startConnection(orderListModelobj);
-         });
-
-    cryptohubproxy.on('whenMatchHappend', function (matchorder) {
-       
-                self._matchEmitterService.whenMatchedHappend(matchorder);
-                console.log("whenMatchHappend");
-                console.log(matchorder);
-                 
-         });
-
-     cryptohubproxy.on('whenRateChange', function (RateChange) {
-              self._rateEmitterService.whenRateChanged(RateChange);
-            console.log("whenRateChange");
-          console.log(RateChange);
-         });
-
-
-this.loaderService.loaderStatus.subscribe((val: boolean) => {
-            this.objLoaderStatus = val;
-        });
-
-
-if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path()=='') {
-   this._router.navigate(['Btc_Inr']);
-  }
-  if(localStorage.getItem(AppSettings.localtokenkey)==null){this._router.navigate(['/']);}
-  this.platform.onPopState(()=>{
-       this._router.events.filter(event => event instanceof NavigationEnd).pairwise()
-        .subscribe(e => {
-          this.previousUrl= e[1].url;
-          if(this.previousUrl=='/' || this.previousUrl=='/SignUp' || this.previousUrl=='/Btc_Inr' || this.previousUrl==''){
-             this._router.navigate(['Btc_Inr']);
-           }
-        });
+      this.loaderService.loaderStatus.subscribe((val: boolean) => {
+          this.objLoaderStatus = val;
       });
+
+      if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path()=='') {
+        this._router.navigate(['Dashboard']);
+      }
+      if(localStorage.getItem(AppSettings.localtokenkey)==null){this._router.navigate(['/']);}
+      this.platform.onPopState(()=>{
+        this._router.events.filter(event => event instanceof NavigationEnd).pairwise()
+          .subscribe(e => {
+            this.previousUrl= e[1].url;
+            // console.log("dddddd"+e[1]);
+            if(this.previousUrl=='/' || this.previousUrl=='/SignUp' || this.previousUrl=='/Dashboard' || this.previousUrl==''){
+              this._router.navigate(['Dashboard']);
+            }
+          });
+        });
 
     this._router.events
       .filter(event => event instanceof NavigationEnd)
@@ -101,28 +63,15 @@ if (localStorage.getItem(AppSettings.localtokenkey)!=null && this._location.path
       })
       .filter(route => route.outlet === 'primary')
       .mergeMap(route => route.data)
-      .subscribe((event) => this.titleService.setTitle("Auxce | " +event['title']));
-
-       this._matchEmitterService.whenMatchedHappendEvent.subscribe(json => { 
-       const factory = this.componentFactoryResolver.resolveComponentFactory(ToasterComponent);
-        const ref =this.viewContainerRef.createComponent(factory).instance;    
-        ref.message =json;
-         
-  });
+      .subscribe((event) => this.titleService.setTitle("Auxce Admin | " +event['title']));
 
 }
-
-showtoaster(){
-       const factory = this.componentFactoryResolver.resolveComponentFactory(ToasterComponent);
-        const ref =this.viewContainerRef.createComponent(factory).instance;    
-        ref.message = Math.floor(Math.random() * (212232 - 23232 + 1)) + 3232323;
-}
-
     ngAfterViewChecked() {
-    document.body.classList.remove(document.body.classList.item(1));
-   this.location=window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
-   if(this.location==''){this.location='home';}
-    document.body.classList.add(this.location);
-    // 
-  }
+        document.body.classList.remove(document.body.classList.item(1));
+        this.location=window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+        if(this.location==''){
+          this.location='home';
+        }
+        document.body.classList.add(this.location);
+    }
 }

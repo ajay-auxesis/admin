@@ -1,0 +1,153 @@
+<div class="tab-content">
+    <div class="card">          
+      <div class="header">
+        <h2>Currency</h2>
+      </div>		
+      <div class="body">
+        
+        <form  class=""	 (ngSubmit)="submitOrder(addcurrencyFormModel)" [formGroup]="addcurrencyFormModel" >
+          <div class="col-sm-12">
+              <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-line">
+               <input type="text"  formControlName="currencysymbol"  class="form-control " placeholder="Currency Symbol (BTC,USD etc)" >
+            </div>
+            <div>
+              <app-validation-message  controlname="Currency Symbol"  [control]="addcurrencyFormModel.controls.currencysymbol"></app-validation-message>
+            </div>
+          </div>  
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+              <div class="form-line">
+                 <input type="text"  formControlName="withdrawalfee"  class="form-control " placeholder="Withdrawal Fee" >
+              </div>
+              <div>
+                <app-validation-message  controlname="Withdrawal fee"  [control]="addcurrencyFormModel.controls.withdrawalfee"></app-validation-message>
+              </div>
+            </div> 
+            </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-6">
+            <div class="form-group">
+                <div class="form-line">
+                   <input type="text"  formControlName="Depositfee"  class="form-control " placeholder="Deposit Fee" >
+                </div>
+                <div>
+                  <app-validation-message  controlname="Deposit fee"  [control]="addcurrencyFormModel.controls.Depositfee"></app-validation-message>
+                </div>
+              </div> 
+</div>
+<div class="col-sm-6">
+              <div class="form-group">
+                  <div class="form-line">
+                     <input type="text"  formControlName="min_deposit_limit_per_transaction"  class="form-control " placeholder="Min Deposit Limit per Transaction" >
+                  </div>
+                  <div>
+                    <app-validation-message  controlname="minimun deposit per transaction limit is"  [control]="addcurrencyFormModel.controls.min_deposit_limit_per_transaction"></app-validation-message>
+                  </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                <div class="form-group">
+                  <div class="form-line">
+                     <input type="text"  formControlName="max_deposit_limit_per_day"  class="form-control " placeholder="Max Deposit Limit per Day" >
+                  </div>
+                  <div> 
+                    <app-validation-message  controlname="maximum deposit limit per day is"  [control]="addcurrencyFormModel.controls.max_deposit_limit_per_day"></app-validation-message>
+                  </div>
+                </div>
+</div>
+<div class="col-sm-6">
+                <div class="form-group">
+                  <div class="form-line">
+                     <input type="text"  formControlName="min_withdraw_limit_per_transaction"  class="form-control " placeholder="Min Withdraw Limit per Transaction" >
+                  </div>
+                  <div>
+                    <app-validation-message  controlname="minimum withraw limit per transaction is"  [control]="addcurrencyFormModel.controls.min_withdraw_limit_per_transaction"></app-validation-message>
+                  </div>
+                </div>
+                </div>
+              </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                <div class="form-group">
+                  <div class="form-line">
+                     <input type="text"  formControlName="max_withdraw_limit_per_day"  class="form-control " placeholder="Max Withdraw Limit per Day" >
+                  </div>
+                  <div>
+                    <app-validation-message  controlname="maximum withdraw limit per day is"  [control]="addcurrencyFormModel.controls.max_withdraw_limit_per_day"></app-validation-message>
+                  </div>
+                </div>
+              </div>
+<div class="col-sm-6">
+                <div class="form-group">
+                  <div class="form-line">
+                     <input type="text"  formControlName="min_buy_amount"  class="form-control " placeholder="Min buy amount" >
+                  </div>
+                  <div>
+                    <app-validation-message  controlname="minimum buy amount"  [control]="addcurrencyFormModel.controls.min_buy_amount"></app-validation-message>
+                  </div>
+                </div>
+                </div>
+              
+              </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                <div class="form-group">
+                  <div class="form-line">
+                     <input type="text"  formControlName="min_sell_amount"  class="form-control " placeholder="Min sell amount" >
+                  </div>
+                  <div>
+                    <app-validation-message  controlname="minimum sell amount"  [control]="addcurrencyFormModel.controls.min_sell_amount"></app-validation-message>
+                  </div>
+                </div>
+                </div>
+                <div class="col-sm-6">
+                <div class="form-group">
+                  <div class="form-line">
+                     <input type="text"  formControlName="buy_bid_limit"  class="form-control " placeholder="Buy order bid limit" >
+                  </div>
+                  <div>
+                    <app-validation-message  controlname="Buy bid limit"  [control]="addcurrencyFormModel.controls.buy_bid_limit"></app-validation-message>
+                  </div>
+                </div>
+                </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                <div class="form-group">
+                  <div class="form-line">
+                     <input type="text"  formControlName="sell_bid_limit"  class="form-control " placeholder="Sell order bid limit" >
+                  </div>
+                  <div>
+                    <app-validation-message  controlname="Sell bid limit"  [control]="addcurrencyFormModel.controls.sell_bid_limit"></app-validation-message>
+                  </div>
+                </div>
+               </div>
+               <div class="col-sm-3">
+                <div class="form-group">
+                  
+                  <input type="file"  formControlName="File"   
+                  class="form-control " placeholder="Account Number">
+                  <!--(change)="handleUpload($event)" -->
+                </div> 
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label>Select Currency Logo</label>                    
+                  </div> 
+                  </div>
+              </div>
+          
+          <div class="group-btn-wrap clearfix">
+          
+            <button [disabled]="addcurrencyFormModel.invalid" type="submit" class="btn btn-primary waves-effect position" >Submit</button>
+          </div>
+        </form>  
+      </div>
+    </div>
+  </div>

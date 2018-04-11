@@ -1,0 +1,130 @@
+<div class="white-box fee_rules">
+    <div class="white-box-title">
+        <h3 class="box-title pull-left">Fee Rules</h3> 
+        <ul class="pull-right list-inline currency-type-cont">
+                <li *ngFor="let currencyTypeId of currencyTypeEnum; " [ngClass]="{'active': currentCurrencyId==currencyTypeId}">
+                        <a (click)="changeCurrency(currencyTypeId)" >{{getCurrencyType(currencyTypeId)}}</a>
+                </li>
+          </ul>
+        <div class="clearfix"></div>
+    </div>
+ <span class="" [ngClass]="{'errormessage':messagestatus==0, 'successmessage':messagestatus==1}" *ngIf="message">{{message}}</span>
+ <form  [formGroup]="feeRuleModel" (ngSubmit)="onSubmit(feeRuleModel)" class="clearfix" >
+     
+        <input type="hidden"  formControlName="CurrencyType"  [ngModel]="currentCurrencyId">
+    <div class="white-box-cont">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="sub-box-title">
+                    <label for="">Withdraw Fee </label>
+                </div>
+               <!-- 
+                   <ul class="poll_options">
+                        <li>
+                            <input type="radio" id="a-option" formControlName="feetype" value="{{fixedRule}}"   [checked]="((feeRuleModel.value.feetype==undifine)||(feeRuleModel.value.feetype==fixedRule) ) ? true : false" (click)="feeTypeChange(fixedRule)">
+                            <p class="text-left"><label for="a-option">Fixed</label></p>
+                            <div class="check"></div>
+                        </li>
+                        <li>
+                            <input type="radio" id="b-option"  formControlName="feetype" value="{{percentRule}}" (click)="feeTypeChange(percentRule)" [checked]="(feeRuleModel.value.feetype==percentRule) ? true : false">
+                            <p class="text-left"><label for="b-option">Percentage</label></p>
+                            <div class="check"></div>
+                        </li>
+                  </ul>
+                -->
+
+                <ul class="poll_options">
+                        <li>
+                            <input type="radio" id="a-option" formControlName="feetype" value="{{fixedRule}}"  [(ngModel)]="feeRuleModel.value.feetype" (click)="feeTypeChange(fixedRule)">
+                            <p class="text-left"><label for="a-option">Fixed</label></p>
+                            <div class="check"></div>
+                        </li>
+                        <li>
+                            <input type="radio" id="b-option"  formControlName="feetype" value="{{percentRule}}" [(ngModel)]="feeRuleModel.value.feetype" (click)="feeTypeChange(percentRule)" >
+                            <p class="text-left"><label for="b-option">Percentage</label></p>
+                            <div class="check"></div>
+                        </li>
+                  </ul>
+
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="input-group">
+                        <input type="text" class="form-control" aria-describedby="basic-addon2" formControlName="withdrawFee"   >
+                        <span class="input-group-addon" id="basic-addon2">{{currentCurrency}}</span>
+                        <app-validation-message controlname="withdrawFee"  [control]="feeRuleModel.controls.withdrawFee"></app-validation-message>
+                      </div>
+                  </div>
+                  <!-- <div class="col-md-6">
+                      <div class="input-group">
+                        <input type="text" class="form-control"  aria-describedby="basic-addon2" >
+                        <span class="input-group-addon" id="basic-addon2">% {{currentCurrency}}</span>
+                      </div>
+                  </div> -->
+                </div>
+            </div>
+            <div class="col-md-6">                
+                <div class="sub-box-title">
+                    <label for="">Deposit Fee</label>
+                </div>  
+                <ul class="poll_options">
+                    <li>
+                        <p class="text-left"><label for="a-option">&nbsp;</label></p>
+                    </li>
+                </ul>
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="input-group">
+                        <input type="text" class="form-control" aria-describedby="basic-addon2" formControlName="depositFee" >
+                        <span class="input-group-addon" id="basic-addon2">{{currentCurrency}}</span>
+                        <app-validation-message controlname="depositFee"  [control]="feeRuleModel.controls.depositFee"></app-validation-message>
+                      </div>
+                  </div>
+                <!--  <div class="col-md-6">
+                      <div class="input-group">
+                        <input type="text" class="form-control" disabled aria-describedby="basic-addon2" >
+                        <span class="input-group-addon" id="basic-addon2">% {{currentCurrency}}</span>
+                      </div>
+                  </div>  -->
+                </div> 
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="sub-box-title">
+                            <label for="">Min Withdraw Limit / Transaction</label>
+                        </div>
+                        <div class="input-group">
+                          <input type="text" class="form-control" aria-describedby="basic-addon2" formControlName="minWithdrawLimit"  >
+                          <span class="input-group-addon" id="basic-addon2">{{currentCurrency}}</span>
+                          <app-validation-message controlname="minWithdrawLimit"  [control]="feeRuleModel.controls.minWithdrawLimit"></app-validation-message>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="sub-box-title">
+                            <label for="">Min Deposit Limit / Transaction</label>
+                        </div>
+                        <div class="input-group">
+                          <input type="text" class="form-control" aria-describedby="basic-addon2" formControlName="minDepositLimit"  >
+                          <span class="input-group-addon" id="basic-addon2">% {{currentCurrency}}</span>
+                          <app-validation-message controlname="minDepositLimit"  [control]="feeRuleModel.controls.minDepositLimit"></app-validation-message>
+                        </div>
+                    </div> 
+                    <div class="col-md-3">
+                        <div class="sub-box-title">
+                            <label for="">Max Withdraw Limit / Day</label>
+                        </div>
+                        <div class="input-group">
+                          <input type="text" class="form-control" aria-describedby="basic-addon2" formControlName="maxWithdrawLimitPerDay" >
+                          <span class="input-group-addon" id="basic-addon2">{{currentCurrency}}</span>
+                          <app-validation-message controlname="maxWithdrawLimitPerDay"  [control]="feeRuleModel.controls.maxWithdrawLimitPerDay"></app-validation-message>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="white-box-footer text-center">
+       <button type="submit" class="btn btn-danger" [disabled]="feeRuleModel.invalid" >save</button>
+    </div>
+   </form> 
+</div>

@@ -1,0 +1,269 @@
+<!-- Left Sidebar -->
+        <aside *ngIf="_IsAuthenticated==true && location.path()!=''" id="leftsidebar" class="sidebar">
+            <!-- Menu -->
+            <div class="menu">
+                <div class="logo">
+                    <a  href="index.html"><img  alt="User" src="../../assets/images/logo.png" height="50px"></a>
+                </div>
+                <ul class="list">
+                    <li class="header"><i class="material-icons">apps</i><span>{{_title}}</span></li>
+                
+                     <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['Dashboard']">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block toggled">
+                            <i class="material-icons">widgets</i>
+                            <span>Fees Constraints</span>
+                        </a> 
+                        <ul class="ml-menu">
+                            <li [routerLinkActive]="['active']">
+                                <a>
+                                    <i class="material-icons">list</i>
+                                    <span>Currency Details</span>
+                                </a>
+                            </li>
+                            <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['fee_rules']">
+                                    <i class="material-icons">list</i>
+                                    <span>Fee Rules</span>
+                                </a>
+                            </li> 
+                            <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['trading_rules']">
+                                    <i class="material-icons">list</i>
+                                    <span>Trading Rules</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block toggled">
+                            <i class="material-icons">widgets</i>
+                            <span>Users Profile</span>
+                        </a> 
+                        <ul class="ml-menu">
+                            <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['user_list']">
+                                    <i class="material-icons">list</i>
+                                    <span>Users List</span>
+                                </a>
+                            </li>
+                            <li [routerLinkActive]="['active']">
+                                <a href="javascript:void(0)">
+                                    <i class="material-icons">list</i>
+                                    <span>Personal Details</span>
+                                </a>
+                            </li> 
+                            <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['kyc_details']">
+                                    <i class="material-icons">list</i>
+                                    <span>KYC Details</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li> 
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block toggled">
+                            <i class="material-icons">widgets</i>
+                            <span>Deposit &amp; Withdraw Request</span>
+                        </a> 
+                        <ul class="ml-menu">
+                            <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['deposit_request']">
+                                    <i class="material-icons">text_fields</i>
+                                    <span>Deposit Request</span>
+                                </a>
+                            </li>
+                            <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['withdraw_request']">
+                                    <i class="material-icons">text_fields</i>
+                                    <span>Withdraw Request</span>
+                                </a>
+                            </li>                                                               
+                        </ul>
+                    </li> 
+
+                    <li class="">
+                            <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block toggled">
+                                <i class="material-icons">widgets</i>
+                                <span>Announcement</span>
+                            </a> 
+                            <ul class="ml-menu">
+                                <li [routerLinkActive]="['active']">
+                                    <a [routerLink]="['announcement-list']">
+                                        <i class="material-icons">text_fields</i>
+                                        <span>All Announcement</span>
+                                    </a>
+                                </li>
+                                <li [routerLinkActive]="['active']">
+                                    <a [routerLink]="['create-announcement']">
+                                        <i class="material-icons">text_fields</i>
+                                        <span>Create Announcement</span>
+                                    </a>
+                                </li>                                                               
+                            </ul>
+                    </li> 
+
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['accounts-list']">
+                            <i class="material-icons">list</i>
+                            <span>Bank Details</span>
+                        </a>
+                    </li>
+
+               
+                <!--   <li [routerLinkActive]="['active']">
+                            <a [routerLink]="['broadcast']">
+                                <i class="material-icons">list</i>
+                                <span>Broadcast</span>
+                            </a>
+                    </li>
+               <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['aprrove_account']">
+                            <i class="material-icons">list</i>
+                            <span>Aprrove User KYC</span>
+                        </a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['deposit']">
+                            <i class="material-icons">assignment_turned_in</i>
+                            <span>Deposit</span>
+                        </a>
+                    </li>
+                    
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['user_balance']">
+                            <i class="material-icons">text_fields</i>
+                            <span>User Balance</span>
+                        </a>
+                    </li>
+                    
+                    
+
+                     <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['deposit_transaction']">
+                            <i class="material-icons">text_fields</i>
+                            <span>Deposit Transaction</span>
+                        </a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['AddCurrency']">
+                            <i class="material-icons">list</i>
+                            <span>Edit Fee</span>
+                        </a>
+                    </li> 
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['transaction-fee']">
+                            <i class="material-icons">list</i>
+                    <span>Fee</span>
+                        </a>
+    
+                    </li>
+                    
+                     <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block toggled">
+                            <i class="material-icons">widgets</i>
+                            <span>Setting</span>
+                        </a>
+                        
+                        <ul class="ml-menu">
+                                <li [routerLinkActive]="['active']">
+                                        <a [routerLink]="['AddCurrency']">
+                                            <i class="material-icons">list</i>
+                                    <span>Add Currency</span>
+                                        </a>
+                    
+                                    </li> 
+                                    
+                                    <li [routerLinkActive]="['active']">
+                                        <a [routerLink]="['transaction-fee']">
+                                            <i class="material-icons">list</i>
+                                    <span>Fee</span>
+                                        </a>
+                    
+                                    </li>
+
+                            <li [routerLinkActive]="['active']">
+                                        <a [routerLink]="['SetFee']">
+                                            <i class="material-icons">list</i>
+                                    <span>Currency Fee</span>
+                                        </a>
+                    
+                                    </li>
+                            
+                            <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['create_order']">
+                                    <i class="material-icons">list</i>
+                            <span>Create Order</span>
+                                </a>
+                           </li>
+                            <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['test_order']">
+                                    <i class="material-icons">list</i>
+                            <span>Test Create Order</span>
+                                </a>
+                           </li>
+                           <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['logo']">
+                                    <i class="material-icons">list</i>
+                            <span>Logo</span>
+                                </a>
+            
+                            </li>
+
+                             <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['company_profile']">
+                                    <i class="material-icons">list</i>
+                            <span>Company Profile</span>
+                                </a>
+            
+                            </li>
+                             <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['user_profile']">
+                                    <i class="material-icons">list</i>
+                            <span>User Profile</span>
+                                </a>
+            
+                            </li>
+                             <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['enable_2f']">
+                                    <i class="material-icons">list</i>
+                            <span>Enable 2F</span>
+                                </a>
+            
+                            </li>
+                             <li [routerLinkActive]="['active']">
+                                <a href="http://localhost:4200/Btc_Inr" target="_blank">
+                                    <i class="material-icons">list</i>
+                            <span>BTC/INR</span>
+                                </a>
+            
+                            </li>
+                             <li [routerLinkActive]="['active']">
+                                <a href="http://localhost:4200/Eth_Inr" target="_blank">
+                                    <i class="material-icons">list</i>
+                            <span>ETC/INR</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                      -->
+
+                </ul>
+
+          </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    Copyright &copy; 2017 <a href="javascript:void(0);">CryptoTrading</a>.
+                </div>
+                <div class="rights">All rights reserved.</div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->

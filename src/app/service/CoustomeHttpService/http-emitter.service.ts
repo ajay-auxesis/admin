@@ -16,22 +16,14 @@ this.paymentrequiredemiter= new EventEmitter();
 
 public unauthorizedError(status:boolean): void{
 
-        
-   
-            
-    // if(status)
-    // {
+    
       this.unauthorizeduseremiter.emit(status);
-    //}
-  }
-public paymentRequiredError(status:boolean): void{
-
-           // console.log("paymentRequiredError status "+status);
    
-            
-    // if(status)
-    // {
+  }
+public paymentRequiredError(status:boolean): void{      
+
+       
       this.paymentrequiredemiter.emit(status);
-    //}
+    
   }
 }

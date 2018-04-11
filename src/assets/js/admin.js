@@ -153,75 +153,7 @@ $.AdminBSB.leftSideBar = {
         return $('body').hasClass('overlay-open');
     }
 };
-//==========================================================================================================================
 
-/* Right Sidebar - Function ================================================================================================
-*  You can manage the right sidebar menu options
-*  
-*/
-$.AdminBSB.rightSideBar = {
-    activate: function () {
-        var _this = this;
-        var $sidebar = $('#rightsidebar');
-        var $overlay = $('.overlay');
-
-        //Close sidebar
-        $(window).click(function (e) {
-            var $target = $(e.target);
-            if (e.target.nodeName.toLowerCase() === 'i') { $target = $(e.target).parent(); }
-
-            if (!$target.hasClass('js-right-sidebar') && _this.isOpen() && $target.parents('#rightsidebar').length === 0) {
-                if (!$target.hasClass('bars')) $overlay.fadeOut();
-                $sidebar.removeClass('open');
-            }
-        });
-
-        $('.js-right-sidebar').on('click', function () {
-            $sidebar.toggleClass('open');
-            if (_this.isOpen()) { $overlay.fadeIn(); } else { $overlay.fadeOut(); }
-        });
-    },
-    isOpen: function () {
-        return $('.right-sidebar').hasClass('open');
-    }
-}
-//==========================================================================================================================
-
-/* Searchbar - Function ================================================================================================
-*  You can manage the search bar
-*  
-*/
-var $searchBar = $('.search-bar');
-$.AdminBSB.search = {
-    activate: function () {
-        var _this = this;
-
-        //Search button click event
-        $('.js-search').on('click', function () {
-            _this.showSearchBar();
-        });
-
-        //Close search click event
-        $searchBar.find('.close-search').on('click', function () {
-            _this.hideSearchBar();
-        });
-
-        //ESC key on pressed
-        $searchBar.find('input[type="text"]').on('keyup', function (e) {
-            if (e.keyCode == 27) {
-                _this.hideSearchBar();
-            }
-        });
-    },
-    showSearchBar: function () {
-        $searchBar.addClass('open');
-        $searchBar.find('input[type="text"]').focus();
-    },
-    hideSearchBar: function () {
-        $searchBar.removeClass('open');
-        $searchBar.find('input[type="text"]').val('');
-    }
-}
 //==========================================================================================================================
 
 /* Navbar - Function =======================================================================================================
@@ -445,14 +377,14 @@ $.AdminBSB.browser = {
 //==========================================================================================================================
 
 $(function () {
-   $.AdminBSB.browser.activate();
-   //$.AdminBSB.leftSideBar.activate();
-    $.AdminBSB.rightSideBar.activate();
-    $.AdminBSB.navbar.activate();
-   $.AdminBSB.dropdownMenu.activate();
-   $.AdminBSB.input.activate();
-  $.AdminBSB.select.activate();
-   $.AdminBSB.search.activate();
+//    //$.AdminBSB.browser.activate();
+//   $.AdminBSB.leftSideBar.activate();
+//     $.AdminBSB.rightSideBar.activate();
+//     $.AdminBSB.navbar.activate();
+//    $.AdminBSB.dropdownMenu.activate();
+//    $.AdminBSB.input.activate();
+//   $.AdminBSB.select.activate();
+//    $.AdminBSB.search.activate();
 
     setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
 });

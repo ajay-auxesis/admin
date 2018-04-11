@@ -1,0 +1,35 @@
+
+<div class="tab-content">
+    <div class="card">          
+      <div class="header">
+        <h2>Create Announcement</h2>
+      </div>		
+      <div class="body">
+        
+        <form [formGroup]="AnnouncementFormModel" (ngSubmit)="onSubmit(AnnouncementFormModel)"  class="clearfix"  >
+        
+          <div class="form-group m-b-15">
+            <div class="form-line">
+               <input type="text"  formControlName="Subject"  class="form-control " placeholder="Subject" >
+            </div>
+            <div>
+              <app-validation-message  controlname="Subject"  [control]="AnnouncementFormModel.controls.Subject"></app-validation-message>
+            </div>
+          </div>  
+        
+          <div class="form-group m-b-15">
+            <div class="form-line">
+              <input type="text"  formControlName="Message" class="form-control " placeholder="Message"  >
+            </div>
+            <div>
+              <app-validation-message  controlname="Message"  [control]="AnnouncementFormModel.controls.Message"></app-validation-message>
+            </div>
+          </div> 
+          <div class="group-btn-wrap clearfix">
+          
+            <button [disabled]="AnnouncementFormModel.invalid" type="submit" class="btn btn-primary waves-effect position" >SAve</button>
+          </div>
+        </form>  
+      </div>
+    </div>
+  </div>

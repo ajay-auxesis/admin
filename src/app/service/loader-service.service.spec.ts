@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { LoaderServiceService } from './loader-service.service';
+import { LoaderService } from './loader-service.service';
 
-describe('LoaderServiceService', () => {
+describe('LoaderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [LoaderServiceService]
+      providers: [LoaderService]
     });
   });
 
-  it('should ...', inject([LoaderServiceService], (service: LoaderServiceService) => {
+  it('should ...', inject([LoaderService], (service: LoaderService) => {
     expect(service).toBeTruthy();
   }));
 });

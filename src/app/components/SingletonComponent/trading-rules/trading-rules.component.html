@@ -1,0 +1,132 @@
+<div class="white-box fee_rules">
+    <div class="white-box-title">
+        <h3 class="box-title pull-left">Trading Rules</h3>
+           <ul class="pull-right list-inline currency-type-cont">
+                <li *ngFor="let currencyPairId of currencyPairEnum; " [ngClass]="{'active': currentCurrencyPairId==currencyPairId}">
+                        <a (click)="changeCurrencyPair(currencyPairId)" >{{getCurrencyPair(currencyPairId)}}</a>
+                </li>
+           </ul>
+        <div class="clearfix"></div>
+    </div>
+    <span class="" [ngClass]="{'errormessage':messagestatus==0, 'successmessage':messagestatus==1}" *ngIf="message">{{message}}</span>
+    
+    <form  [formGroup]="tradingRuleModel" (ngSubmit)="onSubmit(tradingRuleModel)" class="clearfix" >
+     <span class="errormsg">{{_errormsg}}</span>
+    <input type="hidden" formControlName="currencypair"  [ngModel]="currentCurrencyPairId">
+    <div class="white-box-cont">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="sub-box-title">
+                    <label for="">Buyer Fee</label>
+                </div>                
+                <ul class="poll_options">
+                    <li>
+                       <input type="radio" id="a-option" formControlName="tradingtype" value="{{fixedRule}}"  [(ngModel)]="tradingRuleModel.value.tradingtype"  (click)="tradingTypeChange(fixedRule)">
+                        <p class="text-left"><label for="a-option">Fixed</label></p>
+                        <div class="check"></div>
+                    </li>
+                    <li>
+                            <input type="radio" id="b-option"  formControlName="tradingtype" value="{{percentRule}}" [(ngModel)]="tradingRuleModel.value.tradingtype" (click)="tradingTypeChange(percentRule)">
+                        <p class="text-left"><label for="b-option">Percentage</label></p>
+                        <div class="check"></div>
+                    </li>
+                </ul>
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="input-group">
+                        <input type="text" class="form-control" aria-describedby="basic-addon2" formControlName="BuyerFee" [ngModel]="tradingRules.BuyerFee" >
+                        <span class="input-group-addon" id="basic-addon2">{{CurrencyFirst}}</span>
+                        <app-validation-message controlname="BuyerFee"  [control]="tradingRuleModel.controls.BuyerFee"></app-validation-message>
+                      </div>
+                  </div>
+                 <!-- <div class="col-md-6">
+                      <div class="input-group">
+                        <input type="text" class="form-control" disabled aria-describedby="basic-addon2">
+                        <span class="input-group-addon" id="basic-addon2">% BTC</span>
+                      </div>
+                  </div> -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="sub-box-title">
+                    <label for="">Seller Fee</label>
+                </div>
+                <ul class="poll_options">
+                    <li>
+                        <p class="text-left"><label for="c-option">&nbsp;</label></p>
+                    </li>
+                </ul>
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="input-group">
+                        <input type="text" class="form-control" aria-describedby="basic-addon2" formControlName="SellerFee" [ngModel]="tradingRules.SellerFee">
+                        <span class="input-group-addon" id="basic-addon2">{{CurrencyFirst}}</span>
+                      </div><app-validation-message controlname="SellerFee"  [control]="tradingRuleModel.controls.SellerFee"></app-validation-message>
+                  </div>
+                 <!-- <div class="col-md-6">
+                      <div class="input-group">
+                        <input type="text" class="form-control" disabled aria-describedby="basic-addon2">
+                        <span class="input-group-addon" id="basic-addon2">% BTC</span>
+                      </div>
+                  </div>-->
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="sub-box-title">
+                            <label for="">Min Buy Amount</label>
+                        </div>
+                        <div class="input-group">
+                          <input type="text" class="form-control" aria-describedby="basic-addon2" formControlName="minBuyAmountCurrencyOne" [ngModel]="tradingRules.minBuyAmountCurrencyOne">
+                          <span class="input-group-addon" id="basic-addon2">{{CurrencyFirst}}</span>
+                          <app-validation-message controlname="minBuyAmountCurrencyOne"  [control]="tradingRuleModel.controls.minBuyAmountCurrencyOne"></app-validation-message>
+                        </div>
+                        <div class="input-group">
+                          <input type="text" class="form-control" aria-describedby="basic-addon2" formControlName="minBuyAmountCurrencytwo" [ngModel]="tradingRules.minBuyAmountCurrencytwo">
+                          <span class="input-group-addon" id="basic-addon2">{{CurrencySecond}}</span>
+                          <app-validation-message controlname="minBuyAmountCurrencytwo"  [control]="tradingRuleModel.controls.minBuyAmountCurrencytwo"></app-validation-message>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="sub-box-title">
+                            <label for="">Min Sell Amount</label>
+                        </div>
+                        <div class="input-group">
+                          <input type="text" class="form-control" aria-describedby="basic-addon2" formControlName="minSellAmountCurrencyOne" [ngModel]="tradingRules.minSellAmountCurrencyOne">
+                          <span class="input-group-addon" id="basic-addon2">{{CurrencyFirst}}</span>
+                          <app-validation-message controlname="minSellAmountCurrencyOne"  [control]="tradingRuleModel.controls.minSellAmountCurrencyOne"></app-validation-message>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" aria-describedby="basic-addon2" formControlName="minSellAmountCurrencyTwo" [ngModel]="tradingRules.minSellAmountCurrencyTwo">
+                            <span class="input-group-addon" id="basic-addon2">{{CurrencySecond}}</span>
+                            <app-validation-message controlname="minSellAmountCurrencyTwo"  [control]="tradingRuleModel.controls.minSellAmountCurrencyTwo"></app-validation-message>
+                          </div>
+                    </div> 
+                    <div class="col-md-3">
+                        <div class="sub-box-title">
+                            <label for="">Buy Order Bid Limit</label>
+                        </div>
+                        <div class="input-group">
+                          <input type="text" class="form-control" aria-describedby="basic-addon2" formControlName="BuyOrderBidLimit" [ngModel]="tradingRules.BuyOrderBidLimit" >
+                          <span class="input-group-addon" id="basic-addon2">%</span>
+                        </div><app-validation-message controlname="BuyOrderBidLimit"  [control]="tradingRuleModel.controls.BuyOrderBidLimit"></app-validation-message>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="sub-box-title">
+                            <label for="">Sell Order Bid Limit</label>
+                        </div>
+                        <div class="input-group">
+                          <input type="text" class="form-control" aria-describedby="basic-addon2" formControlName="SellOrderBidLimit" [ngModel]="tradingRules.SellOrderBidLimit" >
+                          <span class="input-group-addon" id="basic-addon2">%</span>
+                        </div><app-validation-message controlname="SellOrderBidLimit"  [control]="tradingRuleModel.controls.SellOrderBidLimit"></app-validation-message>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="white-box-footer text-center">
+       <button type="submit" class="btn btn-danger" [disabled]="tradingRuleModel.invalid">save</button>
+    </div>
+   </form>
+</div>

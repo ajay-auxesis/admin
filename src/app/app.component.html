@@ -1,29 +1,18 @@
 
  <script src="{{AppSettings.HubUrl}}/hubs"></script>  
-
-  <div >
-     
-          <app-error-message-popup></app-error-message-popup>
-
-          <app-header></app-header>
-          <app-leftsidebar></app-leftsidebar>
-         
-
-   <main class="container-fluid">
-   
- <span *ngIf="objLoaderStatus">
-     <app-loader></app-loader>
-</span>
-<section class="content">
-       <!--<button (click)="showtoaster()">Toaster</button>-->
-
-<div #toaster></div>
-        <router-outlet> </router-outlet>
-        <router-outlet name="parameters"></router-outlet>
-
-        </section>
-           </main>
-     
-        </div>
+  <div>
+        <app-error-message-popup></app-error-message-popup>
+        <app-header></app-header>
+        <app-leftsidebar></app-leftsidebar>
+        <main class="container-fluid">
+              <span *ngIf="objLoaderStatus">
+                  <app-loader></app-loader>
+              </span>
+              <section class="content">
+                  <router-outlet> </router-outlet>
+                  <router-outlet name="parameters"></router-outlet>
+              </section>
+        </main>
+  </div>
 
         

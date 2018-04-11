@@ -20,38 +20,20 @@
       "styles": [
         "styles.css",
         "./assets/plugins/bootstrap/css/bootstrap.css",
-        "./assets/plugins/node-waves/waves.css",
         "./assets/plugins/animate-css/animate.css",
-        "./assets/plugins/morrisjs/morris.css",
         "./assets/css/style.css",
-        "./assets/css/themes/all-themes.css",
         "./assets/css/materialize.css",
         "./assets/css/custom.css"
       ],
-      "scripts": [
-       
+      "scripts": [       
         "./assets/plugins/bootstrap/js/bootstrap.js",
         "./assets/plugins/bootstrap-select/js/bootstrap-select.js",
-        "./assets/plugins/jquery-slimscroll/jquery.slimscroll.js",
-        "./assets/plugins/node-waves/waves.js",
-        "./assets/plugins/jquery-countto/jquery.countTo.js",
-        "./assets/plugins/raphael/raphael.min.js",
-        "./assets/plugins/morrisjs/morris.js",
-        "./assets/plugins/chartjs/Chart.bundle.js",
-        "./assets/plugins/flot-charts/jquery.flot.js",
-        "./assets/plugins/flot-charts/jquery.flot.resize.js",
-        "./assets/plugins/flot-charts/jquery.flot.pie.js",
-        "./assets/plugins/flot-charts/jquery.flot.categories.js",
-        "./assets/plugins/flot-charts/jquery.flot.time.js",
-        "./assets/plugins/jquery-sparkline/jquery.sparkline.js",
         "./assets/js/admin.js",
-        "./assets/js/helpers.js",
         "./assets/js/script.js",
-        "./assets/js/amchart.js"
-       
+        "./assets/js/custom.js"
       ],
+      "environmentSource":"environments/environment.ts",
       "environments": {
-        "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
@@ -91,6 +73,9 @@
       "module": false,
       "pipe": true,
       "service": true
-    }
+    },
+    "serve": {
+    "port": 4201
+  }
   }
 }

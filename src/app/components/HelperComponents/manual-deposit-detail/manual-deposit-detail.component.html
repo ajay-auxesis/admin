@@ -1,0 +1,54 @@
+
+<div class="tab-content">
+	<div class="card">          
+		<div class="header">
+			<h2>Deposite Money</h2>
+		</div>		
+		<div class="body">
+			
+			<form  class="rahul"	 (ngSubmit)="submitOrder(DepositFormModel)" [formGroup]="DepositFormModel" >
+        
+        <div class="form-group m-b-15">
+					<div class="form-line">
+           <label>User Name: XXXX</label> <br/> 
+					 <label>IFSC Code : SBINDS2232</label> <br/> 
+           <label>PanNumber : CPAPW343</label><br/>
+           <label>PanCardPhoto : Show Pancard</label><br/>
+           <label>AddressProff : Show Pancard</label><br/>
+           <label>User Kyc Status : approve</label><br/>
+           <label>Request Deposit Amount : 10000 INR</label><br/>
+           <label>UTR Number: XSASAq232</label><br/>
+					</div>
+					
+				</div>  
+
+				<div class="form-group m-b-15">
+					<div class="form-line">
+					   <input type="text"  formControlName="Amount"  class="form-control " placeholder="Change Amount" >
+					   
+					</div>
+					<div>
+						<app-validation-message  controlname="Amount"  [control]="DepositFormModel.controls.Amount"></app-validation-message>
+					</div>
+				</div>  
+			
+				<div class="form-group m-b-15">
+					<div class="form-line">
+						<textarea formControlName="Reason" class="form-control " placeholder="Reason"  ></textarea>
+					</div>
+					<div>
+						<app-validation-message  controlname="Reason"  [control]="DepositFormModel.controls.Reason"></app-validation-message>
+					
+					</div>
+				</div> 
+
+        	
+					
+				<div class="group-btn-wrap clearfix">
+				
+					<button [disabled]="DepositFormModel.invalid" type="submit" class="btn btn-primary waves-effect position" >Deposit</button>
+				</div>
+			</form>  
+		</div>
+	</div>
+</div>

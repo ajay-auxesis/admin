@@ -1,0 +1,54 @@
+<div class="clearfix"></div>
+<div class="white-box">
+    <div class="white-box-title">
+        <h3 class="box-title pull-left">All Announcement</h3>
+        <div class="filter_cont pull-right">
+            <form class="form-inline">
+                <label>Search</label>
+                <div class="form-group">             
+                  <input type="text" class="form-control" id="search_your_term" placeholder="Search your term">               
+                </div>
+                <div class="form-group">
+                    <input type="text" class="date form-control"  placeholder="Start Date">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="date form-control" placeholder="End Date">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+            </form>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    
+    <div class="white-box-cont">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Subject</th>
+                <th>created By</th>
+                <th>Date/Time</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let announcement of announcementlist;let rowIndex = index">
+                    <td>{{rowIndex+1}}</td>
+                    <td>{{announcement.subject}}</td>
+                    <td>{{announcement.addedby}}</td>
+                    <td>{{announcement.createdOn | date:'medium'}}</td>
+                    <td><a routerLink="/view-announcement/{{announcement.id}}" class="table_btn view-btn">View </a> </td>
+                </tr> 
+            </tbody>
+          </table>
+        </div>
+  </div>
+
+
+
+
+
+
+
+    

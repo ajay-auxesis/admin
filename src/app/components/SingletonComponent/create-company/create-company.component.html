@@ -1,0 +1,57 @@
+
+<div class="tab-content">
+	<div class="card">          
+		<div class="header">
+			<h2>Create Company</h2>
+		</div>		
+		<div class="body">
+			
+			<form  class="rahul"	 (ngSubmit)="submitOrder(CreateCompanyModel)" [formGroup]="CreateCompanyModel" >
+    
+
+				<div class="form-group m-b-15">
+					<div class="form-line">
+					   <input type="text"  formControlName="Name"  class="form-control " placeholder="Company Name" >
+					   
+					</div>
+					<div>
+						<app-validation-message  controlname="Name"  [control]="CreateCompanyModel.controls.Name"></app-validation-message>
+					</div>
+				</div>  
+			
+				<div class="form-group m-b-15">
+					<div class="form-line">
+					   <input type="text"  formControlName="ID"  class="form-control " placeholder="Company ID" >
+					   
+					</div>
+					<div>
+						<app-validation-message  controlname="ID"  [control]="CreateCompanyModel.controls.ID"></app-validation-message>
+					</div>
+				</div> 
+
+          <div class="form-group m-b-15">
+					<div class="form-line">
+					   <input type="text"  formControlName="Director"  class="form-control " placeholder="Director Name" >
+					   
+					</div>
+					<div>
+						<app-validation-message  controlname="Director"  [control]="CreateCompanyModel.controls.Director"></app-validation-message>
+					</div>
+				</div>
+
+        <div class="form-group m-b-15">
+					<div class="form-line">
+            <label>Company Pancard</label>
+					   <input type="file"  id="pancard" (change)="onFileChange($event)"  class="form-control "  >
+					  </div>
+					
+				</div>
+        
+				<div class="group-btn-wrap clearfix">
+				
+					<button [disabled]="CreateCompanyModel.invalid" type="submit" class="btn btn-primary waves-effect position" >Create</button>
+				</div>
+			</form>  
+		</div>
+	</div>
+</div>

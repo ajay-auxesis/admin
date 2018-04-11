@@ -1,0 +1,7 @@
+.ml-menu {
+  display: none;
+}
+.open .ml-menu {
+  display: block;
+}
+.sidebar .logo{text-align: center; padding:10px 10px}

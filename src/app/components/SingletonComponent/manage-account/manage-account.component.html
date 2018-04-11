@@ -1,0 +1,51 @@
+
+<div class="tab-content">
+	<div class="card">          
+		<div class="header">
+			<h2>Create Company</h2>
+		</div>		
+		<div class="body">
+			
+			<form  class="rahul"	 (ngSubmit)="submitOrder(ChangePasswordModel)" [formGroup]="ChangePasswordModel" >
+    
+
+				<div class="form-group m-b-15">
+					<div class="form-line">
+					   <input type="password"  formControlName="Currentpassword"  class="form-control " placeholder="Current Password" >
+					   
+					</div>
+					<div>
+						<app-validation-message  controlname="Current Password"  [control]="ChangePasswordModel.controls.Currentpassword"></app-validation-message>
+					</div>
+				</div>  
+			
+				<div class="form-group m-b-15">
+					<div class="form-line">
+					   <input type="password"  formControlName="Password"  class="form-control " placeholder="New Password" >
+					   
+					</div>
+					<div>
+						<app-validation-message  controlname="New Password"  [control]="ChangePasswordModel.controls.Password"></app-validation-message>
+					</div>
+				</div> 
+
+        <div class="form-group m-b-15">
+					<div class="form-line">
+					   <input type="password"  formControlName="Confirmpassword"  class="form-control " placeholder="Confirm New Password" >
+					   
+					</div>
+					<div>
+						<app-validation-message  controlname="Confirm Password"  [control]="ChangePasswordModel.controls.Confirmpassword"></app-validation-message>
+					</div>
+				</div> 
+
+        
+        
+				<div class="group-btn-wrap clearfix">
+				
+					<button [disabled]="ChangePasswordModel.invalid" type="submit" class="btn btn-primary waves-effect position" >Create</button>
+				</div>
+			</form>  
+		</div>
+	</div>
+</div>

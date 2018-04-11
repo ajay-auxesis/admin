@@ -15,7 +15,6 @@ _IsAuthenticated:boolean=true;
 
   constructor(private _sharedservice:SharedService,private _router: Router) {
     this._sharedservice._IsAuthenticated.subscribe(value => this._IsAuthenticated = value);
-
    }
 
 }

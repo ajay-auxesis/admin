@@ -1,0 +1,72 @@
+<a  class="generate_btn pull-right">Generate Ticket</a>
+<br><br>
+<div class="clearfix"></div>
+<div class="white-box">
+        <div class="white-box-title">
+            <h3 class="box-title pull-left">Withdraw Request</h3>
+            <div class="filter_cont pull-right">
+                <form class="form-inline">
+                    <label>Search</label>
+                    <div class="form-group">             
+                      <input type="text" class="form-control" id="search_your_term" placeholder="Search your term">               
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="date form-control"  placeholder="Start Date">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="date form-control" placeholder="End Date">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="form-group" style="margin-left:30px;">
+                      <label for="">Filter</label>
+                      <select class="form-conrol" name="" id="">
+                          <optgroup label="User Status">
+                              <option value="">Blocked</option>
+                              <option value="">Active</option>
+                          </optgroup>
+                          <optgroup label="KYC Status">
+                              <option value="">Approved</option>
+                              <option value="">Pending</option>
+                          </optgroup>
+                        
+                      </select>
+                    </div>
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <span class="" [ngClass]="{'errormessage':messagestatus==0, 'successmessage':messagestatus==1}" *ngIf="message">{{message}}</span>
+        <div class="white-box-cont">
+            <table  class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>User Balance</th>
+                    <th>Date/Time</th>
+                    <th>KYC Status</th>
+                    <th>User Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of orderslist;let rowIndex = index">
+                        <td>{{rowIndex+1}}</td>
+                        <td>{{order.name}}</td>
+                        <td>{{order.Amount}} $</td>
+                        <td>{{order.userBalance}} $</td>
+                        <td>{{order.date | date:'medium'}}</td>
+                        <td class="text-center"><i class="status_check tick fas fa-check-circle"></i></td>
+                        <td class="text-center"><i class="status_check cross fas fa-eye-slash"></i></td>
+                        <td><a (click)="changeOrderStatus(order.id,1,rowIndex)" class="table_btn unblock-btn">Approve</a> <a (click)="changeOrderStatus(order.id,3,rowIndex)" class="table_btn block-btn">Reject</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    
+    
+        

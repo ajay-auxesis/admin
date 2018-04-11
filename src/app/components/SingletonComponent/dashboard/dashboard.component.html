@@ -1,0 +1,93 @@
+<div class="row clearfix">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <div class="icon bg-red">
+                            <i class="material-icons">face</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">TOTAL USERS</div>
+                            <div class="number count-to" data-from="0" data-to="125" data-speed="1000" data-fresh-interval="20">125</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <div class="icon bg-indigo">
+                            <i class="material-icons">face</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">MARKET CAP OF BTC</div>
+                            <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">257</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <div class="icon bg-purple">
+                            <i class="material-icons">bookmark</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">MARKET CAP OF ETH</div>
+                            <div class="number count-to" data-from="0" data-to="117" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+
+<div class="row clearfix">
+   
+<div class="row clearfix">
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <h2>Last Traded Price History</h2>
+        <div class="row clearfix">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+               <app-price-detail></app-price-detail>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <app-price-detail></app-price-detail>
+            </div>
+        </div>
+		
+	</div>
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <h2>Current Matched Price</h2>
+		<div class="row clearfix">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <app-price-detail></app-price-detail>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <app-price-detail></app-price-detail>
+            </div>
+        </div>
+	</div>
+</div>
+
+<div class="row clearfix">
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<app-latest-transaction _currencyType="BTC" _orderMode="Sell"></app-latest-transaction>
+	</div>
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<app-latest-transaction _currencyType="BTC" _orderMode="Buy"></app-latest-transaction>
+	</div>
+</div>
+
+<div class="row clearfix">
+   
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<app-latest-transaction _currencyType="ETH" _orderMode="Sell"></app-latest-transaction>
+	</div>
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<app-latest-transaction _currencyType="ETH" _orderMode="Buy"></app-latest-transaction>
+	</div>
+</div>
+<div class="row clearfix">
+   
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<app-latest-transaction _currencyType="INR" _orderMode="Sell"></app-latest-transaction>
+	</div>
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<app-latest-transaction _currencyType="INR" _orderMode="Buy"></app-latest-transaction>
+	</div>
+</div>

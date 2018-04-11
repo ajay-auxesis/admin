@@ -1,0 +1,48 @@
+
+<div class="tab-content">
+	<div class="card">          
+		<div class="header">
+			<h2>Create Company</h2>
+		</div>		
+		<div class="body">
+			
+			<form  class="rahul"	 (ngSubmit)="submitOrder(CreateUserModel)" [formGroup]="CreateUserModel" >
+    
+
+				<div class="form-group m-b-15">
+					<div class="form-line">
+					   <input type="text"  formControlName="Firstname"  class="form-control " placeholder="First Name" >
+					   
+					</div>
+					<div>
+						<app-validation-message  controlname="Firstname"  [control]="CreateUserModel.controls.Firstname"></app-validation-message>
+					</div>
+				</div>  
+			
+				<div class="form-group m-b-15">
+					<div class="form-line">
+					   <input type="text"  formControlName="Lastname"  class="form-control " placeholder="Last Name" >
+					   
+					</div>
+					<div>
+						<app-validation-message  controlname="Lastname"  [control]="CreateUserModel.controls.Lastname"></app-validation-message>
+					</div>
+				</div> 
+
+
+        <div class="form-group m-b-15">
+					<div class="form-line">
+            <label>User Image</label>
+					   <input type="file" id="userimage" (change)="onFileChange($event)"  class="form-control "  >
+					  </div>
+					
+				</div>
+        
+				<div class="group-btn-wrap clearfix">
+				
+					<button [disabled]="CreateUserModel.invalid" type="submit" class="btn btn-primary waves-effect position" >Create</button>
+				</div>
+			</form>  
+		</div>
+	</div>
+</div>

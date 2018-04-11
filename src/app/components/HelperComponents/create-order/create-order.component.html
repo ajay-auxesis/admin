@@ -1,0 +1,71 @@
+
+<div class="tab-content">
+	<div class="card">          
+		<div class="header">
+			<h2>Set Fee</h2>
+		</div>		
+		<div class="body">
+		
+	
+		 	
+			<form  class="rahul"	 (ngSubmit)="submitOrder(OrderFormModel)" [formGroup]="OrderFormModel" >
+				<div class="form-group m-b-15">
+					<div class="form-line">
+            
+              <select class="form-control show-tick" formControlName="CurrencyType">
+			  <option value="" selected>Select Currency</option>
+              <option value="BTC" >BTC</option>
+              <option value="ETH">ETH</option>
+              <option value="INR">INR</option>
+              </select>
+					</div>
+				</div>  
+			
+				<div class="form-group m-b-15">
+					<div class="form-line">
+						
+              <select class="form-control show-tick" formControlName="OrderMode">
+				  <option value="" selected>Select Mode</option>
+              <option value="Buy">Buy</option>
+              <option value="Sell">Sell</option>
+              </select>
+					</div>
+					</div>
+
+					<div class="form-group m-b-15">
+					<div class="form-line">
+					   <input type="text"  formControlName="MaxRcord"  class="form-control " placeholder="Maximum Record">
+					   
+					</div>
+					<div>
+						<app-validation-message  controlname="MaxRcord"  [control]="OrderFormModel.controls.MaxRcord"></app-validation-message>
+					</div>
+				</div>
+				
+		<div class="form-group m-b-15">
+				
+			<p><b>Rate Range</b></p>
+
+		  <input type="text" id="raterange"  name="raterange" />	
+				
+				</div>	
+				
+        <div class="form-group m-b-15">
+					
+  				<p><b>Amount Range</b></p> 
+
+				<input type="text" id="amountrange"  name="raterange" />
+					
+				</div>
+			
+      
+				
+			
+				<div class="group-btn-wrap clearfix">
+				
+					<button [disabled]="OrderFormModel.invalid" type="submit" class="btn btn-primary waves-effect position" >Submit</button>
+				</div>
+			</form>  
+		</div>
+	</div>
+</div>
